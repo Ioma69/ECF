@@ -2,18 +2,49 @@
 
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/apps/Quai Antique/src/Controller/Controller.php'|file_link(0) }}">src/Controller/Controller.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/apps/Quai Antique/templates//index.html.twig'|file_link(0) }}">templates//index.html.twig</a></code></li>
-    </ul>
+<div class="d-flex justify-content-around flex-wrap mt-5">
+    <div class="card text-bg-dark my-3">
+  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
+  <div class="card-img-overlay">
+    <h5 class="card-title text-black">Card title</h5>
+    <p class="card-text text-black">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+    <p class="card-text text-black"><small>Last updated 3 mins ago</small></p>
+  </div>
 </div>
+
+<div class="card text-bg-dark my-3">
+  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
+  <div class="card-img-overlay">
+    <h5 class="card-title text-white">Card title</h5>
+    <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+    <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+<div class="card text-bg-dark my-3">
+  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
+  <div class="card-img-overlay">
+    <h5 class="card-title text-white">Card title</h5>
+    <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+    <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+<div class="card text-bg-dark my-3">
+  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
+  <div class="card-img-overlay">
+    <h5 class="card-title text-white">Card title</h5>
+    <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+    <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+
+
+</div>
+
+
+
 {% endblock %}
