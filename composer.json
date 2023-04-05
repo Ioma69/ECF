@@ -13,6 +13,7 @@
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
+        "symfony/form": "6.3.*",
         "symfony/framework-bundle": "6.3.*",
         "symfony/maker-bundle": "^1.48",
         "symfony/runtime": "6.3.*",
