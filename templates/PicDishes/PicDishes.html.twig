@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 
-{% block body %} 
-    {{ form(picdishes_form)}}
+    {% block body %} 
 
-{% endblock %} 
+        <div class="container mt-5">
+            {{  form_start(picdishes_form) }}
+            {{ form_rest(picdishes_form) }}
+            <input class="btn btn-primary d-flex m-auto " type="submit" value="Poster une photo de recette">
+            {{ form_end(picdishes_form) }}
+        </div>
+    {% endblock %} 
