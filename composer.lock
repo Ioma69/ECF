@@ -1140,12 +1140,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "26e7107e7b15bd511c5a626fb9aa06355250167d"
+                "reference": "7d3524dcf2912e24cd7ebae216766261891a5003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/26e7107e7b15bd511c5a626fb9aa06355250167d",
-                "reference": "26e7107e7b15bd511c5a626fb9aa06355250167d",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/7d3524dcf2912e24cd7ebae216766261891a5003",
+                "reference": "7d3524dcf2912e24cd7ebae216766261891a5003",
                 "shasum": ""
             },
             "require": {
@@ -1219,7 +1219,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-02T02:11:49+00:00"
+            "time": "2023-04-06T07:14:34+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1901,12 +1901,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "8bad212fdd82a295c18317a232b097e9d767e116"
+                "reference": "29ee0221133f722f944d5d4476a7daf264746f0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/8bad212fdd82a295c18317a232b097e9d767e116",
-                "reference": "8bad212fdd82a295c18317a232b097e9d767e116",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/29ee0221133f722f944d5d4476a7daf264746f0c",
+                "reference": "29ee0221133f722f944d5d4476a7daf264746f0c",
                 "shasum": ""
             },
             "require": {
@@ -2047,7 +2047,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-04T08:49:48+00:00"
+            "time": "2023-04-06T07:15:25+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -4125,12 +4125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "00eb022c39bf24d98fef1027c10cbe8ca6e2b3d4"
+                "reference": "cb21bc93f2fe7c0b9859bce455635cfd4658c2f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/00eb022c39bf24d98fef1027c10cbe8ca6e2b3d4",
-                "reference": "00eb022c39bf24d98fef1027c10cbe8ca6e2b3d4",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/cb21bc93f2fe7c0b9859bce455635cfd4658c2f3",
+                "reference": "cb21bc93f2fe7c0b9859bce455635cfd4658c2f3",
                 "shasum": ""
             },
             "require": {
@@ -4205,7 +4205,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-03T13:29:57+00:00"
+            "time": "2023-04-05T09:41:04+00:00"
         },
         {
             "name": "symfony/var-exporter",
