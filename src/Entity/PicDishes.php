@@ -3,14 +3,26 @@
 namespace App\Entity;
 
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Doctrine\ORM\Mapping as ORM;                            /* Création d'une entité dans la BDD via doctrine*/ 
+
+#[ORM\Entity()]
+#[ORM\Table(name: "picdishes")]
 
 class PicDishes {
+
+    #[ORM\Id()]
+    #[ORM\GeneratedValue(strategu:"AUTO")]
+    #[ORM\Column(type:"integer")]
     private int $id;
+
+    #[ORM\Column(type: "string", length: 80)]
     private string $title;
 
+    #[ORM\Column(type: "text")]
     private string $image;
     
-    private $admin;
+    /*#[ORM\Column(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
+    private $admin;*/
 
 
     
@@ -60,7 +72,7 @@ class PicDishes {
     }
 
   
-
+/*
     public function getAdmin()
     {
         return $this->admin;
@@ -75,6 +87,6 @@ class PicDishes {
         return $this;
     }
 
-  
+  */
    
 }
