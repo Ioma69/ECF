@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;                            /* Création d'une e
 class PicDishes {
 
     #[ORM\Id()]
-    #[ORM\GeneratedValue(strategu:"AUTO")]
+    #[ORM\GeneratedValue(strategy:"AUTO")]
     #[ORM\Column(type:"integer")]
     private int $id;
 
