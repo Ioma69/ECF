@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Doctrine\ORM\Mapping as ORM;                            /* Création d'une entité dans la BDD via doctrine*/ 
 
 #[ORM\Entity()]

@@ -5,43 +5,21 @@
 
 
 <div class="d-flex justify-content-around flex-wrap mt-5">
-    <div class="card text-bg-dark my-3">
-  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
-  <div class="card-img-overlay">
-    <h5 class="card-title text-black">Card title</h5>
-    <p class="card-text text-black">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-    <p class="card-text text-black"><small>Last updated 3 mins ago</small></p>
-  </div>
-</div>
+    {% for picdishe in picdishes %}
+        <div class="card text-bg-dark my-3" width="100" > 
+          <img src={{ picdishe.image }} alt= {{ picdishe.title }} class="card-img rounded-circle" height="300px" width="100">
+          <div class="card-img-overlay">
+            <h5 class="card-title text-white text-center">{{ picdishe.title }}</h5>
+            <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
 
-<div class="card text-bg-dark my-3">
-  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
-  <div class="card-img-overlay">
-    <h5 class="card-title text-white">Card title</h5>
-    <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-    <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
-  </div>
-</div>
+          
+            <a href="#" class="btn btn-danger">Supprimer</a>
+            <a href="#" class="btn btn-warning">Modifier</a>
+          
 
-<div class="card text-bg-dark my-3">
-  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
-  <div class="card-img-overlay">
-    <h5 class="card-title text-white">Card title</h5>
-    <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-    <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
-  </div>
-</div>
-
-<div class="card text-bg-dark my-3">
-  <img src={{asset('images/1.jpg') }} alt="Symfony!" class="card-img rounded-circle" height="200px">
-  <div class="card-img-overlay">
-    <h5 class="card-title text-white">Card title</h5>
-    <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-    <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
-  </div>
-</div>
-
-
+      </div>
+    </div>
+    {% endfor %}
 
 </div>
 
