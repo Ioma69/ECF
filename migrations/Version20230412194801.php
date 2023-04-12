@@ -10,11 +10,11 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230411125321 extends AbstractMigration
+final class Version20230412194801 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Création de la table picdishes';
+        return '';
     }
 
     public function up(Schema $schema): void

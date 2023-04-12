@@ -20,8 +20,8 @@ class PicDishes {
     #[ORM\Column(type: "text")]
     private string $image;
     
-    /*#[ORM\Column(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
-    private $admin;*/
+    #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
+    private $admin;
 
 
     
@@ -71,7 +71,7 @@ class PicDishes {
     }
 
   
-/*
+
     public function getAdmin()
     {
         return $this->admin;
@@ -86,6 +86,6 @@ class PicDishes {
         return $this;
     }
 
-  */
+  
    
 }
