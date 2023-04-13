@@ -17,11 +17,13 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-         $admin = new Admin($this->passwordHasher);
-        
-         $admin->setEmail("test@hotmail.com")->setPassword("123");
-
-         $manager->persist($admin);
+         $john = new Admin($this->passwordHasher);
+         $john->setEmail("test@hotmail.com")->setPassword("123")->setRoles(["ROLE_ADMIN"]);
+         $manager->persist($john);
+         $stan = new Admin($this->passwordHasher);
+         $stan->setEmail("test2@hotmail.com")->setPassword("123456")->setRoles(["ROLE_USER"]);
+         $manager->persist($stan);
+         
          $manager->flush();
     }
 }
