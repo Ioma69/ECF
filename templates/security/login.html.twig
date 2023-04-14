@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey }}
+            </div>
+    {% endif %}
+
+    {# {{form_start(form)}}
+				{{form_rest(form)}}
+				<input type="submit" value="Connexion" class="btn btn-success mt-2"> #}
+
+	<form class="container mt-5" method="post">
+            <label for="email" class="mt-2">Email</label>
+            <input type="email" name="_username" id="email" value="{{ last_username }}" class="form-control mt-2" required>
+            <label for="password" class="mt-2">Mot de passe</label>
+            <input type="password" name="_password" id="password" class="form-control mt-2" required>
+            <input type="hidden" name="_target_path" value="/">
+            <input type="hidden" name="">
+            <input type="submit" value="Connexion" class="btn btn-success mt-3">
+	</form>
+
+{% endblock %}
