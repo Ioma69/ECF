@@ -13,7 +13,7 @@
 				{{form_rest(form)}}
 				<input type="submit" value="Connexion" class="btn btn-success mt-2"> #}
 
-	<form class="container mt-5" method="post">
+	<form class="container mt-5" method="post" class="d-flex justify-content-center">
             <label for="email" class="mt-2">Email</label>
             <input type="email" name="_username" id="email" value="{{ last_username }}" class="form-control mt-2" required>
             <label for="password" class="mt-2">Mot de passe</label>
@@ -21,6 +21,6 @@
             <input type="hidden" name="_target_path" value="/">
             <input type="hidden" name="">
             <input type="submit" value="Connexion" class="btn btn-success mt-3">
+            <a href="/user/new/" class="btn btn-secondary mt-3 ms-1">Vous n'avez pas de compte ? Inscrivez vous </a>
 	</form>
-
 {% endblock %}

@@ -14,7 +14,7 @@ final class Version20230417101122 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'add constraint on cascade on admin->picdishes';
     }
 
     public function up(Schema $schema): void

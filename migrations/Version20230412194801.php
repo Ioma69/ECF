@@ -14,7 +14,7 @@ final class Version20230412194801 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'creating picdishes table';
     }
 
     public function up(Schema $schema): void
