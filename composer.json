@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.9",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
         "sensio/framework-extra-bundle": "^6.2",
@@ -78,7 +79,6 @@
         }
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/debug-bundle": "6.3.*",
         "symfony/stopwatch": "6.3.*",
         "symfony/web-profiler-bundle": "6.3.*"
