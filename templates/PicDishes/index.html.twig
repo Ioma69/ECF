@@ -6,19 +6,17 @@
 
 <div class="d-flex justify-content-around flex-wrap mt-5">
     {% for picdishe in picdishes %}
-        <div class="card text-bg-dark my-3" width="100" > 
-          <img src={{ picdishe.image }} alt= {{ picdishe.title }} class="card-img rounded-circle" height="300px" width="100">
-          <div class="card-img-overlay">
-            <h5 class="card-title text-white text-center">{{ picdishe.title }}</h5>
-            <p class="card-text text-white"><small>Last updated 3 mins ago</small></p>
-
-          
-            <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-danger">Supprimer</a>
-            <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-warning">Modifier</a>
-          
-
-      </div>
-    </div>
+        <div class="card text-bg-dark my-3"> 
+            <img src={{ picdishe.image }} alt= {{ picdishe.title }} class="card-img rounded-circle" height="300px" width="100">
+            <div class="card-img-overlay">
+              <h5 class="card-title text-white text-center">{{ picdishe.title }}</h5>
+            <div class="d-flex justify-content-center">
+                <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                
+                <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
+            </div>
+            </div>
+        </div>
     {% endfor %}
 
 </div>

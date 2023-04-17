@@ -30,6 +30,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "admin")]
+   
     private $picdishes;
 
     private $passwordHasher;

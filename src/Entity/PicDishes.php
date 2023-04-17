@@ -21,6 +21,8 @@ class PicDishes {
     private string $image;
     
     #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
+    #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id", onDelete:"CASCADE")]
+   
     private $admin;
 
 

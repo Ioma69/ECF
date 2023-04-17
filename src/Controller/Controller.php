@@ -30,6 +30,7 @@ class Controller extends AbstractController
         $form = $this->createForm(PicDishesType::class, $picdishes);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() ) {
+            $picdishes->setAdmin($this->getUser());         //  recupere l'utilisateur connecté
             $em = $doctrine->getManager();                  // Recuperation d'un instance d'entity manager
             $em->persist($picdishes);   // Ajout de l'objet $picdishes à l'EM        
             $em->flush(); // Synchronisation de l'object ajouté à l'Em avec le BDD
