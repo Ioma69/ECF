@@ -30,7 +30,7 @@
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="/">Accueil</a>
 					</li>
-					{% if app.user %}				<!-- Vérifie que l'admin est bien connécté afin de procéder au CRUD -->
+					{% if ( app.user ) and ( is_granted('ROLE_ADMIN') ) %}				<!-- Vérifie que l'admin est bien connécté afin de procéder au CRUD -->
 						<li class="nav-item">
 						<a class="nav-link" href="/Picdishes/upload">Upload</a>
 					</li>

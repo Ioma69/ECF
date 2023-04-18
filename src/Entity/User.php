@@ -1,5 +1,5 @@
 <?php
-/*
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -25,11 +25,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    /*#[ORM\Column]
+    #[ORM\Column]
     private ?string $password = null;
 
-    public function __construct(UserPasswordHasherInterface $userPasswordHasherInterface) {
-        $this->var=$var
+    private $passwordHasher;
+    public function __construct(UserPasswordHasherInterface $passwordHasher) {
+        $this->passwordHasher = $passwordHasher;
     }
 
     public function getId(): ?int
@@ -54,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
-    /*public function getUserIdentifier(): string
+    public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
@@ -62,7 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    /*public function getRoles(): array
+    public function getRoles(): array
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
@@ -81,14 +82,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    /*public function getPassword(): string
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
+        $this->password = $this->passwordHasher->hashPassword($this, $password);
 
         return $this;
     }
@@ -96,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    /*public function eraseCredentials()
+    public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
