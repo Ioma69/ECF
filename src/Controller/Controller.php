@@ -25,7 +25,8 @@ class Controller extends AbstractController
 
     #[Route('/Picdishes/upload')]
     public function upload(Request $request, ManagerRegistry $doctrine): Response    // Injection de l'objet ManagerRegistry
-    {
+  { 
+        if ($this->isGranted('ROLE_ADMIN')){
         $picdishes = new PicDishes();
         $form = $this->createForm(PicDishesType::class, $picdishes);
         $form->handleRequest($request);
@@ -36,11 +37,13 @@ class Controller extends AbstractController
             $em->flush(); // Synchronisation de l'object ajouté à l'Em avec le BDD
             return $this->redirectToRoute("home");
         }
+    
 
         return $this->render('PicDishes/PicDishes.html.twig', [
             "picdishes_form" => $form->createView()
         ]);
-        
+    }
+    return $this->redirectToRoute("login");
     }
 
     #[Route('/Picdishes/delete/{id<\d+>}', name:"delete-picdishe")]
