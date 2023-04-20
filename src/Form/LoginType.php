@@ -19,7 +19,6 @@ class LoginType extends AbstractType
             ->add("email", TextType::class, [
                 "label" => "email",
                 "required" => true,
-                //'row_attr' => ['class' => 'nom', 'id' => 'name'],
                 "constraints" => [
                     new Length(["min" => 2, "max" => 180, "minMessage" => "L'email ne doit pas faire moins de 2 caractères", "maxMessage" => "L'email ne doit pas faire plus de 180 caractères"]),
                     new NotBlank(["message" => "L'email ne doit pas être vide !"])

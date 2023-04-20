@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+    {% block body %} 
+
+        <div class="container mt-5">
+            {{  form_start(form) }}
+            {{ form_rest(form) }}
+            
+            <input class="btn btn-primary me-2" type="submit" value="Creer votre compte">
+            <div>
+            <a href="/login" class="btn btn-primary mt-2">Se connecter</a>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    {% endblock %} 
