@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+
 class LoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -30,7 +31,7 @@ class LoginType extends AbstractType
                 "constraints" => [
                     new NotBlank(["message" => "Le mot de passe ne peut pas être vide !"])
                 ]
-            ]);
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -39,7 +40,7 @@ class LoginType extends AbstractType
             "data_class" => Admin::class,
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'user_item',
+            'csrf_token_id'   => 'admin_item',
         ]);
     }
 }

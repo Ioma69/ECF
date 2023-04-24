@@ -14,6 +14,7 @@ class SecurityController extends AbstractController
     #[Route('/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response           // Injection de la dependance authenticationutils
     {
+        
         $error = $authenticationUtils->getLastAuthenticationError();        // s'il y a une erreur de connexion, la stocke dans la variable '$error'
         $lastUsername = $authenticationUtils->getLastUsername();            // Stocke le dernier nom d'utilisateur saisie dans une variable '$lastUserName'
         

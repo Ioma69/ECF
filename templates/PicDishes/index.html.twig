@@ -10,7 +10,7 @@
             <img src={{ picdishe.image }} alt= {{ picdishe.title }} class="card-img rounded-circle" height="300px" width="100">
             <div class="card-img-overlay">
               <h5 class="card-title text-white text-center">{{ picdishe.title }}</h5>
-            {% if app.user %}
+            {% if ( is_granted('ROLE_ADMIN') ) %}
             <div class="d-flex justify-content-center">
                 <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                 <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>

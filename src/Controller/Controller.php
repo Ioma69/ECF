@@ -49,17 +49,21 @@ class Controller extends AbstractController
     #[Route('/Picdishes/delete/{id<\d+>}', name:"delete-picdishe")]
     public function delete(Picdishes $picdishes, ManagerRegistry $doctrine): Response    // Injection de l'objet ManagerRegistry
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $doctrine->getManager();
         $em->remove($picdishes);
         $em->flush(); 
         return $this->redirectToRoute("home");
     }
+    return $this->redirectToRoute("home");
+}
 
 
     
     #[Route('/Picdishes/edit/{id<\d+>}', name:"edit-picdishe")]
     public function update(Request $request, Picdishes $picdishes, ManagerRegistry $doctrine): Response    // Injection de l'objet ManagerRegistry
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $form = $this->createForm(PicDishesType::class, $picdishes);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() ) {
@@ -74,5 +78,6 @@ class Controller extends AbstractController
         ]);
         
     }
-
+    return $this->redirectToRoute("login");
+}
 }

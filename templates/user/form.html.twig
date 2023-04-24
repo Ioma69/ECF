@@ -4,12 +4,31 @@
 
         <div class="container mt-5">
             {{  form_start(form) }}
-            {{ form_rest(form) }}
-            
+            {{form_row(form.email)}}
+            {{form_label(form.password)}}
+	<div class="input-group mb-3">
+		{{form_widget(form.password)}}
+		<span role="button" class="input-group-text" onclick="togglePassword()">
+			<i class="bi bi-eye" id="eye"></i>
+			<i class="bi bi-eye-slash d-none" id="eye-slash"></i>
+		</span>
+	</div>
+    {{form_errors(form.password)}}
+    {{form_label(form.confirm)}}
+    <div class="input-group mb-3">
+		{{form_widget(form.confirm)}}
+		<span role="button" class="input-group-text" onclick="togglePassword2()">
+			<i class="bi bi-eye" id="eye2"></i>
+			<i class="bi bi-eye-slash d-none" id="eye-slash2"></i>
+		</span>
+	</div>
+    {{form_errors(form.confirm)}}
+	{{ form_rest(form) }}
             <input class="btn btn-primary me-2" type="submit" value="Creer votre compte">
             <div>
             <a href="/login" class="btn btn-primary mt-2">Se connecter</a>
             </div>
         </div>
         {{ form_end(form) }}
+    
     {% endblock %} 

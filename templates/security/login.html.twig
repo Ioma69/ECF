@@ -17,7 +17,13 @@
             <label for="email" class="mt-2">Email</label>
             <input type="email" name="_username" id="email" value="{{ last_username }}" class="form-control mt-2" required>
             <label for="password" class="mt-2">Mot de passe</label>
-            <input type="password" name="_password" id="password" class="form-control mt-2" required>
+            <div class="input-group">
+                <input type="password" name="_password" id="user_password" class="form-control mt-2" required>
+                <span role="button" class="input-group-text mt-2" onclick="togglePassword()">
+                    <i class="bi bi-eye" id="eye"></i>
+                    <i class="bi bi-eye-slash d-none" id="eye-slash"></i>
+			    </span>
+		</div>
             <input type="hidden" name="_target_path" value="/">
             <input type="hidden" name="">
             <input type="submit" value="Connexion" class="btn btn-success mt-3">

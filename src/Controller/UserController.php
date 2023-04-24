@@ -16,7 +16,11 @@ class UserController extends AbstractController
     #[Route('/user/new', name: 'user_new')]
     public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
     {
-        $user = new User($userPasswordHasher);
+        if ($this->isGranted('ROLE_USER')){
+            return $this->redirectToRoute("home");
+        
+    }
+    $user = new User($userPasswordHasher);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
