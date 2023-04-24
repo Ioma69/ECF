@@ -14,7 +14,7 @@ final class Version20230424154725 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'deleting unique id';
     }
 
     public function up(Schema $schema): void

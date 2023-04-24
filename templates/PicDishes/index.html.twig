@@ -7,7 +7,7 @@
 <div class="d-flex justify-content-around flex-wrap mt-5">
     {% for picdishe in picdishes %}
         <div class="card text-bg-dark my-3"> 
-            <img src={{ picdishe.image }} alt= {{ picdishe.title }} class="card-img rounded-circle" height="300px" width="100">
+            <img src={{ asset('uploads/' ~ picdishe.image) }} class="card-img rounded-circle" height="300px" width="100px"alt={{picdishe.title}}> 
             <div class="card-img-overlay">
               <h5 class="card-title text-white text-center">{{ picdishe.title }}</h5>
             {% if ( is_granted('ROLE_ADMIN') ) %}

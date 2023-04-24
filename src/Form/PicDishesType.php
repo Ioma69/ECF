@@ -5,12 +5,13 @@ namespace App\Form;
 use App\Entity\PicDishes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Url;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class PicDishesType extends AbstractType {
     
@@ -25,13 +26,26 @@ class PicDishesType extends AbstractType {
             new NotBlank(['message' => "Le contenu ne doit pas etre vide"])]                                                                                                                                                            
         ])
         
-         ->add("image", UrlType::class, 
-         ["label" => "URL de l'image", 
-         "required" => true, 
-         'constraints' 
-         => [new Url(['message' => "L'image doit être une URL valide"]),
-            New NotBlank(['message' => "Le contenu ne doit pas etre vide"])]
-         ]);
+        ->add("image", FileType::class, [
+            "label" => "L'image",
+            'mapped' => false,
+            "required" => false,
+            'constraints' => [
+                new NotBlank(['message' => "Le contenu ne doit pas etre vide"]),
+                new File([
+                    'maxSize' => '5M',
+                    'mimeTypes' => [
+                        'image/jpeg',
+                        "image/gif",
+                        "image/png",
+                        "image/svg+xml",
+                        "image/jpg",
+                        "image/webp"
+                    ],
+                    'mimeTypesMessage' => 'Veuillez proposer une image valide.',
+                ])
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

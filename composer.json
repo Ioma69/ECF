@@ -20,6 +20,7 @@
         "symfony/form": "6.3.*",
         "symfony/framework-bundle": "6.3.*",
         "symfony/maker-bundle": "^1.48",
+        "symfony/mime": "6.3.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/runtime": "6.3.*",
         "symfony/security-bundle": "6.3.*",
