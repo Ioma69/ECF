@@ -116,4 +116,11 @@ public function delete(Picdishes $picdishes, ManagerRegistry $doctrine): Respons
 return $this->redirectToRoute("home");
 }
 
+
+// routes pour la carte
+
+
+
 }
+
+
