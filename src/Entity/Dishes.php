@@ -22,6 +22,20 @@ class Dishes
     #[ORM\Column]
     private ?int $price = null;
 
+
+       // lien entre Dishes et Admin
+      #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "Dishes")]
+    #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id")]
+      
+    private $admins;
+
+    // lien entre Dishes et catégorie
+    #[ORM\OneToOne(targetEntity:"App\Entity\Categories")]
+    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id")]
+      
+    private $category;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +91,43 @@ class Dishes
     public function setPrice(?int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+   
+    /**
+     * Get the value of admins
+     */
+    public function getAdmins()
+    {
+        return $this->admins;
+    }
+
+    /**
+     * Set the value of admins
+     */
+    public function setAdmins($admins): self
+    {
+        $this->admins = $admins;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     */
+    public function setCategory($category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

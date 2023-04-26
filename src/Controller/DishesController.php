@@ -33,6 +33,9 @@ class DishesController extends AbstractController
         $dishesForm = $this->createForm(DishesType::class, $dishes);
         $dishesForm->handleRequest($request);
         if ($dishesForm->isSubmitted() && $dishesForm->isValid()) { 
+            $dishes->setAdmins($this->getUser()); 
+            //$category = $dishesForm->get('category')->getData();
+            //$dishes->setCategory($category);
             $em = $doctrine->getManager();
             $em->persist($dishes);
             $em->flush();

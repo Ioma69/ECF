@@ -30,10 +30,15 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "admin")]
-   
-    
+    #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "Admin")]
+
     private $picdishes;
+
+    // lien entre admin et dishes
+    #[ORM\OneToMany(targetEntity: "App\Entity\Dishes", mappedBy: "Admin")]
+    private $dishes;
+    
+    
 
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {
@@ -129,4 +134,22 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+    /**
+     * Get the value of dishes
+     */
+    public function getDishes()
+    {
+        return $this->dishes;
+    }
+
+    /**
+     * Set the value of dishes
+     */
+    public function setDishes($dishes): self
+    {
+        $this->dishes = $dishes;
+
+        return $this;
+    }
 }

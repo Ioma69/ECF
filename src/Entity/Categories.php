@@ -26,6 +26,16 @@ class Categories
         return $this->id;
     }
 
+
+
+    // lien entre Catégories et Dishes
+     #[ORM\OneToOne(targetEntity:"app\Entity\Dishes", mappedBy:"Categories")]
+
+    private $dishes;
+
+
+
+
     /**
      * Get the value of starter
      */
@@ -76,6 +86,26 @@ class Categories
     public function setDessert(?string $dessert): self
     {
         $this->dessert = $dessert;
+
+        return $this;
+    }
+
+   
+
+    /**
+     * Get the value of dishes
+     */
+    public function getDishes()
+    {
+        return $this->dishes;
+    }
+
+    /**
+     * Set the value of dishes
+     */
+    public function setDishes($dishes): self
+    {
+        $this->dishes = $dishes;
 
         return $this;
     }
