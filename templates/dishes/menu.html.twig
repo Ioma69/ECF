@@ -14,6 +14,7 @@
 					<h5 class="card-title text-center">{{ dishe.title }}</h5>
 					<p class="card-text text-center">{{ dishe.description }}</p>
 					<p class="card-text text-center">{{ dishe.price }}</p>
+					<p class="card-text text-center">{{ dishe.category.name }}</p>
                     <div class="d-flex justify-content-center">
 					<a href="{{ path('delete-menu', {'id': dishe.id}) }}" class="btn btn-danger btn-sm ms-1 ">Supprimer</a>
 					 <a href="{{ path('edit-menu', {'id': dishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>

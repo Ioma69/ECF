@@ -2,8 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Categories;
 use App\Entity\Dishes;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,6 +23,10 @@ class DishesType extends AbstractType {
     {
         $builder
 
+        ->add('categories', TextType::class, [
+            'label' => 'Nom de la catégorie',
+            'mapped' => false
+        ])
 
         ->add("title", TextType::class, 
          ["label" => "Titre", 
@@ -35,9 +43,8 @@ class DishesType extends AbstractType {
          ->add("price", MoneyType::class, 
          ["label" => "Prix",  
          "required" => true,                                                                                                                                                                 
-        ]);
+    ]);
         
-      
 }
 
 

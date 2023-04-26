@@ -10,11 +10,11 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230426142548 extends AbstractMigration
+final class Version20230426202720 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'add relations between entity admin and entity dishes';
+        return '';
     }
 
     public function up(Schema $schema): void

@@ -30,15 +30,13 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "Admin")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "admin")]
 
     private $picdishes;
 
-    // lien entre admin et dishes
-    #[ORM\OneToMany(targetEntity: "App\Entity\Dishes", mappedBy: "Admin")]
+    #[ORM\OneToMany(targetEntity:"App\Entity\Dishes", mappedBy:"admin")]
+
     private $dishes;
-    
-    
 
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {

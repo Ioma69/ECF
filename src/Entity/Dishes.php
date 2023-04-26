@@ -23,17 +23,16 @@ class Dishes
     private ?int $price = null;
 
 
-       // lien entre Dishes et Admin
-      #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "Dishes")]
-    #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id")]
-      
-    private $admins;
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"dishes")]
+    #[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
+    private $admin;
 
-    // lien entre Dishes et catégorie
-    #[ORM\OneToOne(targetEntity:"App\Entity\Categories")]
-    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id")]
-      
+
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Categories", inversedBy:"dishes", cascade: ["remove"])]
+    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id", onDelete: "CASCADE")]
+
     private $category;
+
 
 
     public function getId(): ?int
@@ -96,20 +95,21 @@ class Dishes
     }
 
    
+
     /**
-     * Get the value of admins
+     * Get the value of admin
      */
-    public function getAdmins()
+    public function getAdmin()
     {
-        return $this->admins;
+        return $this->admin;
     }
 
     /**
-     * Set the value of admins
+     * Set the value of admin
      */
-    public function setAdmins($admins): self
+    public function setAdmin($admin): self
     {
-        $this->admins = $admins;
+        $this->admin = $admin;
 
         return $this;
     }

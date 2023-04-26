@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
 use App\Entity\Dishes;
 use App\Form\DishesType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,14 +31,16 @@ class DishesController extends AbstractController
     public function menu(Request $request, ManagerRegistry $doctrine): Response
     {
         $dishes = new Dishes();
+        $categories = new Categories();
         $dishesForm = $this->createForm(DishesType::class, $dishes);
         $dishesForm->handleRequest($request);
         if ($dishesForm->isSubmitted() && $dishesForm->isValid()) { 
-            $dishes->setAdmins($this->getUser()); 
-            //$category = $dishesForm->get('category')->getData();
-            //$dishes->setCategory($category);
+            $categories->setName($dishesForm->get('categories')->getData());
+            $dishes->setAdmin($this->getUser()); 
+            $dishes->setCategory($categories);
             $em = $doctrine->getManager();
             $em->persist($dishes);
+            $em->persist($categories);
             $em->flush();
             return $this->redirectToRoute("menu");
         }
