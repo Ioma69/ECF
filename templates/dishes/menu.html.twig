@@ -23,9 +23,39 @@
 
 					
 		{% endfor %}
+					
 				</div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+		<div class="d-flex justify-content-center">
+			<a href="/user/new/" class="btn btn-secondary mt-3 ms-1">Decouvrez nos menus du moment ! </a>
+		</div>	
 
+
+		<section>
+			<div>
+				 <h2 class="title-h2 title-font text-dark text-center pt-3"> QUI SOMMES NOUS ?</h2>
+                    <p class="text-dark text-left text-center text-sm-start mt-3 mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit ducimus eos reiciendis nam vero dolores accusantium expedita accusamus maiores! ipsum dolor sit amet consectetur adipisicing elit. Odit ducimus eos reiciendis nam vero dolores accusantium expedita accusamus maiores! Quam, aut placeat! Quae tempore doloremque eveniet impedit, molestias ad aperiam! Lorem ipsum dolor sit amet consectetur, adipisicing elit.Sapiente consequuntur ut iste quae exercitationem et nemo porro velit, quos quisquam, minima molestias dolore, qui ducimus autem? Officia, atque! Provident, voluptatem!</p>
+			</div>
+		</section>
+
+		{% for dishe in dishes %}
+			
+				
+				<div>
+					<h5 class="card-title text-center">{{ dishe.title }}</h5>
+					<p class="card-text text-center">{{ dishe.description }}</p>
+					<p class="card-text text-center">{{ dishe.price }}</p>
+					<p class="card-text text-center">{{ dishe.category.name }}</p>
+                    <div class="d-flex justify-content-center">
+					<a href="{{ path('delete-menu', {'id': dishe.id}) }}" class="btn btn-danger btn-sm ms-1 ">Supprimer</a>
+					 <a href="{{ path('edit-menu', {'id': dishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
+				</div>
+					
+
+					
+		{% endfor %}
+
+
+
+{% endblock %}

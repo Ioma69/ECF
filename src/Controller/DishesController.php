@@ -19,7 +19,6 @@ class DishesController extends AbstractController
     {
         $repository = $doctrine->getRepository(Dishes::class);           // Récupération du repository de l'entité "Dishes"
         $dishes = $repository->findAll(); // SELECT * FROM 'Dishes';  // Stocke toutes les photos dans la variable $picdishes
-        dump($dishes);
         return $this->render('dishes/Menu.html.twig', [                 // Envoie le tableau des photos au template Twig
             "dishes" => $dishes
         ]);

@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\DishesRepository;
+use App\Repository\MenuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DishesRepository::class)]
-class Dishes
+#[ORM\Entity(repositoryClass: MenuRepository::class)]
+class Menu
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
 
     #[ORM\Column(length: 80)]
     private ?string $title = null;
@@ -23,20 +25,21 @@ class Dishes
     private ?int $price = null;
 
 
-    #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"dishes")]
-    #[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
-    private $admin;
+
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", inversedBy: "menu")]
+    #[ORM\JoinTable(name: "menu_dishes")] 
+    #[ORM\JoinColumn(name: "menu_id", referencedColumnName: "id")] 
+    #[ORM\InverseJoinColumn(name: "dish_id", referencedColumnName: "id")]
+    private $meal;
+   
 
 
-    #[ORM\ManyToOne(targetEntity:"App\Entity\Categories", inversedBy:"dishes", cascade: ["remove"])]
-    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id", onDelete: "CASCADE")]
+    public function __construct()
+    {
+        $this->meal = new ArrayCollection();
+    }
 
-    private $category;
-
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Menu", mappedBy: "meal")]
-    private $menu;
- 
-
+    // ... getters and setters for properties
 
     public function getId(): ?int
     {
@@ -97,58 +100,20 @@ class Dishes
         return $this;
     }
 
-   
-
     /**
-     * Get the value of admin
+     * Get the value of meal
      */
-    public function getAdmin()
+    public function getMeal()
     {
-        return $this->admin;
+        return $this->meal;
     }
 
     /**
-     * Set the value of admin
+     * Set the value of meal
      */
-    public function setAdmin($admin): self
+    public function setMeal($meal): self
     {
-        $this->admin = $admin;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set the value of category
-     */
-    public function setCategory($category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of menu
-     */
-    public function getMenu()
-    {
-        return $this->menu;
-    }
-
-    /**
-     * Set the value of menu
-     */
-    public function setMenu($menu): self
-    {
-        $this->menu = $menu;
+        $this->meal = $meal;
 
         return $this;
     }
