@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PicDishesType extends AbstractType {
     
-    public function buildForm(FormBuilderInterface $builder, array $options)                    /* Création d'un type de formulaire */                                                
+    public function buildForm(FormBuilderInterface $builder, array $options): void                    /* Création d'un type de formulaire */                                                
     {
         $builder
          ->add("title", TextType::class, 
@@ -48,7 +48,7 @@ class PicDishesType extends AbstractType {
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             "data_class" => PicDishes::class,

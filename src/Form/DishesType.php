@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class DishesType extends AbstractType {
     
-    public function buildForm(FormBuilderInterface $builder, array $options)                    /* Création d'un type de formulaire */                                                
+    public function buildForm(FormBuilderInterface $builder, array $options): void                    /* Création d'un type de formulaire */                                                
     {
         $builder
 
@@ -49,7 +49,7 @@ class DishesType extends AbstractType {
 
 
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             "data_class" => Dishes::class,
