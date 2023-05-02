@@ -38,6 +38,10 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 
     private $dishes;
 
+    #[ORM\OneToMany(targetEntity:"App\Entity\Menu", mappedBy:"adminMenu")]
+
+    private $menu;
+
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {
         $this->passwordHasher = $passwordHasher;
@@ -147,6 +151,24 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDishes($dishes): self
     {
         $this->dishes = $dishes;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of menu
+     */
+    public function getMenu()
+    {
+        return $this->menu;
+    }
+
+    /**
+     * Set the value of menu
+     */
+    public function setMenu($menu): self
+    {
+        $this->menu = $menu;
 
         return $this;
     }

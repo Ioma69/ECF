@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Admin;
+use App\Entity\Dishes;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -27,8 +28,11 @@ class AppFixtures extends Fixture
          $utilisateur = new User($this->passwordHasher);
          $utilisateur->setEmail("user@hotmail.com")->setPassword("user")->setRoles(["ROLE_USER"]);
          $manager->persist($utilisateur);
-         
-         
+
+
          $manager->flush();
+
     }
+
+    
 }

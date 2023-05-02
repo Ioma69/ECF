@@ -7,6 +7,8 @@
 		<div class="card vh-100">
 			<div class="card-body">
 				<h2 class="text-center mb-5"> Carte du Quai Antique </h2>
+
+	
 		{% for dishe in dishes %}
 			
 				
@@ -23,7 +25,8 @@
 
 					
 		{% endfor %}
-					
+	
+	
 				</div>
 			</div>
 		</div>
@@ -39,22 +42,7 @@
 			</div>
 		</section>
 
-		{% for dishe in dishes %}
-			
-				
-				<div>
-					<h5 class="card-title text-center">{{ dishe.title }}</h5>
-					<p class="card-text text-center">{{ dishe.description }}</p>
-					<p class="card-text text-center">{{ dishe.price }}</p>
-					<p class="card-text text-center">{{ dishe.category.name }}</p>
-                    <div class="d-flex justify-content-center">
-					<a href="{{ path('delete-menu', {'id': dishe.id}) }}" class="btn btn-danger btn-sm ms-1 ">Supprimer</a>
-					 <a href="{{ path('edit-menu', {'id': dishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
-				</div>
-					
-
-					
-		{% endfor %}
+		
 
 
 

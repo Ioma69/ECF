@@ -38,6 +38,13 @@ class Dishes
  
 
 
+    public function __toString()
+{
+    return $this->getTitle();
+}
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -152,4 +159,6 @@ class Dishes
 
         return $this;
     }
+
+
 }

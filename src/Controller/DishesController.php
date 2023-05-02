@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Categories;
 use App\Entity\Dishes;
+use App\Entity\Menu;
 use App\Form\DishesType;
+use App\Form\MenuType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,8 +28,8 @@ class DishesController extends AbstractController
 
 
 
-    #[Route('/menu/upload', name: 'menuAdmin')]
-    public function menu(Request $request, ManagerRegistry $doctrine): Response
+    #[Route('/dishes/upload', name: 'addDishes')]
+    public function dishes(Request $request, ManagerRegistry $doctrine): Response
     {
         $dishes = new Dishes();
         $categories = new Categories();
@@ -47,6 +49,8 @@ class DishesController extends AbstractController
             "dishes" => $dishesForm->createView()
         ]);
     }
+
+ 
 
 
     #[Route('/menu/delete/{id<\d+>}', name:"delete-menu")]

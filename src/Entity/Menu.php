@@ -33,6 +33,11 @@ class Menu
     private $meal;
    
 
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"menu")]
+    #[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
+    private $adminMenu;
+
+
 
     public function __construct()
     {
@@ -114,6 +119,24 @@ class Menu
     public function setMeal($meal): self
     {
         $this->meal = $meal;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adminMenu
+     */
+    public function getAdminMenu()
+    {
+        return $this->adminMenu;
+    }
+
+    /**
+     * Set the value of adminMenu
+     */
+    public function setAdminMenu($adminMenu): self
+    {
+        $this->adminMenu = $adminMenu;
 
         return $this;
     }
