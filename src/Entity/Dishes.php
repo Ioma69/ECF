@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DishesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DishesRepository::class)]
@@ -33,8 +35,8 @@ class Dishes
 
     private $category;
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Menu", mappedBy: "meal")]
-    private $menu;
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Menu", inversedBy: "meal")]
+    private Collection $menu;
  
 
 
@@ -42,6 +44,32 @@ class Dishes
 {
     return $this->getTitle();
 }
+
+public function __construct()
+    {
+        $this->menu = new ArrayCollection();
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menu->contains($menu)) {
+            $this->menu[] = $menu;
+            $menu->addMeal($this);
+        }
+    
+        return $this;
+    }
+    
+    public function removeMenu(Menu $menu): self
+    {
+        if ($this->menu->contains($menu)) {
+            $this->menu->removeElement($menu);
+            $menu->removeMeal($this);
+        }
+    
+        return $this;
+    }
+
 
 
 
@@ -145,7 +173,7 @@ class Dishes
     /**
      * Get the value of menu
      */
-    public function getMenu()
+    public function getMenu(): Collection
     {
         return $this->menu;
     }

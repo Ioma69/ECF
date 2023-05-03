@@ -23,10 +23,14 @@ class MenuType extends AbstractType {
     {
         $builder
 
-        ->add('categories', TextType::class, [
-            'label' => 'Nom de la catégorie',
-            'mapped' => false
-        ])
+       /* ->add('title', EntityType::class, [
+            'label' => 'Nom du plat',
+            'class' => Menu::class,
+            'required' => true,
+            
+            
+           
+        ])*/
 
         ->add('title', EntityType::class, [
             'label' => 'Nom du plat',
@@ -34,6 +38,7 @@ class MenuType extends AbstractType {
             'choice_label' => 'title',
             'required' => true,
             'placeholder' => 'Sélectionnez un plat existant',
+            
            
         ])
 

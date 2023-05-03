@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MenuRepository::class)]
@@ -26,11 +27,9 @@ class Menu
 
 
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", inversedBy: "menu")]
-    #[ORM\JoinTable(name: "menu_dishes")] 
-    #[ORM\JoinColumn(name: "menu_id", referencedColumnName: "id")] 
-    #[ORM\InverseJoinColumn(name: "dish_id", referencedColumnName: "id")]
-    private $meal;
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", mappedBy: "menu")]
+    
+    private Collection $meal;
    
 
     #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"menu")]
@@ -44,6 +43,24 @@ class Menu
         $this->meal = new ArrayCollection();
     }
 
+    public function addMeal(Dishes $dishes): self
+    {
+        if (!$this->meal->contains($dishes)) {
+            $this->meal[] = $dishes;
+            $dishes->addMenu($this);
+        }
+    
+        return $this;
+    }
+    
+    
+    public function removeMeal(Dishes $meal): self
+    {
+        if ($this->meal->removeElement($meal)) {
+            $meal->removeMenu($this);
+        }
+        return $this;
+    }
     // ... getters and setters for properties
 
     public function getId(): ?int
@@ -108,7 +125,7 @@ class Menu
     /**
      * Get the value of meal
      */
-    public function getMeal()
+    public function getMeal(): Collection
     {
         return $this->meal;
     }

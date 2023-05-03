@@ -34,18 +34,25 @@ class MenusController extends AbstractController
     public function menu(Request $request, ManagerRegistry $doctrine): Response
     {
         $menus = new Menu();
-        $dishesForm = $this->createForm(MenuType::class, $menus);
-        $dishesForm->handleRequest($request);
-        if ($dishesForm->isSubmitted() && $dishesForm->isValid()) { 
+        $menuForm = $this->createForm(MenuType::class, $menus);
+        $menuForm->handleRequest($request);
+        if ($menuForm->isSubmitted() && $menuForm->isValid()) { 
+            $dishes = new Dishes();
+            $dishesData = $menuForm->get('title')->getData();
+            $dishes->setTitle($dishesData->getTitle());
+            $dishes->setDescription($dishesData->getDescription());
+            $dishes->setPrice($dishesData->getPrice());
+            $dishes->setCategory($dishesData->getCategory());
             $menus->SetAdminMenu($this->getUser()); 
-            // mettre le nom des plats
+            $menus->addMeal($dishes); //
             $em = $doctrine->getManager();
             $em->persist($menus);
+            $em->persist($dishes);
             $em->flush();
             return $this->redirectToRoute("formula");
         }
         return $this->render('dishes/FormFormula.html.twig', [
-            "menus" => $dishesForm->createView()
+            "menus" => $menuForm->createView()
         ]);
     }
 }
