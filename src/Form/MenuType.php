@@ -5,7 +5,6 @@ namespace App\Form;
 
 use App\Entity\Dishes;
 use App\Entity\Menu;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -23,24 +22,22 @@ class MenuType extends AbstractType {
     {
         $builder
 
-        ->add('menuTitle', EntityType::class, [
-            'label' => 'Nom du plat',
-            'class' => Menu::class,
+        ->add('menuTitle', TextType::class, [
+            'label' => 'Nom du Menu',
             'required' => true,
 
         ])
 
-        ->add('menuTitle', EntityType::class, [
+        ->add('title', EntityType::class, [
             'label' => 'Nom du plat',
             'class' => Dishes::class,
-            'choice_label' => 'title',
             'required' => true,
-            'placeholder' => 'Sélectionnez un plat existant',
+            'mapped' => false
             
         ])
 
          ->add("description", TextareaType::class, 
-         ["label" => "Descrition", 
+         ["label" => "Description", 
          "required" => true, 
          ])
          

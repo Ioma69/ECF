@@ -43,6 +43,13 @@ class Menu
         $this->meal = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getMenuTitle();
+    }
+
+
+
     public function addMeal(Dishes $dishes): self
     {
         if (!$this->meal->contains($dishes)) {
