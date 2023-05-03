@@ -38,11 +38,11 @@ class MenusController extends AbstractController
         $menuForm->handleRequest($request);
         if ($menuForm->isSubmitted() && $menuForm->isValid()) { 
             $dishes = new Dishes();
-            $dishesData = $menuForm->get('title')->getData();
-            $dishes->setTitle($dishesData->getTitle());
-            $dishes->setDescription($dishesData->getDescription());
-            $dishes->setPrice($dishesData->getPrice());
-            $dishes->setCategory($dishesData->getCategory());
+            $menuData = $menuForm->get('menuTitle')->getData();
+            $dishes->setTitle($menuData->getTitle());
+            $dishes->setDescription($menuData->getDescription());
+            $dishes->setPrice($menuData->getPrice());
+            $dishes->setCategory($menuData->getCategory());
             $menus->SetAdminMenu($this->getUser()); 
             $menus->addMeal($dishes); //
             $em = $doctrine->getManager();

@@ -17,7 +17,7 @@ class Menu
 
 
     #[ORM\Column(length: 80)]
-    private ?string $title = null;
+    private ?string $menuTitle = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
@@ -68,23 +68,25 @@ class Menu
         return $this->id;
     }
 
-    /**
-     * Get the value of title
+       /**
+     * Get the value of menuTitle
      */
-    public function getTitle(): ?string
+    public function getMenuTitle(): ?string
     {
-        return $this->title;
+        return $this->menuTitle;
     }
 
     /**
-     * Set the value of title
+     * Set the value of menuTitle
      */
-    public function setTitle(?string $title): self
+    public function setMenuTitle(?string $menuTitle): self
     {
-        $this->title = $title;
+        $this->menuTitle = $menuTitle;
 
         return $this;
     }
+
+
 
     /**
      * Get the value of description
@@ -157,4 +159,5 @@ class Menu
 
         return $this;
     }
+
 }
