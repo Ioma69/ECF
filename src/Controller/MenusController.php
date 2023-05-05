@@ -37,6 +37,7 @@ class MenusController extends AbstractController
 #[Route('/menu/upload', name: 'addMenu')]
     public function menu(Request $request, ManagerRegistry $doctrine): Response
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $menus = new Menu();
         $menuForm = $this->createForm(MenuType::class, $menus);
         $menuForm->handleRequest($request);
@@ -59,4 +60,47 @@ class MenusController extends AbstractController
             "menus" => $menuForm->createView()
         ]);
     }
+        return $this->redirectToRoute("formula");
+    }
+
+
+    #[Route('/formula/delete/{id<\d+>}', name:"delete-formula")]
+    public function deleteFormula(Menu $menus, ManagerRegistry $doctrine): Response    
+    {
+        if ($this->isGranted('ROLE_ADMIN')){
+        $em = $doctrine->getManager();
+        $em->remove($menus);
+        $em->flush(); 
+        return $this->redirectToRoute("formula");
+    }
+    return $this->redirectToRoute("home");
+}
+
+    #[Route('/formula/edit/{id<\d+>}', name:"edit-formula")]
+    public function updateFormula(Request $request, Menu $menus, ManagerRegistry $doctrine): Response    
+    {
+        if ($this->isGranted('ROLE_ADMIN')){
+        $menuForm = $this->createForm(MenuType::class, $menus);
+        $menuForm->handleRequest($request);
+        if ($menuForm->isSubmitted() && $menuForm->isValid() ) {
+            $em = $doctrine->getManager();                 
+            $em->persist($menus);       
+            $em->flush(); 
+            return $this->redirectToRoute("formula");
+        }
+
+        return $this->render('Formulas/FormFormula.html.twig', [
+            "menus" => $menuForm->createView()
+        ]);
+    }
+        return $this->redirectToRoute("home");
+    }
+
+
+
+
+
+
+
+
 }

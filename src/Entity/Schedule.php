@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ScheduleRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Twig\TwigFunction;
+
 
 #[ORM\Entity(repositoryClass: ScheduleRepository::class)]
 class Schedule

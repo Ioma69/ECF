@@ -121,10 +121,6 @@ return $this->redirectToRoute("home");
 }
 
 
-// routes pour la carte
-
-
-
 }
 
 

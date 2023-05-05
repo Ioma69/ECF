@@ -17,11 +17,12 @@
 					<p class="card-text text-center">{{ dishe.description }}</p>
 					<p class="card-text text-center">{{ dishe.price }}</p>
 					<p class="card-text text-center">{{ dishe.category.name }}</p>
+					{% if ( is_granted('ROLE_ADMIN') ) %}
                     <div class="d-flex justify-content-center">
-					<a href="{{ path('delete-menu', {'id': dishe.id}) }}" class="btn btn-danger btn-sm ms-1 ">Supprimer</a>
-					 <a href="{{ path('edit-menu', {'id': dishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
+					<a href="{{ path('delete-dishes', {'id': dishe.id}) }}" class="btn btn-danger btn-sm ms-1 ">Supprimer</a>
+					 <a href="{{ path('edit-dishes', {'id': dishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
 				</div>
-					
+					{% endif %}
 
 					
 		{% endfor %}

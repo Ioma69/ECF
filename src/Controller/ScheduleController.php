@@ -18,7 +18,7 @@ class ScheduleController extends AbstractController
         $repository = $doctrine->getRepository(Schedule::class);           
         $schedules = $repository->findAll(); 
         return $this->render('schedule/Schedule.html.twig',[                 
-            $twig->addGlobal("schedules",$schedules),
+            $twig->addGlobal("schedules",$schedules)
         ]);
         
     }
@@ -27,23 +27,27 @@ class ScheduleController extends AbstractController
     #[Route('/schedule/upload', name: 'addSchedules')]
     public function schedules(Request $request, ManagerRegistry $doctrine): Response
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $schedules = new Schedule();
         $scheduleForm = $this->createForm(ScheduleType::class, $schedules);
         $scheduleForm->handleRequest($request);
-        if ($scheduleForm->isSubmitted() && $scheduleForm->isValid()) { 
+        $scheduleRepository = $doctrine->getRepository(Schedule::class);
+        $existingSchedules = $scheduleRepository->findAll();
+        if ($existingSchedules && $scheduleForm->isSubmitted()) {
+            $this->addFlash('error', 'Impossible d\'ajouter des horaires, ils existent déjà.');
+        }
+        if ($scheduleForm->isSubmitted() && $scheduleForm->isValid() && !$existingSchedules) { 
             $schedules->setAdminSchedule($this->getUser()); 
             $em = $doctrine->getManager();
             $em->persist($schedules);
             $em->flush();
-            return $this->redirectToRoute("menu");
+            return $this->redirectToRoute("schedule");
         }
         return $this->render('schedule/FormSchedule.html.twig', [
             "schedules" => $scheduleForm->createView()
         ]);
     }
-
-
-
-
+    return $this->redirectToRoute("formula");
+    }
 
 }

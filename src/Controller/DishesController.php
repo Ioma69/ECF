@@ -35,6 +35,7 @@ class DishesController extends AbstractController
     #[Route('/dishes/upload', name: 'addDishes')]
     public function dishes(Request $request, ManagerRegistry $doctrine): Response
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $dishes = new Dishes();
         $categories = new Categories();
         $dishesForm = $this->createForm(DishesType::class, $dishes);
@@ -48,28 +49,37 @@ class DishesController extends AbstractController
             $em->persist($categories);
             $em->flush();
             return $this->redirectToRoute("menu");
-        }
+        };
+        
         return $this->render('dishes/FormMenu.html.twig', [
             "dishes" => $dishesForm->createView()
         ]);
+    
     }
+    return $this->redirectToRoute("home");
+}
+
 
  
 
 
-    #[Route('/menu/delete/{id<\d+>}', name:"delete-menu")]
-    public function deleteMenu(Dishes $dishes, ManagerRegistry $doctrine): Response    
+    #[Route('/dishes/delete/{id<\d+>}', name:"delete-dishes")]
+    public function deleteDishes(Dishes $dishes, ManagerRegistry $doctrine): Response    
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $doctrine->getManager();
         $em->remove($dishes);
         $em->flush(); 
         return $this->redirectToRoute("menu");
     }
+    return $this->redirectToRoute("home");
+}
 
 
-    #[Route('/menu/edit/{id<\d+>}', name:"edit-menu")]
-    public function updateMenu(Request $request, Dishes $dishes, ManagerRegistry $doctrine): Response    
+    #[Route('/dishes/edit/{id<\d+>}', name:"edit-dishes")]
+    public function updateDishes(Request $request, Dishes $dishes, ManagerRegistry $doctrine): Response    
     {
+        if ($this->isGranted('ROLE_ADMIN')){
         $dishesForm = $this->createForm(DishesType::class, $dishes);
         $dishesForm->handleRequest($request);
         if ($dishesForm->isSubmitted() && $dishesForm->isValid() ) {
@@ -82,7 +92,8 @@ class DishesController extends AbstractController
         return $this->render('dishes/FormMenu.html.twig', [
             "dishes" => $dishesForm->createView()
         ]);
-        
+    }
+        return $this->redirectToRoute("home");
     }
 
 
