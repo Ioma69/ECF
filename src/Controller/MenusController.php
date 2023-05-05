@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Entity\Dishes;
 use App\Entity\Menu;
+use App\Entity\Schedule;
 use App\Form\DishesType;
 use App\Form\MenuType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,12 +18,15 @@ class MenusController extends AbstractController
 {
 
     #[Route('/formula', name:"formula")]
-    public function index(ManagerRegistry $doctrine): Response 
+    public function index(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
     {
-        $repository = $doctrine->getRepository(Menu::class);           
+        $repository = $doctrine->getRepository(Menu::class);         
         $menus = $repository->findAll(); 
-        return $this->render('dishes/Formula.html.twig', [                 
-            "menus" => $menus
+        $repository = $doctrine->getRepository(Schedule::class);           
+        $schedules = $repository->findAll(); 
+        return $this->render('Formulas/Formula.html.twig', [                 
+            "menus" => $menus,
+            $twig->addGlobal("schedules",$schedules),
         ]);
     }
 
@@ -51,7 +55,7 @@ class MenusController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("formula");
         }
-        return $this->render('dishes/FormFormula.html.twig', [
+        return $this->render('Formulas/FormFormula.html.twig', [
             "menus" => $menuForm->createView()
         ]);
     }

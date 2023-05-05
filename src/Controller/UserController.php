@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Schedule;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,13 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     #[Route('/user/new', name: 'user_new')]
-    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
+    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine,\Twig\Environment $twig): Response
     {
         if ($this->isGranted('ROLE_USER')){
             return $this->redirectToRoute("home");
         
     }
-    $user = new User($userPasswordHasher);
+        
+        $user = new User($userPasswordHasher);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

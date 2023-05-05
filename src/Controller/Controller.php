@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PicDishes;
+use App\Entity\Schedule;
 use App\Form\PicDishesType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,12 +16,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class Controller extends AbstractController
 {
     #[Route('/', name:"home")]
-    public function index(ManagerRegistry $doctrine): Response 
+    public function index(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
     {
         $repository = $doctrine->getRepository(PicDishes::class);           // Récupération du repository de l'entité "PicDishes"
         $picdishes = $repository->findAll(); // SELECT * FROM 'picDishes';  // Stocke toutes les photos dans la variable $picdishes
+        $repository = $doctrine->getRepository(Schedule::class);           
+        $schedules = $repository->findAll(); 
         return $this->render('PicDishes/index.html.twig', [                 // Envoie le tableau des photos au template Twig
-            "picdishes" => $picdishes
+            "picdishes" => $picdishes,
+            $twig->addGlobal("schedules",$schedules),
         ]);
     }
 
@@ -50,7 +54,7 @@ class Controller extends AbstractController
             }
 
             $picdishes->setAdmin($this->getUser());         //  recupere l'utilisateur connecté
-            $em = $doctrine->getManager();                  // Recuperation d'un instance d'entity manager
+            $em = $doctrine->getManager();                  // Recuperation d'une instance d'entity manager
             $em->persist($picdishes);   // Ajout de l'objet $picdishes à l'EM        
             $em->flush(); // Synchronisation de l'object ajouté à l'Em avec le BDD
             return $this->redirectToRoute("home");

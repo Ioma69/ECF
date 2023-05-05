@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Entity\Dishes;
 use App\Entity\Menu;
+use App\Entity\Schedule;
 use App\Form\DishesType;
 use App\Form\MenuType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,12 +18,15 @@ class DishesController extends AbstractController
 {
 
     #[Route('/menu', name:"menu")]
-    public function index(ManagerRegistry $doctrine): Response 
+    public function index(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
     {
         $repository = $doctrine->getRepository(Dishes::class);           // Récupération du repository de l'entité "Dishes"
         $dishes = $repository->findAll(); // SELECT * FROM 'Dishes';  // Stocke toutes les photos dans la variable $picdishes
+        $repository = $doctrine->getRepository(Schedule::class);           
+        $schedules = $repository->findAll(); 
         return $this->render('dishes/Menu.html.twig', [                 // Envoie le tableau des photos au template Twig
-            "dishes" => $dishes
+            "dishes" => $dishes,
+            $twig->addGlobal("schedules",$schedules),
         ]);
     }
 

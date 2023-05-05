@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -30,17 +31,31 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
 
+
+
     #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "admin")]
 
     private $picdishes;
+
+
 
     #[ORM\OneToMany(targetEntity:"App\Entity\Dishes", mappedBy:"admin")]
 
     private $dishes;
 
+
+
     #[ORM\OneToMany(targetEntity:"App\Entity\Menu", mappedBy:"adminMenu")]
 
     private $menu;
+
+
+
+    #[ORM\OneToMany(targetEntity:"App\Entity\Schedule", mappedBy:"adminSchedule")]
+
+    private Collection $schedule;
+
+
 
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {
@@ -169,6 +184,24 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMenu($menu): self
     {
         $this->menu = $menu;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of schedule
+     */
+    public function getSchedule(): Collection
+    {
+        return $this->schedule;
+    }
+
+    /**
+     * Set the value of schedule
+     */
+    public function setSchedule(Collection $schedule): self
+    {
+        $this->schedule = $schedule;
 
         return $this;
     }
