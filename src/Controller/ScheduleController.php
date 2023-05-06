@@ -47,7 +47,29 @@ class ScheduleController extends AbstractController
             "schedules" => $scheduleForm->createView()
         ]);
     }
-    return $this->redirectToRoute("formula");
+    return $this->redirectToRoute("home");
+    }
+
+    #[Route('/schedule/edit/{id<\d+>}', name:"edit-schedule")]
+    public function updateFormula(Request $request, Schedule $schedules, ManagerRegistry $doctrine): Response    
+    {
+        if ($this->isGranted('ROLE_ADMIN')){
+        $scheduleForm = $this->createForm(ScheduleType::class, $schedules);
+        $scheduleForm->handleRequest($request);
+        if ($scheduleForm->isSubmitted() && $scheduleForm->isValid() ) {
+            $em = $doctrine->getManager();                 
+            $em->persist($schedules);       
+            $em->flush(); 
+            return $this->redirectToRoute("schedule");
+        }
+
+        return $this->render('schedule/FormSchedule.html.twig', [
+            "schedules" => $scheduleForm->createView()
+        ]);
+    }
+        return $this->redirectToRoute("home");
     }
 
 }
+
+

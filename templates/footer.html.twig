@@ -9,9 +9,17 @@
 
    <div class="bloc footer-schedule">
           <h3 class="mt-5 mb-5 d-flex justify-content-center">Horaires</h3>
+          
           <ul class="nav justify-content-center pb-3 mb-3">
             <li>✔️ Ouvert du Mardi au Dimanche de {{ schedule.openingNoon|date('H:i') }} à {{ schedule.closingNoon|date('H:i') }} puis de {{ schedule.openingEvening|date('H:i') }} à {{ schedule.closingEvening|date('H:i') }}</li>
           </ul>
+          {% if ( is_granted('ROLE_ADMIN') ) %}
+            <div class="d-flex justify-content-center">
+                <a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier les horaires</a>
+            </div>
+            {% endif %}
+            </div>
+        </div>
         </div>
         {% endfor %}
 	  <ul class="nav justify-content-center border-bottom pb-3 mb-3">
