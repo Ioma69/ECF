@@ -1,0 +1,6 @@
+ <div class="container mt-5">
+ {% for reservations in app.flashes('error') %}
+		<div class="alert alert-danger mt-3" role="alert">
+			{{ message }}
+		</div>
+		{% endfor %}

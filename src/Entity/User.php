@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private string $phone;
 
+    #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "user")]
+
+    private $user;
 
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {
@@ -194,6 +197,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setConfirm(?string $confirm): self
     {
         $this->confirm = $confirm;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     */
+    public function setUser($user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

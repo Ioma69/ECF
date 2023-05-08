@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+ <div class="container mt-5">
+	{{ form_start(reservations) }}
+	{{ form_row(reservations.flatware) }}
+	{{ form_row(reservations.reservationDate) }}
+	{{ form_row(reservations.reservationHour) }}
+    {{ form_row(reservations.allergy) }}
+	
+	<input type="submit" class="btn btn-primary mt-2" value="Publier le menu">
+	{{ form_end(reservations) }}
+    </div>
+
+{% endblock %}
