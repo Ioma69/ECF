@@ -29,13 +29,13 @@ class Reservation
 
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "reservationUser")]
-    #[ORM\JoinColumn(nullable:false)]
-    private $reservationUser;
+    #[ORM\JoinColumn(nullable:true)]
+    private $user;
 
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\Visitor", inversedBy: "reservationVisitor")]
-    #[ORM\JoinColumn(nullable:false)]
-    private $reservationVisitor;
+    #[ORM\JoinColumn(nullable:true)]
+    private $visitor;
 
     public function getId(): ?int
     {
@@ -115,38 +115,41 @@ class Reservation
         return $this;
     }
 
+   
+ 
+
     /**
-     * Get the value of reservationVisitor
+     * Get the value of user
      */
-    public function getReservationVisitor()
+    public function getUser()
     {
-        return $this->reservationVisitor;
+        return $this->user;
     }
 
     /**
-     * Set the value of reservationVisitor
+     * Set the value of user
      */
-    public function setReservationVisitor($reservationVisitor): self
+    public function setUser($user): self
     {
-        $this->reservationVisitor = $reservationVisitor;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get the value of reservationUser
+     * Get the value of visitor
      */
-    public function getReservationUser()
+    public function getVisitor()
     {
-        return $this->reservationUser;
+        return $this->visitor;
     }
 
     /**
-     * Set the value of reservationUser
+     * Set the value of visitor
      */
-    public function setReservationUser($reservationUser): self
+    public function setVisitor($visitor): self
     {
-        $this->reservationUser = $reservationUser;
+        $this->visitor = $visitor;
 
         return $this;
     }

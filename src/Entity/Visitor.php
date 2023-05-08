@@ -22,7 +22,7 @@ class Visitor
 
     #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "visitor")]
 
-    private $visitor;
+    private $reservationVisitor;
 
 
     public function getId(): ?int
@@ -49,23 +49,7 @@ class Visitor
         return $this;
     }
 
-    /**
-     * Get the value of visitor
-     */
-    public function getVisitor()
-    {
-        return $this->visitor;
-    }
-
-    /**
-     * Set the value of visitor
-     */
-    public function setVisitor($visitor): self
-    {
-        $this->visitor = $visitor;
-
-        return $this;
-    }
+    
 
     /**
      * Get the value of phone
@@ -81,6 +65,24 @@ class Visitor
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of reservationVisitor
+     */
+    public function getReservationVisitor()
+    {
+        return $this->reservationVisitor;
+    }
+
+    /**
+     * Set the value of reservationVisitor
+     */
+    public function setReservationVisitor($reservationVisitor): self
+    {
+        $this->reservationVisitor = $reservationVisitor;
 
         return $this;
     }

@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "user")]
 
-    private $user;
+    private $reservationUser;
 
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {
@@ -218,4 +218,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * Get the value of reservationUser
+     */
+    public function getReservationUser()
+    {
+        return $this->reservationUser;
+    }
+
+    /**
+     * Set the value of reservationUser
+     */
+    public function setReservationUser($reservationUser): self
+    {
+        $this->reservationUser = $reservationUser;
+
+        return $this;
+    }
+
+   
 }

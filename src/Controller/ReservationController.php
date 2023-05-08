@@ -23,12 +23,13 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/makeReservation', name: 'makeReservation')]
-    public function dishes(Request $request, ManagerRegistry $doctrine): Response
+    public function reservation(Request $request, ManagerRegistry $doctrine): Response
     {
         $reservations = new Reservation();
         $reservationsForm = $this->createForm(ReservationUserType::class, $reservations);
         $reservationsForm->handleRequest($request);
-        if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) { 
+        if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) {
+            $reservations->setUser($this->getUser()); 
             $em = $doctrine->getManager();
             $em->persist($reservations);
             $em->flush();
