@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ScheduleRepository;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -16,17 +17,17 @@ class Schedule
     private ?int $id = null;
 
 
-    #[ORM\Column]
-    private ?dateTime $openingNoon = null;
-
-    #[ORM\Column]
-    private ?dateTime $closingNoon = null;
-
-    #[ORM\Column]
-    private ?dateTime $openingEvening = null;
-
-    #[ORM\Column]
-    private ?dateTime $closingEvening = null;
+    #[ORM\Column(type:"time")]
+    private ?DateTimeInterface $openingNoon = null;
+    
+    #[ORM\Column(type:"time")]
+    private ?DateTimeInterface $closingNoon = null;
+    
+    #[ORM\Column(type:"time")]
+    private ?DateTimeInterface $openingEvening = null;
+    
+    #[ORM\Column(type:"time")]
+    private ?DateTimeInterface $closingEvening = null;
 
     public function getId(): ?int
     {

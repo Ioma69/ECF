@@ -18,14 +18,14 @@ class Reservation
     #[ORM\Column]
     private ?int $flatware = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type:"date")]
     private ?dateTime $reservationDate = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type:"time")]
     private ?dateTime $reservationHour = null;
 
     #[ORM\Column]
-    private ?string $allergy = null;
+    private ?array $allergy = null;
 
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "reservationUser")]
@@ -43,6 +43,10 @@ class Reservation
     }
 
 
+
+
+
+    
     /**
      * Get the value of flatware
      */
@@ -97,26 +101,6 @@ class Reservation
         return $this;
     }
 
-    /**
-     * Get the value of allergy
-     */
-    public function getAllergy(): ?string
-    {
-        return $this->allergy;
-    }
-
-    /**
-     * Set the value of allergy
-     */
-    public function setAllergy(?string $allergy): self
-    {
-        $this->allergy = $allergy;
-
-        return $this;
-    }
-
-   
- 
 
     /**
      * Get the value of user
@@ -150,6 +134,24 @@ class Reservation
     public function setVisitor($visitor): self
     {
         $this->visitor = $visitor;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of allergy
+     */
+    public function getAllergy(): ?array
+    {
+        return $this->allergy;
+    }
+
+    /**
+     * Set the value of allergy
+     */
+    public function setAllergy(?array $allergy): self
+    {
+        $this->allergy = $allergy;
 
         return $this;
     }

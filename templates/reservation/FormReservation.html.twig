@@ -2,15 +2,34 @@
 
 {% block body %}
 
- <div class="container mt-5">
-	{{ form_start(reservations) }}
-	{{ form_row(reservations.flatware) }}
-	{{ form_row(reservations.reservationDate) }}
-	{{ form_row(reservations.reservationHour) }}
-    {{ form_row(reservations.allergy) }}
-	
-	<input type="submit" class="btn btn-primary mt-2" value="Publier le menu">
-	{{ form_end(reservations) }}
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>Réserver une table</h4>
+      </div>
+      <div class="card-body">
+        {{ form_start(reservations, {'attr': {'class': 'form'}}) }}
+        <div class="form-group">
+          {{ form_label(reservations.flatware, 'Nombre de couverts', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(reservations.flatware, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(reservations.reservationDate, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(reservations.reservationDate, {'attr': {'class': 'form-control'}}) }}
+		  {{ form_errors(reservations.reservationDate) }}
+        </div>
+        <div class="form-group">
+		  {{ form_label(reservations.reservationHour, 'Heure de réservation', {'label_attr': {'class': 'form-label me-3'}}) }}
+		  {{ form_widget(reservations.reservationHour, {'attr': {'class': 'form-control d-flex flex-wrap justify-content-around'}}) }}
+		</div>
+        <div class="form-group">
+          {{ form_label(reservations.allergy, 'Allergies éventuelles', {'label_attr': {'class': 'form-label'}}) }}
+          {{ form_widget(reservations.allergy, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Réserver</button>
+        {{ form_end(reservations) }}
+      </div>
     </div>
+  </div>
 
 {% endblock %}

@@ -4,18 +4,19 @@ namespace App\Form;
 
 use App\Entity\Reservation;
 use App\Entity\Schedule;
+use DateTime;
 use Doctrine\DBAL\Types\DateTimeType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType as TypeDateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class ReservationUserType extends AbstractType {
     
@@ -40,44 +41,68 @@ class ReservationUserType extends AbstractType {
             ]
         ])
 
-       /* ->add('reservationDate', DateType::class, [
+        
+        ->add('reservationDate', DateType::class, [
             'label' => "Date de reservation",
             'widget' => 'single_text',
-            'attr' => ['min' => (new \DateTime())->format('d-m-Y')],
+            'format' => 'yyyy-MM-dd',
+            'attr' => ['min' => (new DateTime())->format('Y-m-d')],
             'years' => range(2023, 2023),
             'months' => range(06,12),
             'required' => true,
-
-        ])*/
-
-        ->add('reservationHour', TimeType::class, [
-            'label' => "Heure de reservation",
-            'required' => true,
-
+            'constraints' => [
+                new GreaterThan([
+                    'value' => 'yesterday',
+                    'message' => 'La date de réservation doit être postérieure à la date du jour.',
+                ]),
+            ],
         ])
 
-       ->add('reservationDate', TypeDateTimeType::class, [
+    
+
+        ->add('reservationHour', ChoiceType::class, [
             'label' => 'Heure de réservation',
-            'widget' => 'single_text',
-            'view_timezone' => 'Europe/Paris',
-            'model_timezone' => 'UTC',
-            'years' => range(date('Y'), date('Y') + 1),
-            'months' => range(1, 12),
-            'days' => range(1, 31),
-            'hours' => range(12, 14),
-            'minutes' => ['00', '15', '30', '45'],
-            'choice_translation_domain' => false,
+            'choices' => [
+                'Aucune heure sélectionnée' => '',
+                '- Midi' => [
+                    '12h15' => new DateTime('12:15'),
+                    '12h30' => new DateTime('12:30'),
+                    '12h45' => new DateTime('12:45'),
+                    '13h00' => new DateTime('13:00'),
+                    '13h15' => new DateTime('13:15'),
+                    '13h30' => new DateTime('13:30'),
+                    '13h45' => new DateTime('13:45'),
+                ],
+                '- Soir' => [
+                    '20h15' => new DateTime('19:15'),
+                    '20h30' => new DateTime('19:30'),
+                    '20h45' => new DateTime('19:45'),
+                    '21h00' => new DateTime('20:00'),
+                    '21h15' => new DateTime('20:15'),
+                    '21h30' => new DateTime('20:30'),
+                    '21h45' => new DateTime('20:45'),
+                ],
+            ],
+            'expanded' => false,
+            'multiple' => false,
+            'choice_attr' => function($choice, $key, $value) {
+                return ['class' => 'btn btn-outline-primary'];
+            },
         ])
+
+      
 
         ->add('allergy', ChoiceType::class, [
             'label' => "Type d'allergie",
             'choices' => [
-                'Gluten' => 1,
-                'Lactose' => 2,
-                'Arachide' => 3,
-                'Fruits de mer' => 4,
-                'Oeuf' => 5,
-            ]
+                'Gluten' => 'Gluten',
+                'Lactose' => 'Lactose',
+                'Arachide' => 'Arachide',
+                'Fruits de mer' => 'Fruits de mer',
+                'Oeuf' => 'Oeuf',
+            ],
+            'multiple' => true,
+            'expanded' => true,
             ]);
 }
 

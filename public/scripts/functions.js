@@ -15,3 +15,4 @@ const togglePassword2 = () => {
     const eyeSlashIcon2 = document.querySelector("#eye-slash2")
     eyeSlashIcon2.classList.contains("d-none") ? eyeSlashIcon2.classList.remove("d-none") : eyeSlashIcon2.classList.add("d-none")
 }
+
