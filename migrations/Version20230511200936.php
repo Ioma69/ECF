@@ -28,7 +28,6 @@ final class Version20230511200936 extends AbstractMigration
         $this->addSql('ALTER TABLE menu DROP FOREIGN KEY FK_7D053A93642B8210');
         $this->addSql('ALTER TABLE menu DROP admin_id');
         $this->addSql('ALTER TABLE picdishes DROP FOREIGN KEY FK_8ADF486D642B8210');
-        $this->addSql('DROP INDEX IDX_8ADF486D642B8210 ON picdishes');
         $this->addSql('ALTER TABLE picdishes DROP admin_id');
         $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C84955A76ED395');
         $this->addSql('DROP INDEX IDX_42C84955A76ED395 ON reservation');
