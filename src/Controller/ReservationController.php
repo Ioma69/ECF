@@ -55,9 +55,9 @@ class ReservationController extends AbstractController
                 return new JsonResponse(['message' => 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.'], 400);
             }
 
-           // $em = $doctrine->getManager();
-           // $em->persist($reservations);
-            //$em->flush();
+            $em = $doctrine->getManager();
+            $em->persist($reservations);
+            $em->flush();
             return new JsonResponse(['message' => 'Réservation effectuée avec succès']);
         };
         
