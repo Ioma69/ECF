@@ -23,9 +23,9 @@ class Categories
     }
 
 
-    #[ORM\OneToMany(targetEntity:"App\Entity\Dishes", mappedBy:"category")]
+    //#[ORM\OneToMany(targetEntity:"App\Entity\Dishes", mappedBy:"category")]
 
-    private $dishes;
+    //private $dishes;
  
 
 

@@ -28,14 +28,14 @@ class Reservation
     private ?array $allergy = null;
 
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "reservationUser")]
-    #[ORM\JoinColumn(nullable:true)]
-    private $user;
+   // #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "reservationUser")]
+    //#[ORM\JoinColumn(nullable:true)]
+   // private $user;
 
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\Visitor", inversedBy: "reservationVisitor")]
-    #[ORM\JoinColumn(nullable:true)]
-    private $visitor;
+    //#[ORM\ManyToOne(targetEntity: "App\Entity\Visitor", inversedBy: "reservationVisitor")]
+    //#[ORM\JoinColumn(nullable:true)]
+   // private $visitor;
 
     public function getId(): ?int
     {

@@ -20,9 +20,9 @@ class Visitor
     #[ORM\Column(length: 50)]
     private string $phone;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "visitor")]
+   // #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "visitor")]
 
-    private $reservationVisitor;
+  //  private $reservationVisitor;
 
 
     public function getId(): ?int
