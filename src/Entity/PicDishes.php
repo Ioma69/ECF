@@ -12,13 +12,13 @@ class PicDishes {
     #[ORM\Id()]
     #[ORM\GeneratedValue(strategy:"AUTO")]
     #[ORM\Column(type:"integer")]
-    private int $id = null;
+    private ?int $id = null;
 
     #[ORM\Column(type: "string", length: 80)]
-    private string $title = null;
+    private ?string $title = null;
 
     #[ORM\Column(type: "text")]
-    private string $image = null;
+    private ?string $image = null;
     
     #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
     #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id", onDelete:"CASCADE")]
