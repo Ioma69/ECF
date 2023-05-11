@@ -20,7 +20,7 @@ final class Version20230508205732 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE debug');
+        
         
     }
 
