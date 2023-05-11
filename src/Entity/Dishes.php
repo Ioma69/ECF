@@ -32,8 +32,8 @@ class Dishes
     private $admin;
 
 
-    #[ORM\ManyToOne(targetEntity:"App\Entity\Categories", inversedBy:"dishes", cascade: ["remove"])]
-    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id", onDelete: "CASCADE")]
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Categories", inversedBy:"dishes",)]
+    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id")]
 
     private $category;
 
