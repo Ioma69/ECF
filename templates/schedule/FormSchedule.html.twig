@@ -2,20 +2,42 @@
 
 {% block body %}
 
- <div class="container mt-5">
- {% for message in app.flashes('error') %}
-		<div class="alert alert-danger mt-3" role="alert">
-			{{ message }}
-		</div>
-		{% endfor %}
-	{{ form_start(schedules) }}
-	{{ form_row(schedules.openingNoon) }}
-	{{ form_row(schedules.closingNoon) }}
-	{{ form_row(schedules.openingEvening) }}
-    {{ form_row(schedules.closingEvening) }}
-	
-	<input type="submit" class="btn btn-primary mt-2" value="Publier le menu">
-	{{ form_end(schedules) }}
-    </div>
+<div class="container mt-5 bg-white shadow p-5">
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger mt-3" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1 class="text-center mb-5">Créer un nouvel horaire</h1>
+    {{ form_start(schedules, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(schedules.openingNoon, 'Ouverture (midi)', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(schedules.openingNoon, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(schedules.closingNoon, 'Fermeture (midi)', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(schedules.closingNoon, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(schedules.openingEvening, 'Ouverture (soir)', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(schedules.openingEvening, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(schedules.closingEvening, 'Fermeture (soir)', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(schedules.closingEvening, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-12">
+            <input type="submit" class="btn btn-primary" value="Publier l'horaire">
+        </div>
+    {{ form_end(schedules) }}
+</div>
 
 {% endblock %}

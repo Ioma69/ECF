@@ -1,25 +1,68 @@
+{% block stylesheets %}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+            <link rel="stylesheet" href= {{asset('styles/style.css')}} type="text/css">
+			      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+			      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+{% endblock %}
+
+
+
 {% block footer %}
 
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 d-flex flex-column">
+                <h3 class="mb-3 d-flex justify-content-center">Horaires</h3>
+                {% for schedule in schedules %}
+                <i class="far fa-2x fa-clock me-3 mb-3 d-flex justify-content-center" style="color: #cba880;"></i>
+                <p class="mb-1 d-flex justify-content-center text-center police"> Mardi au Dimanche de {{ schedule.openingNoon|date('H:i') }} à {{ schedule.closingNoon|date('H:i') }} et de {{ schedule.openingEvening|date('H:i') }} à {{ schedule.closingEvening|date('H:i') }}</p>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div class="d-flex justify-content-center">
+                <a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning btn-sm mt-3">Modifier les horaires</a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-4 d-flex flex-column">
+                <h3 class="mb-3 d-flex justify-content-center align-items-center mt-5 mt-md-0">Menu</h3>
+                <ul class="list-unstyled d-flex justify-content-center align-items-center flex-column">
+                  <li class="text-center"><a href="#" class="text-dark text-decoration-none police"><i class="fa-regular fa-clipboard fa-2x" style="color: #cba880;"></i><br>Decouvrez nos menus</a></li>
+                  <li class="text-center"><a href="#" class="text-dark text-decoration-none police"><i class="fa-regular fa-star fa-2x mt-2" style="color: #cba880;"></i><br>Decouvrez notre carte</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mt-sm-4 mt-md-0">
+                <h3 class="mb-3 d-flex justify-content-center">Contact</h3>
+                <p class="mb-1 d-flex justify-content-center police mt-3 align-items-center"><i class="fa-regular fa-flag d-flex align-items-center me-1 fa-2x" style="color: #cba880;"></i> 123 Rue du Quai antique, 75000 Paris</p>
+                <p class="mb-1 d-flex justify-content-center police mt-3 align-items-center"><i class="fas fa-phone d-flex align-items-center me-1 fa-2x" style="color: #cba880;"></i> +33 1 23 45 67 89</p>
+                <p class="mb-1 d-flex justify-content-center align-items-center police mt-3"><i class="fa-regular fa-envelope d-flex align-items-center me-1 fa-2x" style="color: #cba880;"></i> contact@quaiantique.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="py-4 bg-dark text-white ">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2023 Quai Antique. Tous droits réservés.</p>
+    </div>
+</footer>
+{% endblock %}
 
 
-<div class="mt-auto">
+
+
+
+{#
+{% block footer %}<div class="mt-auto">
   <footer class="py-3 my-4">
   {% for schedule in schedules %}
 
 
    <div class="bloc footer-schedule">
           <h3 class="mt-5 mb-5 d-flex justify-content-center">Horaires</h3>
-          
           <ul class="nav justify-content-center pb-3 mb-3">
             <li>✔️ Ouvert du Mardi au Dimanche de {{ schedule.openingNoon|date('H:i') }} à {{ schedule.closingNoon|date('H:i') }} puis de {{ schedule.openingEvening|date('H:i') }} à {{ schedule.closingEvening|date('H:i') }}</li>
           </ul>
-          {% if ( is_granted('ROLE_ADMIN') ) %}
-            <div class="d-flex justify-content-center">
-                <a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier les horaires</a>
-            </div>
-            {% endif %}
-            </div>
-        </div>
         </div>
         {% endfor %}
 	  <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -34,4 +77,4 @@
 </div> 
 
 
-  {% endblock %}
+  {% endblock %}#}

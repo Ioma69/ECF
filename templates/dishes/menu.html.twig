@@ -2,46 +2,40 @@
 
 {% block body %}
 
-
-	<div class="container mt-5">
-		<div class="card vh-100">
-			<div class="card-body">
-				<h2 class="text-center mb-5"> Carte du Quai Antique </h2>
-
-	
-		{% for dishe in dishes %}
-			
-				
-				<div>
-					<h5 class="card-title text-center">{{ dishe.title }}</h5>
-					<p class="card-text text-center">{{ dishe.description }}</p>
-					<p class="card-text text-center">{{ dishe.price }}</p>
-					<p class="card-text text-center">{{ dishe.category.name }}</p>
-					{% if ( is_granted('ROLE_ADMIN') ) %}
-                    <div class="d-flex justify-content-center">
-					<a href="{{ path('delete-dishes', {'id': dishe.id}) }}" class="btn btn-danger btn-sm ms-1 ">Supprimer</a>
-					 <a href="{{ path('edit-dishes', {'id': dishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
+<div class="container mt-5">
+	<div class="card shadow">
+		<div class="card-body">
+			<h2 class="text-center mb-5">Carte du Quai Antique</h2>
+			<div class="row justify-content-center">
+				{% for dishe in dishes %}
+				<div class="col-sm-10 col-md-7 col-lg-4 mb-4">
+					<div class="card h-100">
+							<div class="card-body">
+							<h5 class="card-title">{{ dishe.title }}</h5>
+							<p class="card-text">{{ dishe.description }}</p>
+							<hr class="my-2">
+							<p class="card-text font-weight-bold"> Prix : {{ dishe.price }}</p>
+							<hr class="my-2">
+							<p class="card-text font-weight-bold"> Catégorie : {{ dishe.category.name }}</p>
+					</div>
+						{% if ( is_granted('ROLE_ADMIN') ) %}
+	                    <div class="card-footer d-flex justify-content-center">
+							<a href="{{ path('delete-dishes', {'id': dishe.id}) }}" class="btn btn-danger btn-sm me-1"><i class="bi bi-trash"></i> Supprimer</a>
+							<a href="{{ path('edit-dishes', {'id': dishe.id}) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i> Modifier</a>
+						</div>
+						{% endif %}
+					</div>
 				</div>
-					{% endif %}
-
-					
-		{% endfor %}
-	
-	
-				</div>
+				{% endfor %}
 			</div>
 		</div>
-		<div class="d-flex justify-content-center">
-			<a href="/user/new/" class="btn btn-secondary mt-3 ms-1">Decouvrez nos menus du moment ! </a>
-		</div>	
+	</div>
+	<div class="d-flex justify-content-center mt-3">
+		<a href="/user/new/" class="btn btn-secondary mt-5">Découvrez nos menus du moment!</a>
+	</div>
+</div>
 
 
-		<section>
-			<div>
-				 <h2 class="title-h2 title-font text-dark text-center pt-3"> QUI SOMMES NOUS ?</h2>
-                    <p class="text-dark text-left text-center text-sm-start mt-3 mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit ducimus eos reiciendis nam vero dolores accusantium expedita accusamus maiores! ipsum dolor sit amet consectetur adipisicing elit. Odit ducimus eos reiciendis nam vero dolores accusantium expedita accusamus maiores! Quam, aut placeat! Quae tempore doloremque eveniet impedit, molestias ad aperiam! Lorem ipsum dolor sit amet consectetur, adipisicing elit.Sapiente consequuntur ut iste quae exercitationem et nemo porro velit, quos quisquam, minima molestias dolore, qui ducimus autem? Officia, atque! Provident, voluptatem!</p>
-			</div>
-		</section>
 
 		
 
@@ -50,4 +44,11 @@
 
 
 {% endblock %}
+
+
+
+
+
+
+
 

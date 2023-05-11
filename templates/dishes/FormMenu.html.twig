@@ -2,14 +2,17 @@
 
 {% block body %}
 
- <div class="container mt-5">
-	{{ form_start(dishes) }}
-	{{ form_row(dishes.categories) }}
-	{{ form_row(dishes.title) }}
-	{{ form_row(dishes.description) }}
-    {{ form_row(dishes.price) }}
-	<input type="submit" class="btn btn-primary mt-2" value="Publier la carte">
+<div class="container mt-5 bg-white shadow p-5">
+	<h1 class="text-center mb-5">Créer un nouveau plat</h1>
+	{{ form_start(dishes, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
+		{{ form_row(dishes.categories, {'attr': {'class': 'form-select mb-2'}}) }}
+		{{ form_row(dishes.title, {'attr': {'class': 'form-control mb-2'}}) }}
+		{{ form_row(dishes.description, {'attr': {'class': 'form-control mb-2', 'rows': 5}}) }}
+		{{ form_row(dishes.price, {'attr': {'class': 'form-control'}}) }}
+		<div class="col-12">
+			<input type="submit" class="btn btn-primary" value="Publier la carte">
+		</div>
 	{{ form_end(dishes) }}
-    </div>
+</div>
 
 {% endblock %}

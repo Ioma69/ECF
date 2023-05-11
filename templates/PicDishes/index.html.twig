@@ -5,27 +5,24 @@
 
 
 <div class="d-flex justify-content-around flex-wrap mt-5">
-    {% for picdishe in picdishes %}
-        <div class="card text-bg-dark my-3"> 
-            <img src={{ asset('uploads/' ~ picdishe.image) }} class="card-img rounded-circle" height="300px" width="100px"alt={{picdishe.title}}> 
-            <div class="card-img-overlay">
-              <h5 class="card-title text-white text-center">{{ picdishe.title }}</h5>
-            {% if ( is_granted('ROLE_ADMIN') ) %}
-            <div class="d-flex justify-content-center">
-                <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
-                <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-warning btn-sm ms-1 ">Modifier</a>
-            </div>
-            {% endif %}
-            </div>
+  {% for picdishe in picdishes %}
+    <div class="card text-white bg-secondary m-3" style="max-width: 18rem;">
+      <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top rounded-circle" alt="{{ picdishe.title }}" height="300px" width="100px">
+      <div class="card-img-overlay">
+        <h5 class="card-title text-center">{{ picdishe.title }}</h5>
+        {% if ( is_granted('ROLE_ADMIN') ) %}
+        <div class="d-flex justify-content-center">
+          <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-danger btn-sm me-1"><i class="fas fa-trash"></i></a>
+          <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
         </div>
-    {% endfor %}
-
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
 </div>
 
 <div class="d-flex justify-content-center mt-5">
-
-      <a href="#" class="btn btn-primary btn-lg active" style="background-color: #ffac44;" role="button" aria-pressed="true">Reserver une table</a>
-
+  <a href="#" class="btn btn-primary btn-lg active" role="button" style="background-color: #ffac44; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
 </div>
 
 {{ include('footer.html.twig') }}

@@ -34,14 +34,14 @@ class ScheduleController extends AbstractController
         $scheduleRepository = $doctrine->getRepository(Schedule::class);
         $existingSchedules = $scheduleRepository->findAll();
         if ($existingSchedules && $scheduleForm->isSubmitted()) {
-            $this->addFlash('error', 'Impossible d\'ajouter des horaires, ils existent déjà.');
+            $this->addFlash('error', 'Impossible d\'ajouter des horaires, modifiez les via le pied de page');
         }
         if ($scheduleForm->isSubmitted() && $scheduleForm->isValid() && !$existingSchedules) { 
             $schedules->setAdminSchedule($this->getUser()); 
             $em = $doctrine->getManager();
             $em->persist($schedules);
             $em->flush();
-            return $this->redirectToRoute("schedule");
+            return $this->redirectToRoute("home");
         }
         return $this->render('schedule/FormSchedule.html.twig', [
             "schedules" => $scheduleForm->createView()
@@ -60,7 +60,7 @@ class ScheduleController extends AbstractController
             $em = $doctrine->getManager();                 
             $em->persist($schedules);       
             $em->flush(); 
-            return $this->redirectToRoute("schedule");
+            return $this->redirectToRoute("home");
         }
 
         return $this->render('schedule/FormSchedule.html.twig', [
