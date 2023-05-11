@@ -21,7 +21,7 @@ class PicDishes {
     private ?string $image = null;
     
     #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
-    #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id", onDelete:"CASCADE")]
+    #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id")]
    
     private $admin;
 
