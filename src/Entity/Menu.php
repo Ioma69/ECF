@@ -29,14 +29,14 @@ class Menu
 
 
 
-    //#[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", mappedBy: "menu")]
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", mappedBy: "menu")]
     
-   // private Collection $meal;
+    private Collection $meal;
    
 
-   // #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"menu")]
-    //#[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
-   // private $adminMenu;
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"menu")]
+    #[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
+    private $adminMenu;
 
 
 

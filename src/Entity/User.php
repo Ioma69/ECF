@@ -44,9 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private string $phone;
 
-   // #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "user")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "user")]
 
-   // private $reservationUser;
+    private $reservationUser;
 
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {

@@ -33,27 +33,27 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 
 
 
-    //#[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "admin")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\PicDishes", mappedBy: "admin")]
 
-    //private $picdishes;
-
-
-
-    //#[ORM\OneToMany(targetEntity:"App\Entity\Dishes", mappedBy:"admin")]
-
-   // private $dishes;
+    private $picdishes;
 
 
 
-    //#[ORM\OneToMany(targetEntity:"App\Entity\Menu", mappedBy:"adminMenu")]
+    #[ORM\OneToMany(targetEntity:"App\Entity\Dishes", mappedBy:"admin")]
 
-    //private $menu;
+    private $dishes;
 
 
 
-    //#[ORM\OneToMany(targetEntity:"App\Entity\Schedule", mappedBy:"adminSchedule")]
+    #[ORM\OneToMany(targetEntity:"App\Entity\Menu", mappedBy:"adminMenu")]
 
-    //private Collection $schedule;
+    private $menu;
+
+
+
+    #[ORM\OneToMany(targetEntity:"App\Entity\Schedule", mappedBy:"adminSchedule")]
+
+    private Collection $schedule;
 
 
 

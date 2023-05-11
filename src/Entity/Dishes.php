@@ -27,18 +27,18 @@ class Dishes
     private ?int $price = null;
 
 
-   // #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"dishes")]
-    //#[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
-   // private $admin;
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"dishes")]
+    #[ORM\JoinColumn(name: "admin_id", referencedColumnName: "id")]
+    private $admin;
 
 
-    //#[ORM\ManyToOne(targetEntity:"App\Entity\Categories", inversedBy:"dishes", cascade: ["remove"])]
-    //#[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id", onDelete: "CASCADE")]
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Categories", inversedBy:"dishes", cascade: ["remove"])]
+    #[ORM\JoinColumn(name:"categories_id", referencedColumnName:"id", onDelete: "CASCADE")]
 
    // private $category;
 
-    //#[ORM\ManyToMany(targetEntity: "App\Entity\Menu", inversedBy: "meal")]
-    //private Collection $menu;
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Menu", inversedBy: "meal")]
+    private Collection $menu;
  
 
 

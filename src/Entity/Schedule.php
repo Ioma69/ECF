@@ -37,9 +37,9 @@ class Schedule
 
 
     
-   // #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"schedule")]
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Admin", inversedBy:"schedule")]
 
-   // private $adminSchedule;
+    private $adminSchedule;
 
 
 
