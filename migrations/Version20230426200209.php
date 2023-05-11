@@ -20,8 +20,6 @@ final class Version20230426200209 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE dishes DROP FOREIGN KEY FK_584DD35D642B8210');
-        $this->addSql('DROP INDEX IDX_584DD35D642B8210 ON dishes');
         $this->addSql('ALTER TABLE dishes DROP admin_id, DROP categories_id');
     }
 
