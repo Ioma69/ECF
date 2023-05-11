@@ -21,12 +21,7 @@ final class Version20230511200936 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         
-        
-    
-       
-        
-       
-        $this->addSql('ALTER TABLE reservation DROP user_id, DROP visitor_id');
+
         $this->addSql('ALTER TABLE schedule DROP FOREIGN KEY FK_5A3811FB39118BDC');
         $this->addSql('DROP INDEX IDX_5A3811FB39118BDC ON schedule');
         $this->addSql('ALTER TABLE schedule DROP admin_schedule_id');
