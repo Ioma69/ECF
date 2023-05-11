@@ -22,7 +22,7 @@ final class Version20230511200936 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         
         
-        $this->addSql('ALTER TABLE dishes DROP FOREIGN KEY FK_584DD35DA21214B7');
+    
         $this->addSql('ALTER TABLE dishes DROP admin_id, DROP categories_id');
         $this->addSql('ALTER TABLE menu DROP admin_id');
         $this->addSql('ALTER TABLE picdishes DROP admin_id');
