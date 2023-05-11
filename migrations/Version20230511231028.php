@@ -20,8 +20,7 @@ final class Version20230511231028 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE picdishes DROP FOREIGN KEY FK_8ADF486D642B8210');
-        $this->addSql('ALTER TABLE picdishes ADD CONSTRAINT FK_8ADF486D642B8210 FOREIGN KEY (admin_id) REFERENCES admin (id)');
+       
     }
 
     public function down(Schema $schema): void
