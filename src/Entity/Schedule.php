@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Entity;
 
 use App\Repository\ScheduleRepository;
@@ -47,6 +47,7 @@ class Schedule
     /**
      * Get the value of openingNoon
      */
+    /*
     public function getOpeningNoon(): ?dateTime
     {
         return $this->openingNoon;
@@ -54,7 +55,7 @@ class Schedule
 
     /**
      * Set the value of openingNoon
-     */
+     *//*
     public function setOpeningNoon(?dateTime $openingNoon): self
     {
         $this->openingNoon = $openingNoon;
@@ -64,7 +65,7 @@ class Schedule
 
     /**
      * Get the value of closingNoon
-     */
+     *//*
     public function getClosingNoon(): ?dateTime
     {
         return $this->closingNoon;
@@ -72,7 +73,7 @@ class Schedule
 
     /**
      * Set the value of closingNoon
-     */
+     *//*
     public function setClosingNoon(?dateTime $closingNoon): self
     {
         $this->closingNoon = $closingNoon;
@@ -82,7 +83,7 @@ class Schedule
 
     /**
      * Get the value of openingEvening
-     */
+     *//*
     public function getOpeningEvening(): ?dateTime
     {
         return $this->openingEvening;
@@ -90,7 +91,7 @@ class Schedule
 
     /**
      * Set the value of openingEvening
-     */
+     *//*
     public function setOpeningEvening(?dateTime $openingEvening): self
     {
         $this->openingEvening = $openingEvening;
@@ -100,7 +101,7 @@ class Schedule
 
     /**
      * Get the value of closingEvening
-     */
+     *//*
     public function getClosingEvening(): ?dateTime
     {
         return $this->closingEvening;
@@ -108,7 +109,7 @@ class Schedule
 
     /**
      * Set the value of closingEvening
-     */
+     *//*
     public function setClosingEvening(?dateTime $closingEvening): self
     {
         $this->closingEvening = $closingEvening;
@@ -118,7 +119,7 @@ class Schedule
 
     /**
      * Get the value of adminSchedule
-     */
+     *//*
     public function getAdminSchedule()
     {
         return $this->adminSchedule;
@@ -126,7 +127,7 @@ class Schedule
 
     /**
      * Set the value of adminSchedule
-     */
+     *//*
     public function setAdminSchedule($adminSchedule): self
     {
         $this->adminSchedule = $adminSchedule;
