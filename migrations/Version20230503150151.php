@@ -20,7 +20,7 @@ final class Version20230503150151 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE menu CHANGE menu_title title VARCHAR(80) NOT NULL');
+       
     }
 
     public function down(Schema $schema): void
