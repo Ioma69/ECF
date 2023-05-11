@@ -18,7 +18,7 @@ class MenusController extends AbstractController
 {
 
     #[Route('/formula', name:"formula")]
-    public function index(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
+    public function index3(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
     {
         $repository = $doctrine->getRepository(Menu::class);         
         $menus = $repository->findAll(); 

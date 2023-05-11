@@ -18,7 +18,7 @@ class DishesController extends AbstractController
 {
 
     #[Route('/menu', name:"menu")]
-    public function index(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
+    public function index2(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
     {
         $repository = $doctrine->getRepository(Dishes::class);           // Récupération du repository de l'entité "Dishes"
         $dishes = $repository->findAll(); // SELECT * FROM 'Dishes';  // Stocke toutes les photos dans la variable $picdishes

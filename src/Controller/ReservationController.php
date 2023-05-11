@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     #[Route('/reservation', name: 'reservation')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index4(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Reservation::class);                  
         $reservations = $repository->findAll(); 

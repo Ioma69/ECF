@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ScheduleController extends AbstractController
 {
     #[Route('/schedule', name: 'schedule')]
-    public function index(ManagerRegistry $doctrine,\Twig\Environment $twig): Response
+    public function index5(ManagerRegistry $doctrine,\Twig\Environment $twig): Response
     {
         $repository = $doctrine->getRepository(Schedule::class);           
         $schedules = $repository->findAll(); 
