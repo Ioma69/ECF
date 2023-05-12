@@ -24,7 +24,7 @@ class DishesController extends AbstractController
         $dishes = $repository->findAll(); // SELECT * FROM 'Dishes';  // Stocke toutes les photos dans la variable $picdishes
         $repository = $doctrine->getRepository(Schedule::class);           
         $schedules = $repository->findAll(); 
-        return $this->render('dishes/Menu.html.twig', [                 // Envoie le tableau des photos au template Twig
+        return $this->render('dishes/menu.html.twig', [                 // Envoie le tableau des photos au template Twig
             "dishes" => $dishes,
             $twig->addGlobal("schedules",$schedules),
         ]);
