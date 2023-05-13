@@ -28,6 +28,7 @@ class ReservationController extends AbstractController
     #[Route('/makeReservation', name: 'makeReservation')]
     public function reservation(Request $request, ManagerRegistry $doctrine): Response
     {
+        if ($this->isGranted('ROLE_USER')){
         $reservations = new Reservation();
         $reservationsForm = $this->createForm(ReservationUserType::class, $reservations);
         $reservationsForm->handleRequest($request);
@@ -60,13 +61,13 @@ class ReservationController extends AbstractController
             $em->flush();
             return new JsonResponse(['message' => 'Réservation effectuée avec succès']);
         };
-        
+    
         return $this->render('reservation/FormReservation.html.twig', [
             "reservations" => $reservationsForm->createView()
         ]);
-
     }
-
+    return $this->redirectToRoute("home");
+}
     
 }
 

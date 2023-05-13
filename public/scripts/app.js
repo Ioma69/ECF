@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     let formReservation = document.getElementById('formReservation');
-    let availableFlatware = document.getElementById('availableFlatware');
+    
   
     formReservation.addEventListener('submit', function (e) {
       e.preventDefault();
