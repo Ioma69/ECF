@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
          $manager->persist($john);
 
          $fred = new User($this->passwordHasher);
-         $fred->setEmail("test1@hotmail.com")->setPassword("1234")->setRoles(["ROLE_USER"]);
+         $fred->setEmail("test1@hotmail.com")->setPassword("1234")->setRoles(["ROLE_USER"])->setName("Dupont")->setFirstname("Fred")->setPhone("0707070707");
          $manager->persist($fred);
          
          

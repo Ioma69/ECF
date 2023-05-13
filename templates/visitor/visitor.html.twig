@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-header">
+            <h4>Renseignez votre adresse e-mail et votre numéro de téléphone pour effectuer votre réservation</h4>
+        </div>
+        <div class="card-body">
+            {{ form_start(visitors, {'attr': {'class': 'form'}}) }}
+             <div class="form-group mt-3">
+                    {{ form_label(visitors.name, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(visitors.name, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(visitors.name) }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form_label(visitors.email, 'Adresse e-mail', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(visitors.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(visitors.email) }}
+                </div>
+                <div class="form-group mt-3">
+                    {{ form_label(visitors.phone, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(visitors.phone, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(visitors.phone) }}
+                </div>
+                <button type="submit" class="btn btn-primary mt-4" id="submitReservation">Réserver</button>
+            {{ form_end(visitors) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

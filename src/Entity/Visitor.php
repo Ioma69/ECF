@@ -4,13 +4,17 @@ namespace App\Entity;
 
 use App\Repository\VisitorRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: VisitorRepository::class)]
+#[UniqueEntity("email", message: "L'adresse mail est déjà prise...")]
+#[UniqueEntity("phone", message: "Le numéro est déjà attribué...")]
 class Visitor
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+   
     private ?int $id = null;
 
    
@@ -18,7 +22,10 @@ class Visitor
     private ?string $email = null;
 
     #[ORM\Column(length: 50)]
-    private string $phone;
+    private ?string $phone;
+
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "visitor")]
 
@@ -83,6 +90,24 @@ class Visitor
     public function setReservationVisitor($reservationVisitor): self
     {
         $this->reservationVisitor = $reservationVisitor;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of name
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     */
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

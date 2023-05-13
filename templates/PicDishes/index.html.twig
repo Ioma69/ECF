@@ -22,7 +22,11 @@
 </div>
 
 <div class="d-flex justify-content-center mt-5">
-  <a href="#" class="btn btn-primary btn-lg active" role="button" style="background-color: #ffac44; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
+    {% if app.user %}
+    <a href="{{ path('userReservation') }}" class="btn btn-primary btn-lg active" role="button" style="background-color: #ffac44; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
+  {% else %}
+    <a href="{{ path('addInfo') }}" class="btn btn-primary btn-lg active" role="button" style="background-color: #ffac44; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
+  {% endif %}
 </div>
 
 {{ include('footer.html.twig') }}
