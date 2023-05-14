@@ -80,10 +80,14 @@ public function reservationVisitor(Request $request, ManagerRegistry $doctrine):
 {
     $reservations = new Reservation();
     $reservationsForm = $this->createForm(ReservationVisitorType::class, $reservations);
+    $visitorId = $request->query->getInt('visitorId');
+    var_dump($visitorId);
+    $visitor = $doctrine->getRepository(Visitor::class)->find($visitorId);
     $reservationsForm->handleRequest($request);
    
     if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) {
-        $reservations->setVisitor($this->getUser()); 
+        $reservations->setVisitor($visitor);
+        
         
         // Vérification du nombre de couverts pour l'horaire choisi
         $repository = $doctrine->getRepository(Reservation::class);                  
@@ -102,18 +106,19 @@ public function reservationVisitor(Request $request, ManagerRegistry $doctrine):
 
         if ($availableFlatware < $reservations->getFlatware()) {
             
-            return new JsonResponse(['message' => 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.'], 400);
+            $this->addFlash('error', 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.');
         }
 
         $em = $doctrine->getManager();
         $em->persist($reservations);
         $em->flush();
-        return new JsonResponse(['message' => 'Réservation effectuée avec succès']);
+        $this->addFlash('valid', 'Reservation effectué avec succes');;
     };
     
 
     return $this->render('reservation/FormReservationVisitor.html.twig', [
-        "reservationsVisitor" => $reservationsForm->createView()
+        "reservationsVisitor" => $reservationsForm->createView(),
+        'visitorId' => $visitorId
     ]);
 
 

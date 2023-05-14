@@ -8,25 +8,26 @@
         <h4>Réserver une table</h4>
       </div>
       <div class="card-body">
-        {{ form_start(reservationsVisitor, {'attr': {'class': 'form', 'id': 'formReservationVisitor'}}) }}
+        {{ form_start(reservationsVisitor, {'attr': {'class': 'form'}}) }}
         <div class="form-group">
           {{ form_label(reservationsVisitor.flatware, 'Nombre de couverts', {'label_attr': {'class': 'form-label'}}) }}
           {{ form_widget(reservationsVisitor.flatware, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group">
           {{ form_label(reservationsVisitor.reservationDate, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
-             {{ form_widget(reservationsVisitor.reservationDate, {'attr': {'class': 'form-control', 'id': 'reservation_user_reservationDate'}}) }}
+             {{ form_widget(reservationsVisitor.reservationDate, {'attr': {'class': 'form-control'}}) }}
 		  {{ form_errors(reservationsVisitor.reservationDate) }}
         </div>
         <div class="form-group">
 		  {{ form_label(reservationsVisitor.reservationHour, 'Heure de réservation', {'label_attr': {'class': 'form-label me-3'}}) }}
-		  {{ form_widget(reservationsVisitor.reservationHour, {'attr': {'class': 'form-control d-flex flex-wrap justify-content-around', 'id': 'reservationHour'}}) }}
+		  {{ form_widget(reservationsVisitor.reservationHour, {'attr': {'class': 'form-control d-flex flex-wrap justify-content-around'}}) }}
 		</div>
         <div class="form-group">
           {{ form_label(reservationsVisitor.allergy, 'Allergies éventuelles', {'label_attr': {'class': 'form-label'}}) }}
           {{ form_widget(reservationsVisitor.allergy, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <button type="submit" class="btn btn-primary mt-2" id="submitReservation">Réserver</button>
+        <input type="hidden" name="visitor_id" value="{{ app.request.get('visitor_id') }}">      {#  récupérere la valeur de visitorId depuis l'URL de la requête et la passe en tant que valeur du champ caché visitor_id.  #}
+        <button type="submit" class="btn btn-primary mt-2">Réserver</button>
         {{ form_end(reservationsVisitor) }}
       </div>
     </div>

@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+
+
+
 {% block body %}
 
 <div class="container mt-5">
@@ -10,7 +13,7 @@
         <div class="card-body">
             {{ form_start(visitors, {'attr': {'class': 'form'}}) }}
              <div class="form-group mt-3">
-                    {{ form_label(visitors.name, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_label(visitors.name, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
                     {{ form_widget(visitors.name, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(visitors.name) }}
                 </div>
@@ -24,10 +27,20 @@
                     {{ form_widget(visitors.phone, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(visitors.phone) }}
                 </div>
-                <button type="submit" class="btn btn-primary mt-4" id="submitReservation">Réserver</button>
+             {% if visitors.vars.submitted and visitors.vars.valid %}
+                <a href="{{ path('visitorReservation') }}" class="btn btn-primary mt-4">Aller au formulaire de réservation</a>
+            {% else %}
+                <button type="submit" class="btn btn-primary mt-4" id="submitReservation">Valider vos informations</button>
+            {% endif %}
+            {% if app.session.flashBag.has('valid') %}
+                <div class="alert alert-success mt-4">
+                    {{ app.session.flashBag.get('valid')[0] }}
+                </div>
+            {% endif %}
+
             {{ form_end(visitors) }}
         </div>
     </div>
 </div>
-
+       
 {% endblock %}
