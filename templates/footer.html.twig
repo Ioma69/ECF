@@ -9,8 +9,8 @@
 
 
 {% block footer %}
-
-<div class="bg-light py-5">
+<footer class="py-4 bg-dark text-white">
+<div class="bg-dark py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-4 d-flex flex-column">
@@ -28,8 +28,8 @@
             <div class="col-md-4 d-flex flex-column">
                 <h3 class="mb-3 d-flex justify-content-center align-items-center mt-5 mt-md-0">Menu</h3>
                 <ul class="list-unstyled d-flex justify-content-center align-items-center flex-column">
-                  <li class="text-center"><a href="#" class="text-dark text-decoration-none police"><i class="fa-regular fa-clipboard fa-2x" style="color: #cba880;"></i><br>Decouvrez nos menus</a></li>
-                  <li class="text-center"><a href="#" class="text-dark text-decoration-none police"><i class="fa-regular fa-star fa-2x mt-2" style="color: #cba880;"></i><br>Decouvrez notre carte</a></li>
+                  <li class="text-center"><a href="#" class="text-white text-decoration-none police"><i class="fa-regular fa-clipboard fa-2x" style="color: #cba880;"></i><br>Decouvrez nos menus</a></li>
+                  <li class="text-center"><a href="#" class="text-white text-decoration-none police"><i class="fa-regular fa-star fa-2x mt-2" style="color: #cba880;"></i><br>Decouvrez notre carte</a></li>
                 </ul>
             </div>
             <div class="col-md-4 mt-sm-4 mt-md-0">
@@ -41,7 +41,7 @@
         </div>
     </div>
 </div>
-<footer class="py-4 bg-dark text-white ">
+
     <div class="container text-center">
         <p class="mb-0">&copy; 2023 Quai Antique. Tous droits réservés.</p>
     </div>
@@ -50,31 +50,3 @@
 
 
 
-
-
-{#
-{% block footer %}<div class="mt-auto">
-  <footer class="py-3 my-4">
-  {% for schedule in schedules %}
-
-
-   <div class="bloc footer-schedule">
-          <h3 class="mt-5 mb-5 d-flex justify-content-center">Horaires</h3>
-          <ul class="nav justify-content-center pb-3 mb-3">
-            <li>✔️ Ouvert du Mardi au Dimanche de {{ schedule.openingNoon|date('H:i') }} à {{ schedule.closingNoon|date('H:i') }} puis de {{ schedule.openingEvening|date('H:i') }} à {{ schedule.closingEvening|date('H:i') }}</li>
-          </ul>
-        </div>
-        {% endfor %}
-	  <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-    <p class="text-center text-muted">© 2023 Quai Antique</p>
-  </footer>
-</div> 
-
-
-  {% endblock %}#}

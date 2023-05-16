@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReservationController extends AbstractController
 {
-    #[Route('/reservation', name: 'reservation')]
+    #[Route('/reservationUser', name: 'reservation')]
     public function index4(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Reservation::class);                  
@@ -75,50 +75,58 @@ class ReservationController extends AbstractController
 
 
 
+
 #[Route('/makeReservation', name: 'visitorReservation')]
 public function reservationVisitor(Request $request, ManagerRegistry $doctrine): Response
 {
     $reservations = new Reservation();
     $reservationsForm = $this->createForm(ReservationVisitorType::class, $reservations);
     $visitorId = $request->query->getInt('visitorId');
-    var_dump($visitorId);
     $visitor = $doctrine->getRepository(Visitor::class)->find($visitorId);
     $reservationsForm->handleRequest($request);
+    $isFormSubmitted = false; 
    
-    if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) {
+    if ($reservationsForm->isSubmitted()) {
         $reservations->setVisitor($visitor);
-        
-        
+    
         // Vérification du nombre de couverts pour l'horaire choisi
-        $repository = $doctrine->getRepository(Reservation::class);                  
+        $repository = $doctrine->getRepository(Reservation::class);
         $existingReservations = $repository->findBy([
             'reservationDate' => $reservations->getReservationDate(),
             'reservationHour' => $reservations->getReservationHour()
         ]);
-
+    
         $totalFlatware = 0;
         foreach ($existingReservations as $existingReservation) {
             $totalFlatware += $existingReservation->getFlatware();
         }
-
+    
         $maxFlatware = 10;
         $availableFlatware = $maxFlatware - $totalFlatware;
-
+    
         if ($availableFlatware < $reservations->getFlatware()) {
-            
             $this->addFlash('error', 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.');
-        }
-
-        $em = $doctrine->getManager();
-        $em->persist($reservations);
-        $em->flush();
-        $this->addFlash('valid', 'Reservation effectué avec succes');;
-    };
+        } else {
+            if ($reservationsForm->isValid()) {
+                $isFormSubmitted = true;
+                $em = $doctrine->getManager();
+                $em->persist($reservations);
+                $em->flush();
+                $this->addFlash('valid2', 'Réservation effectuée avec succès, vous allez recevoir un mail de confirmation.');
+                header('Refresh: 4; URL=' . $this->generateUrl('home'));
+                ob_flush();
+                flush();
+             
+            }
+           
+    }
+}
     
 
     return $this->render('reservation/FormReservationVisitor.html.twig', [
         "reservationsVisitor" => $reservationsForm->createView(),
-        'visitorId' => $visitorId
+        'visitorId' => $visitorId,
+        'isFormSubmitted' => $isFormSubmitted
     ]);
 
 

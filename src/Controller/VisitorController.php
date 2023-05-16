@@ -16,27 +16,35 @@ class VisitorController extends AbstractController
    
 
     #[Route('/visitor/info', name: 'addInfo')]
-    public function dishes(Request $request, ManagerRegistry $doctrine): Response
+    public function addInfo(Request $request, ManagerRegistry $doctrine): Response
     {
         
         $visitor = new Visitor();
         $visitorForm = $this->createForm(VisitorType::class, $visitor);
         $visitorForm->handleRequest($request);
+        $isFormSubmitted = false; 
 
         if ($visitorForm->isSubmitted() && $visitorForm->isValid()) { 
-            $this->addFlash('valid', 'Vous pouvez maintenant aller au formulaire de réservation');
-           // $visitor->setCategory($visitor);
+            $isFormSubmitted = true;
             $em = $doctrine->getManager();
             $em->persist($visitor);
             $em->flush();
-
+    
             $visitorId = intval($visitor->getId());
-        return $this->redirectToRoute('visitorReservation', ['visitorId' => $visitorId]); // envoie l'id dans le controlleur qui gere la réservation
-          
-        };
+            $this->addFlash('valid', 'Vous allez maintenant etre rédirigé vers le formulaire de réservation');
+            echo "<script>setTimeout(function() {
+                window.location.href = '" . $this->generateUrl('visitorReservation', ['visitorId' => $visitorId]) . "';
+            }, 3000);</script>"; // envoie l'id dans le controlleur qui gere la réservation
+            return $this->render('visitor/visitor.html.twig', [
+                'visitors' => $visitorForm->createView(),
+                'isFormSubmitted' => $isFormSubmitted
+            ]);
+        }
         
         return $this->render('visitor/visitor.html.twig', [
-            "visitors" => $visitorForm->createView()
+            "visitors" => $visitorForm->createView(),
+            'isFormSubmitted' => $isFormSubmitted
+           
         ]);
     
 }

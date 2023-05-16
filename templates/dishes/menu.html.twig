@@ -11,12 +11,14 @@
 				<div class="col-sm-10 col-md-7 col-lg-4 mb-4">
 					<div class="card h-100">
 							<div class="card-body">
+							
+							<p class="card-text font-weight-bold d-flex justify-content-center fs-4">  {{ dishe.category.name }}</p>
 							<h5 class="card-title">{{ dishe.title }}</h5>
+							<hr class="my-2">
 							<p class="card-text">{{ dishe.description }}</p>
 							<hr class="my-2">
 							<p class="card-text font-weight-bold"> Prix : {{ dishe.price }}</p>
-							<hr class="my-2">
-							<p class="card-text font-weight-bold"> Catégorie : {{ dishe.category.name }}</p>
+							
 					</div>
 						{% if ( is_granted('ROLE_ADMIN') ) %}
 	                    <div class="card-footer d-flex justify-content-center">

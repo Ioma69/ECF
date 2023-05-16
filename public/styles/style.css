@@ -1,14 +1,21 @@
 body {
     min-height: 100vh;
-    background-color: #f9f6f2;
+    background-color: #f7e4c7;
+    color: rgb(119, 76, 13);
 }
 
 .sizeMenu {
     height: 2000px;
     width: 2000px;
+    
 }
 
 .police {
     font-size: 17px;
     
+}
+
+nav {
+    background-color: #080706;
+    color:#f7e4c7 ;
 }

@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
 
-
-<div class="d-flex justify-content-around flex-wrap mt-5">
+<div class="d-flex justify-content-center flex-wrap mt-5">
   {% for picdishe in picdishes %}
-    <div class="card text-white bg-secondary m-3" style="max-width: 18rem;">
-      <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top rounded-circle" alt="{{ picdishe.title }}" height="300px" width="100px">
+    <div class="card text-white bg-secondary m-3 d-flex justify-content-center align-items-center">
+      <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-lg img-fluid" style="height: 250px; width:220px;" alt="{{ picdishe.title }}">
       <div class="card-img-overlay">
         <h5 class="card-title text-center">{{ picdishe.title }}</h5>
         {% if ( is_granted('ROLE_ADMIN') ) %}
@@ -22,13 +20,106 @@
 </div>
 
 <div class="d-flex justify-content-center mt-5">
-    {% if app.user %}
+  {% if app.user %}
     <a href="{{ path('userReservation') }}" class="btn btn-primary btn-lg active" role="button" style="background-color: #ffac44; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
   {% else %}
     <a href="{{ path('addInfo') }}" class="btn btn-primary btn-lg active" role="button" style="background-color: #ffac44; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
   {% endif %}
 </div>
 
-{{ include('footer.html.twig') }}
+<section class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <hr>
+      <h2 class="text-center mt-5">À propos du restaurant</h2>
+      <div class="card shadow p-3 mt-5 bg-white rounded">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card-body">
+              <p class="text-justify">
+                Le restaurant Quai Antique a été créé il y a plusieurs années dans le but de proposer une expérience culinaire unique et authentique. Notre chef renommé, Thierry Michant, met tout son talent et sa passion dans chaque plat pour offrir à nos clients des saveurs exceptionnelles.<br><br>
+                Venez découvrir notre menu varié composé de plats délicieux préparés avec des ingrédients frais et de qualité. Nous sommes fiers de vous offrir un service attentionné dans un cadre chaleureux et convivial.<br><br>
+                Que vous veniez en famille, entre amis ou pour un repas d'affaires, notre équipe se fera un plaisir de vous accueillir et de vous faire passer un moment inoubliable.<br><br>
+                Réservez dès maintenant et venez vivre une expérience gastronomique hors du commun au restaurant Quai Antique !
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="{{ asset('pictures/restaurant.jpg') }}" class="mx-auto d-block shadow-lg rounded" style="height: 450px; width: 100%;" alt="Description de l'image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="testimonial-section mt-5 mb-5">
+  <div class="container mt-3 mb-4">
+    <h2 class="text-center mb-5 mt-5">Témoignages de nos clients</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p class="testimonial-text text-center">Le meilleur restaurant de la ville ! Les plats sont délicieux et le service est absolument excellent.</p>
+            <div class="testimonial-rating d-flex justify-content-center">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <img src="{{ asset('pictures/profil2.png') }}" alt="Client 1" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
+            <h4 class="testimonial-author-name d-flex justify-content-center">Cecile Durand</h4>
+            <p class="testimonial-author-info d-flex justify-content-center">Client satisfait</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p class="testimonial-text text-center">Une expérience culinaire incroyable ! Chaque plat était un véritable régal pour les papilles.</p>
+            <div class="testimonial-rating d-flex justify-content-center">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <img src="{{ asset('pictures/profil1.png') }}" alt="Client 2" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
+            <h4 class="testimonial-author-name d-flex justify-content-center">Estelle Dupond</h4>
+            <p class="testimonial-author-info d-flex justify-content-center">Client satisfait</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p class="testimonial-text text-center">Un restaurant avec une ambiance chaleureuse et des plats savoureux. Je le recommande vivement.</p>
+            <div class="testimonial-rating d-flex justify-content-center">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <img src="{{ asset('pictures/profil3.png') }}" alt="Client 3" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
+            <h4 class="testimonial-author-name d-flex justify-content-center">Sarah Lapierre</h4>
+            <p class="testimonial-author-info d-flex justify-content-center">Client satisfait</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+{{ include('footer.html.twig') }}
 {% endblock %}
+
+
+
+

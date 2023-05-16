@@ -27,18 +27,15 @@
                     {{ form_widget(visitors.phone, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(visitors.phone) }}
                 </div>
-             {% if visitors.vars.submitted and visitors.vars.valid %}
-                <a href="{{ path('visitorReservation') }}" class="btn btn-primary mt-4">Aller au formulaire de réservation</a>
-            {% else %}
-                <button type="submit" class="btn btn-primary mt-4" id="submitReservation">Valider vos informations</button>
-            {% endif %}
-            {% if app.session.flashBag.has('valid') %}
-                <div class="alert alert-success mt-4">
-                    {{ app.session.flashBag.get('valid')[0] }}
-                </div>
-            {% endif %}
-
+                <button type="submit" class="btn btn-primary mt-4" id="submitReservation" {% if isFormSubmitted %}style="display: none;"{% endif %}> 
+                Valider vos informations
+                </button>
             {{ form_end(visitors) }}
+            {% for message in app.flashes('valid') %}
+                <div class="alert alert-success mt-3" role="alert">
+                            {{ message }}
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>

@@ -27,8 +27,21 @@
           {{ form_widget(reservationsVisitor.allergy, {'attr': {'class': 'form-control'}}) }}
         </div>
         <input type="hidden" name="visitor_id" value="{{ app.request.get('visitor_id') }}">      {#  récupérere la valeur de visitorId depuis l'URL de la requête et la passe en tant que valeur du champ caché visitor_id.  #}
-        <button type="submit" class="btn btn-primary mt-2">Réserver</button>
+        <button type="submit" class="btn btn-primary mt-4" id="submitReservation" {% if isFormSubmitted %}style="display: none;"{% endif %}>
+        Réserver
+      </button>
         {{ form_end(reservationsVisitor) }}
+
+          {% for message in app.flashes('valid2') %}
+                <div class="alert alert-success mt-3" role="alert">
+                            {{ message }}
+                </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+                <div class="alert alert-danger mt-3" role="alert">
+                            {{ message }}
+                </div>
+            {% endfor %}
       </div>
     </div>
   </div>
