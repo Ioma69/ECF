@@ -2,6 +2,7 @@ body {
     min-height: 100vh;
     background-color: #f7e4c7;
     color: rgb(119, 76, 13);
+    font-family: 'Raleway', sans-serif;
 }
 
 .sizeMenu {
