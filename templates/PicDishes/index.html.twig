@@ -15,7 +15,7 @@
         <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" style="max-height: 500px; width: 50%; border: thick double rgb(119, 76, 13);" alt="{{ picdishe.title }}">
         <div class="card-img-overlay">
           {% if ( is_granted('ROLE_ADMIN') ) %}
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center mt-4">
             <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-danger btn-sm me-1"><i class="fas fa-trash"></i></a>
             <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
           </div>
