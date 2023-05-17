@@ -19,3 +19,19 @@ nav {
     background-color: #080706;
     color:#f7e4c7 ;
 }
+
+.card-title:hover {
+    display: block; /* Afficher le titre lors du survol */
+  }
+
+  .card-title {
+    display: none; /* Masquer le titre par défaut */
+  }
+
+
+
+
+
+
+
+
