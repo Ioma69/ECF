@@ -12,7 +12,7 @@
     {% for picdishe in picdishes %}
     <div class="carousel-item {% if loop.first %}active{% endif %}">
       <div class="text-white m-3 d-flex justify-content-center align-items-center">
-        <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" style="max-height: 600px; width: 50%; border: thick double rgb(119, 76, 13);" alt="{{ picdishe.title }}">
+        <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" style="height: 600px; width: 50%; border: thick double rgb(119, 76, 13);" alt="{{ picdishe.title }}">
         <div class="card-img-overlay">
           {% if ( is_granted('ROLE_ADMIN') ) %}
           <div class="d-flex justify-content-center mt-4">
@@ -27,11 +27,11 @@
     {% endfor %}
   </div>
   <a class="carousel-control-prev " href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="carousel-control-prev-icon black" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon black" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </a>
 </div>
@@ -72,7 +72,7 @@
     <div class="col-md-12 mt-5">
       <hr>
       <h2 class="text-center mt-5">À propos du restaurant</h2>
-      <div class="card shadow p-3 mt-5 bg-white rounded">
+      <div class="card cardColor shadow p-3 mt-5 rounded">
         <div class="row">
           <div class="col-lg-6">
             <div class="card-body">

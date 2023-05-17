@@ -1,8 +1,10 @@
 body {
     min-height: 100vh;
     background-color: #f7e4c7;
-    color: rgb(119, 76, 13);
+    color: #774c0d;
     font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .sizeMenu {
@@ -14,11 +16,6 @@ body {
 .police {
     font-size: 17px;
     
-}
-
-nav {
-    background-color: #080706;
-    color:#f7e4c7 ;
 }
 
 .card-title:hover {
@@ -35,8 +32,16 @@ nav {
     border: #f7e4c7 solid 1px;
 }
 
+.cardColor {
+    background-color: #f7e4c7;
+}
 
+.black {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  }
 
-
-
+.logo {
+    height: 100px;
+    width: 100px;
+}
 
