@@ -16,7 +16,7 @@
             <div class="col-md-4 d-flex flex-column">
                 <h3 class="mb-3 d-flex justify-content-center">Horaires</h3>
                 {% for schedule in schedules %}
-                <i class="far fa-2x fa-clock me-3 mb-3 d-flex justify-content-center" style="color: #cba880;"></i>
+                <i class="far fa-2x fa-clock me-1 mb-3 d-flex justify-content-center" style="color: #cba880;"></i>
                 <p class="mb-1 d-flex justify-content-center text-center police"> Mardi au Dimanche de {{ schedule.openingNoon|date('H:i') }} à {{ schedule.closingNoon|date('H:i') }} et de {{ schedule.openingEvening|date('H:i') }} à {{ schedule.closingEvening|date('H:i') }}</p>
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="d-flex justify-content-center">
