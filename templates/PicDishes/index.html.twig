@@ -7,12 +7,12 @@
 
 
 
-<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+ <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
   <div class="carousel-inner">
     {% for picdishe in picdishes %}
     <div class="carousel-item {% if loop.first %}active{% endif %}">
       <div class="text-white m-3 d-flex justify-content-center align-items-center">
-        <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" style="height: 600px; width: 50%; border: thick double rgb(119, 76, 13);" alt="{{ picdishe.title }}">
+        <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
         <div class="card-img-overlay">
           {% if ( is_granted('ROLE_ADMIN') ) %}
           <div class="d-flex justify-content-center mt-4">
