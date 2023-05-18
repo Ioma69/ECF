@@ -3,20 +3,20 @@
 {% block body %}
   <div class="container mt-3 mb-5">
     <div class="card vh-100 mt-5">
-      <div class="card-body mb-5">
-        <h2 class="text-center mt-3">Menu du Quai Antique</h2>
+      <div class="card-body custom-scrollbar shadow" style="overflow-y: auto;">
+        <h2 class="text-center mt-3 mb-5 text-decoration-underline">Menu du Quai Antique</h2>
         {% for menu in menus %}
           <div class="row mb-5">
             <div class="col-md-12">
-              <h5 class="card-title text-center">{{ menu.menuTitle }}</h5>
-			  <p class="card-text text-center">{{ menu.description }}</p>
-              <hr>
+              <h4 class="card-title text-center">{{ menu.menuTitle }}</h4>
+              <p class="card-text text-center">{{ menu.description }}</p>
+              <hr class="custom-hr">
               {% for dishe in menuDishes[menu.id] %}
-                <h4 class="card-title text-center">{{ dishe.title }}</h4>
+                <h5 class="card-title text-center">{{ dishe.title }}</h5>
               {% endfor %}
               <div class="d-flex justify-content-center">
-                <a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-danger btn-sm ms-1">Supprimer</a>
-                <a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-warning btn-sm ms-1">Modifier</a>
+                <a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-danger btn-sm ms-1"> <i class="fas fa-trash"></i>Supprimer</a>
+                <a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-warning btn-sm ms-1"> <i class="fas fa-edit"></i>Modifier</a>
               </div>
             </div>
           </div>
