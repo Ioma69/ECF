@@ -15,8 +15,8 @@
                 <h5 class="card-title text-center">{{ dishe.title }}</h5>
               {% endfor %}
               <div class="d-flex justify-content-center">
-                <a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-danger btn-sm ms-1"> <i class="fas fa-trash"></i>Supprimer</a>
-                <a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-warning btn-sm ms-1"> <i class="fas fa-edit"></i>Modifier</a>
+                <a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton"> <i class="fas fa-trash"></i>Supprimer</a>
+                <a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton"> <i class="fas fa-edit"></i>Modifier</a>
               </div>
             </div>
           </div>
