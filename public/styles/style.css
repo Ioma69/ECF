@@ -95,6 +95,10 @@ body {
     background-color: rgb(119, 76, 13)
 }
 
+  .nav-link:hover {
+    color: #774c0d;
+  }
+
 @media screen and (min-width: 320px) and (max-width : 750px) {
     .card-img-top {
       height: 250px;

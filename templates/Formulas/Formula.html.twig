@@ -13,7 +13,7 @@
               <p class="card-text text-center">{{ menu.price }} €</p>
               <hr class="custom-hr">
               {% for dishe in menuDishes[menu.id] %}
-                <h5 class="card-title text-center">{{ dishe.title }}</h5>
+                <h6 class="card-title text-center">{{ dishe.title }}</h6>
               {% endfor %}
                {% if ( is_granted('ROLE_ADMIN') ) %}
               <div class="d-flex justify-content-center">
