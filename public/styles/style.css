@@ -26,7 +26,27 @@ body {
     border: #f7e4c7 solid 1px;
 }
 
-.cardColor, .card-footer {
+.btnCustom {
+    background-color: #774c0d; 
+    color: white; 
+    font-weight: bold; 
+    text-decoration: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btnCustom2 {
+    background-color: #774c0d; 
+    color: white; 
+    font-weight: bold; 
+    text-decoration: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btnCustom:hover {
+    background-color: #212529; 
+}
+
+.cardColor, .card-footer, .customForm {
     background-color: #f7e4c7;
 }
 
@@ -60,6 +80,7 @@ body {
 .borderColor {
     background-color: rgb(119, 76, 13);
 }
+
 
 
 .custom-scrollbar::-webkit-scrollbar {

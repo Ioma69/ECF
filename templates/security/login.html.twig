@@ -4,7 +4,7 @@
 
 
 
-<div class="container mt-5 shadow p-5 bg-white">
+<div class="container mt-5 shadow p-5">
     <h1 class="text-center mb-5">Connectez-vous</h1>
     <form method="post" class="row g-3 justify-content-center">
         <div class="col-md-6">
@@ -15,7 +15,7 @@
             <label for="password" class="form-label">Mot de passe</label>
             <div class="input-group">
                 <input type="password" name="_password" id="user_password" class="form-control" required>
-                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                <button type="button" class="btn btnCustom" onclick="togglePassword()">
                     <i class="bi bi-eye" id="eye"></i>
                     <i class="bi bi-eye-slash d-none" id="eye-slash"></i>
                 </button>
@@ -23,8 +23,8 @@
         </div>
         <div class="col-md-12 text-center">
             <input type="hidden" name="_target_path" value="/">
-            <button type="submit" class="btn btn-success mt-3">Connexion</button>
-            <a href="/user/new/" class="btn btn-outline-secondary mt-3 ms-1">Vous n'avez pas de compte ? Inscrivez-vous</a>
+            <button type="submit" class="btn btnCustom mt-3">Connexion</button>
+            <a href="/user/new/" class="btn btnCustom mt-3 ms-1">Vous n'avez pas de compte ? Inscrivez-vous</a>
         </div>
     </form>
 </div>

@@ -60,10 +60,10 @@
 
 
 <div class="d-flex justify-content-center mt-5">
-  {% if app.user %}
-    <a href="{{ path('userReservation') }}" class="btn btn-secondary btn-lg active" role="button" style="background-color: rgb(119, 76, 13); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
+  {% if ( is_granted('ROLE_USER') ) %}
+    <a href="{{ path('userReservation') }}" class="btn btn-lg btnCustom2" role="button">Réserver une table</a>
   {% else %}
-    <a href="{{ path('addInfo') }}" class="btn btn-secondary btn-lg active" role="button" style="background-color: rgb(119, 76, 13); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">Réserver une table</a>
+    <a href="{{ path('addInfo') }}" class="btn btn-lg btnCustom2" role="button">Réserver une table</a>
   {% endif %}
 </div>
 
@@ -93,15 +93,15 @@
   </div>
 </section>
 
-<section class="testimonial-section mt-5 mb-5">
+<section class="mt-5 mb-5">
   <div class="container mt-3 mb-4">
     <h2 class="text-center mb-5 mt-5">Témoignages de nos clients</h2>
     <div class="row">
       <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <p class="testimonial-text text-center">Le meilleur restaurant de la ville ! Les plats sont délicieux et le service est absolument excellent.</p>
-            <div class="testimonial-rating d-flex justify-content-center">
+        <div>
+          <div>
+            <p class="text-center">Le meilleur restaurant de la ville ! Les plats sont délicieux et le service est absolument excellent.</p>
+            <div class="d-flex justify-content-center">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -109,18 +109,18 @@
               <i class="fa-solid fa-star"></i>
             </div>
           </div>
-          <div class="testimonial-author">
+          <div>
             <img src="{{ asset('pictures/profil2.png') }}" alt="Client 1" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
-            <h4 class="testimonial-author-name d-flex justify-content-center">Cecile Durand</h4>
-            <p class="testimonial-author-info d-flex justify-content-center">Client satisfait</p>
+            <h4 class="d-flex justify-content-center">Cecile Durand</h4>
+            <p class="d-flex justify-content-center">Client satisfait</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <p class="testimonial-text text-center">Une expérience culinaire incroyable ! Chaque plat était un véritable régal pour les papilles.</p>
-            <div class="testimonial-rating d-flex justify-content-center">
+        <div>
+          <div>
+            <p class="text-center">Une expérience culinaire incroyable ! Chaque plat était un véritable régal pour les papilles.</p>
+            <div class="d-flex justify-content-center">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -128,18 +128,18 @@
               <i class="fa-solid fa-star"></i>
             </div>
           </div>
-          <div class="testimonial-author">
+          <div>
             <img src="{{ asset('pictures/profil1.png') }}" alt="Client 2" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
-            <h4 class="testimonial-author-name d-flex justify-content-center">Estelle Dupond</h4>
-            <p class="testimonial-author-info d-flex justify-content-center">Client satisfait</p>
+            <h4 class="d-flex justify-content-center">Estelle Dupond</h4>
+            <p class="d-flex justify-content-center">Client satisfait</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <p class="testimonial-text text-center">Un restaurant avec une ambiance chaleureuse et des plats savoureux. Je le recommande vivement.</p>
-            <div class="testimonial-rating d-flex justify-content-center">
+        <div>
+          <div>
+            <p class="text-center">Un restaurant avec une ambiance chaleureuse et des plats savoureux. Je le recommande vivement.</p>
+            <div class="d-flex justify-content-center">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -147,10 +147,10 @@
               <i class="fa-solid fa-star"></i>
             </div>
           </div>
-          <div class="testimonial-author">
+          <div>
             <img src="{{ asset('pictures/profil3.png') }}" alt="Client 3" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
-            <h4 class="testimonial-author-name d-flex justify-content-center">Sarah Lapierre</h4>
-            <p class="testimonial-author-info d-flex justify-content-center">Client satisfait</p>
+            <h4 class="d-flex justify-content-center">Sarah Lapierre</h4>
+            <p class="d-flex justify-content-center">Client satisfait</p>
           </div>
         </div>
       </div>

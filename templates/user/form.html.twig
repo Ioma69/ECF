@@ -5,35 +5,35 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-5 p-5 bg-white shadow rounded">
+    <div class="container mt-5 p-5 shadow rounded">
         <h2 class="text-center mb-4">Créer un compte</h2>
-        {{ form_start(form, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
-            <div class="col-md-6">
-                <div class="mb-3">
+        {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+            <div class="col-md-12">
+                <div class="mb-3 form-group">
                     {{ form_label(form.firstname) }}
-                    {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.firstname, {'attr': {'class': 'form-control customForm'}}) }}
                     {{ form_errors(form.firstname) }}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     {{ form_label(form.name) }}
-                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control customForm'}}) }}
                     {{ form_errors(form.name) }}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     {{ form_label(form.phone) }}
-                    {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.phone, {'attr': {'class': 'form-control customForm'}}) }}
                     {{ form_errors(form.phone) }}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     {{ form_label(form.email) }}
-                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control customForm'}}) }}
                     {{ form_errors(form.email) }}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     {{ form_label(form.password) }}
                     <div class="input-group mb-3">
-                        {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
-                        <span role="button" class="input-group-text" onclick="togglePassword()">
+                        {{ form_widget(form.password, {'attr': {'class': 'form-control customForm'}}) }}
+                        <span role="button" class="input-group-text btnCustom" onclick="togglePassword()">
                             <i class="bi bi-eye" id="eye"></i>
                             <i class="bi bi-eye-slash d-none" id="eye-slash"></i>
                         </span>
@@ -43,8 +43,8 @@
                 <div class="mb-3">
                     {{ form_label(form.confirm) }}
                     <div class="input-group mb-3">
-                        {{ form_widget(form.confirm, {'attr': {'class': 'form-control'}}) }}
-                        <span role="button" class="input-group-text" onclick="togglePassword2()">
+                        {{ form_widget(form.confirm, {'attr': {'class': 'form-control customForm'}}) }}
+                        <span role="button" class="input-group-text btnCustom" onclick="togglePassword2()">
                             <i class="bi bi-eye" id="eye2"></i>
                             <i class="bi bi-eye-slash d-none" id="eye-slash2"></i>
                         </span>
@@ -54,8 +54,8 @@
             </div>
             <div class="col-12">
                 {{ form_rest(form) }}
-                <button class="btn btn-primary me-2" type="submit">Créer votre compte</button>
-                <a href="/login" class="btn btn-outline-primary">Se connecter</a>
+                <button class="btn btnCustom me-2" type="submit">Créer votre compte</button>
+                <a href="/login" class="btn btnCustom">Se connecter</a>
             </div>
         {{ form_end(form) }}
     </div>
