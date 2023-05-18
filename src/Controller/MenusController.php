@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
 use App\Entity\Dishes;
 use App\Entity\Menu;
 use App\Entity\Schedule;
-use App\Form\DishesType;
 use App\Form\MenuType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

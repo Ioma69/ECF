@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<div class="container mt-5 bg-white shadow p-5">
+<div class="container mt-5 shadow p-5">
     {% for message in app.flashes('error') %}
         <div class="alert alert-danger mt-3" role="alert">
             {{ message }}
@@ -13,29 +13,29 @@
         <div class="col-md-6">
             <div class="form-group">
                 {{ form_label(schedules.openingNoon, 'Ouverture (midi)', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(schedules.openingNoon, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(schedules.openingNoon, {'attr': {'class': 'form-control customForm'}}) }}
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 {{ form_label(schedules.closingNoon, 'Fermeture (midi)', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(schedules.closingNoon, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(schedules.closingNoon, {'attr': {'class': 'form-control customForm'}}) }}
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 {{ form_label(schedules.openingEvening, 'Ouverture (soir)', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(schedules.openingEvening, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(schedules.openingEvening, {'attr': {'class': 'form-control customForm'}}) }}
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 {{ form_label(schedules.closingEvening, 'Fermeture (soir)', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(schedules.closingEvening, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(schedules.closingEvening, {'attr': {'class': 'form-control customForm'}}) }}
             </div>
         </div>
         <div class="col-12">
-            <input type="submit" class="btn btn-primary" value="Publier l'horaire">
+            <input type="submit" class="btn btnCustom" value="Publier l'horaire">
         </div>
     {{ form_end(schedules) }}
 </div>

@@ -47,7 +47,10 @@ class DishesType extends AbstractType {
 
          ->add("price", MoneyType::class, 
          ["label" => "Prix",  
-         "required" => true,                                                                                                                                                                 
+         "required" => true,
+         'attr' => [
+            'class' => 'customForm',
+        ],                                                                                                                                                                 
     ]);
         
 }
