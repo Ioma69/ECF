@@ -26,7 +26,7 @@ body {
     border: #f7e4c7 solid 1px;
 }
 
-.cardColor {
+.cardColor, .card-footer {
     background-color: #f7e4c7;
 }
 
@@ -55,6 +55,10 @@ body {
 
 .card-title {
     font-weight: 400;
+}
+
+.borderColor {
+    background-color: rgb(119, 76, 13);
 }
 
 
