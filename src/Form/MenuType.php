@@ -29,12 +29,14 @@ class MenuType extends AbstractType {
         ])
 
         ->add('title', EntityType::class, [
-            'label' => 'Nom du plat',
+            'label' => 'Plats',
             'class' => Dishes::class,
-            'required' => true,
-            'mapped' => false
-            
+            'multiple' => true, // Permet de sélectionner plusieurs plats
+            'expanded' => true, // Affiche les plats sous forme de cases à cocher
+            'mapped' => false, //
         ])
+
+        
 
          ->add("description", TextareaType::class, 
          ["label" => "Description", 

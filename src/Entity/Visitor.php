@@ -27,7 +27,7 @@ class Visitor
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "visitor")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "visitor",cascade: ["remove"])]
 
     private $reservationVisitor;
 

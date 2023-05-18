@@ -22,10 +22,18 @@ class MenusController extends AbstractController
     {
         $repository = $doctrine->getRepository(Menu::class);         
         $menus = $repository->findAll(); 
+        $repository = $doctrine->getRepository(Dishes::class);         
+        $menuDishes = $repository->findAll(); 
         $repository = $doctrine->getRepository(Schedule::class);           
         $schedules = $repository->findAll(); 
+
+        $menuDishes = [];
+        foreach ($menus as $menu) {
+        $menuDishes[$menu->getId()] = $menu->getMeal();
+}
         return $this->render('Formulas/Formula.html.twig', [                 
             "menus" => $menus,
+            "menuDishes" => $menuDishes,
             $twig->addGlobal("schedules",$schedules),
         ]);
     }
@@ -34,34 +42,38 @@ class MenusController extends AbstractController
 
 
 
-#[Route('/menu/upload', name: 'addMenu')]
+    #[Route('/menu/upload', name: 'addMenu')]
     public function menu(Request $request, ManagerRegistry $doctrine): Response
     {
-        if ($this->isGranted('ROLE_ADMIN')){
-        $menus = new Menu();
-        $menuForm = $this->createForm(MenuType::class, $menus);
-        $menuForm->handleRequest($request);
-        if ($menuForm->isSubmitted() && $menuForm->isValid()) { 
-            $dishes = new Dishes();
-            $menuData = $menuForm->get('title')->getData();
-            $dishes->setTitle($menuData->getTitle());
-            $dishes->setDescription($menuData->getDescription());
-            $dishes->setPrice($menuData->getPrice());
-            $dishes->setCategory($menuData->getCategory());
-            $menus->setAdminMenu($this->getUser());
-            $menus->addMeal($dishes);
-            $em = $doctrine->getManager();
-            $em->persist($menus);
-            $em->persist($dishes);
-            $em->flush();
-            return $this->redirectToRoute("formula");
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $menus = new Menu();
+            $menuForm = $this->createForm(MenuType::class, $menus);
+            $menuForm->handleRequest($request);
+    
+            if ($menuForm->isSubmitted() && $menuForm->isValid()) { 
+                $selectedDishes = $menuForm->get('title')->getData(); // Récupérer les plats sélectionnés
+                
+                $menus->setAdminMenu($this->getUser());
+                
+                foreach ($selectedDishes as $selectedDish) {
+                    $menus->addMeal($selectedDish);
+                }
+                
+                $em = $doctrine->getManager();
+                $em->persist($menus);
+                $em->flush();
+                
+                return $this->redirectToRoute("formula");
+            }
+    
+            return $this->render('Formulas/FormFormula.html.twig', [
+                "menus" => $menuForm->createView()
+            ]);
         }
-        return $this->render('Formulas/FormFormula.html.twig', [
-            "menus" => $menuForm->createView()
-        ]);
-    }
+    
         return $this->redirectToRoute("formula");
     }
+    
 
 
     #[Route('/formula/delete/{id<\d+>}', name:"delete-formula")]

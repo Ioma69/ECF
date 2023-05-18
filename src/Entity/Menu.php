@@ -29,7 +29,7 @@ class Menu
 
 
 
-    #[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", mappedBy: "menu")]
+    #[ORM\ManyToMany(targetEntity: "App\Entity\Dishes", mappedBy: "menu", )]
     
     private Collection $meal;
    
@@ -53,14 +53,14 @@ class Menu
 
 
     public function addMeal(Dishes $dishes): self
-    {
-        if (!$this->meal->contains($dishes)) {
-            $this->meal[] = $dishes;
-            $dishes->addMenu($this);
-        }
-    
-        return $this;
+{
+    if (!$this->meal->contains($dishes)) {
+        $this->meal[] = $dishes;
+        $dishes->addMenu($this);
     }
+
+    return $this;
+}
     
     
     public function removeMeal(Dishes $meal): self

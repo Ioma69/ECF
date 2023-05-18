@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Entity\Dishes;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -23,9 +24,14 @@ class DishesType extends AbstractType {
     {
         $builder
 
-        ->add('categories', TextType::class, [
+        ->add('categories', ChoiceType::class, [
             'label' => 'Nom de la catégorie',
-            'mapped' => false
+            'mapped' => false,
+            'choices' => [
+                'Entrée' => 'entrée',
+                'Plat' => 'plat',
+                'Dessert' => 'dessert',
+            ],
         ])
 
         ->add("title", TextType::class, 
