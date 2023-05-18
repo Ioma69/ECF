@@ -15,10 +15,12 @@
               {% for dishe in menuDishes[menu.id] %}
                 <h5 class="card-title text-center">{{ dishe.title }}</h5>
               {% endfor %}
+               {% if ( is_granted('ROLE_ADMIN') ) %}
               <div class="d-flex justify-content-center">
                 <a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton"> <i class="fas fa-trash"></i>Supprimer</a>
                 <a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton"> <i class="fas fa-edit"></i>Modifier</a>
               </div>
+               {% endif %}
             </div>
           </div>
         {% endfor %}
