@@ -2,15 +2,15 @@
 
 {% block body %}
 
-<div class="container mt-5 bg-white shadow p-5">
+<div class="container mt-5 mb-5 shadow p-5">
 	<h1 class="text-center mb-5">Créer un nouveau menu</h1>
 	{{ form_start(menus, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
-		{{ form_row(menus.menuTitle, {'attr': {'class': 'form-control mb-2'}}) }}
-		{{ form_row(menus.title, {'attr': {'class': 'form-select mb-2'}}) }}
-		{{ form_row(menus.description, {'attr': {'class': 'form-control mb-2', 'rows': 5}}) }}
-		{{ form_row(menus.price, {'attr': {'class': 'form-control'}}) }}
+		{{ form_row(menus.menuTitle, {'attr': {'class': 'form-control mb-2 customForm'}}) }}
+		{{ form_row(menus.title, {'attr': {'class': 'form-select mb-2 customForm'}}) }}
+		{{ form_row(menus.description, {'attr': {'class': 'form-control mb-2 customForm', 'rows': 5}}) }}
+		{{ form_row(menus.price, {'attr': {'class': 'form-control customForm'}}) }}
 		<div class="col-12">
-			<input type="submit" class="btn btn-primary" value="Publier le menu">
+			<input type="submit" class="btn btnCustom" value="Publier le menu">
 		</div>
 	{{ form_end(menus) }}
 </div>

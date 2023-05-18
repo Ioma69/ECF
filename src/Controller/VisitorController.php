@@ -18,7 +18,7 @@ class VisitorController extends AbstractController
     #[Route('/visitor/info', name: 'addInfo')]
     public function addInfo(Request $request, ManagerRegistry $doctrine): Response
     {
-        
+        if (!$this->isGranted('ROLE_USER')) {
         $visitor = new Visitor();
         $visitorForm = $this->createForm(VisitorType::class, $visitor);
         $visitorForm->handleRequest($request);
@@ -41,11 +41,15 @@ class VisitorController extends AbstractController
             ]);
         }
         
+       
+
         return $this->render('visitor/visitor.html.twig', [
             "visitors" => $visitorForm->createView(),
             'isFormSubmitted' => $isFormSubmitted
            
         ]);
+    }
+        return $this->redirectToRoute('home');
     
 }
 

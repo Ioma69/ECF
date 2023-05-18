@@ -2,13 +2,13 @@
 
 {% block body %} 
 
-<div class="container mt-5 bg-white shadow p-5">
+<div class="container mt-5 shadow p-5">
     <h1 class="text-center mb-5">Poster une photo de recette</h1>
     {{ form_start(picdishes_form, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
-        {{ form_row(picdishes_form.image, {'attr': {'class': 'form-control mb-2'}}) }}
-        {{ form_row(picdishes_form.title, {'attr': {'class': 'form-control mb-2'}}) }}
+        {{ form_row(picdishes_form.image, {'attr': {'class': 'form-control mb-2 customForm'}}) }}
+        {{ form_row(picdishes_form.title, {'attr': {'class': 'form-control mb-2 customForm'}}) }}
         <div class="col-12">
-            <input class="btn btn-primary d-flex m-auto" type="submit" value="Poster une photo de recette">
+            <input class="btn btnCustom" type="submit" value="Poster une photo de recette">
         </div>
     {{ form_end(picdishes_form) }}
 </div>

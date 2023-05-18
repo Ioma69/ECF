@@ -76,6 +76,7 @@ class ReservationController extends AbstractController
 #[Route('/makeReservation', name: 'visitorReservation')]
 public function reservationVisitor(Request $request, ManagerRegistry $doctrine): Response
 {
+    if (!$this->isGranted('ROLE_USER')) {
     $reservations = new Reservation();
     $reservationsForm = $this->createForm(ReservationVisitorType::class, $reservations);
     $visitorId = $request->query->getInt('visitorId');
@@ -125,9 +126,10 @@ public function reservationVisitor(Request $request, ManagerRegistry $doctrine):
         'visitorId' => $visitorId,
         'isFormSubmitted' => $isFormSubmitted
     ]);
-
+} else {
+    return $this->redirectToRoute('home');
 
 }
-
+}
 
 }
