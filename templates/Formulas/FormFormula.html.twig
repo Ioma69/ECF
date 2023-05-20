@@ -5,10 +5,10 @@
 <div class="container mt-5 mb-5 shadow p-4 responsiveForm ">
 	<h1 class="text-center mb-5">Créer un nouveau menu</h1>
 	{{ form_start(menus, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
-		{{ form_row(menus.menuTitle, {'attr': {'class': 'form-control mb-2 customForm'}}) }}
-		{{ form_row(menus.title, {'attr': {'class': 'form-select mb-2 customForm'}}) }}
-		{{ form_row(menus.description, {'attr': {'class': 'form-control mb-2 customForm', 'rows': 5}}) }}
-		{{ form_row(menus.price, {'attr': {'class': 'form-control customForm'}}) }}
+		{{ form_row(menus.menuTitle, {'attr': {'class': 'form-control mb-2 customForm border border-light'}}) }}
+		{{ form_row(menus.title, {'attr': {'class': 'form-select mb-2 customForm border border-light'}}) }}
+		{{ form_row(menus.description, {'attr': {'class': 'form-control mb-2 customForm border border-light', 'rows': 5}}) }}
+		{{ form_row(menus.price, {'attr': {'class': 'form-control customForm border border-light'}}) }}
 		<div class="col-12">
 			<input type="submit" class="btn btnCustom" value="Publier le menu">
 		</div>

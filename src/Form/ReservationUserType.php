@@ -85,7 +85,7 @@ class ReservationUserType extends AbstractType {
             'expanded' => false,
             'multiple' => false,
             'choice_attr' => function($choice, $key, $value) {
-                return ['class' => 'btn btn-outline-primary'];
+                return ['class' => 'btn btn-outline-primary text-black'];
             },
         ])
 
