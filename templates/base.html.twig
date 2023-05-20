@@ -38,8 +38,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="/">Accueil</a>
+          <li class="nav-item customLink">
+            <a class="nav-link active text-white customLink" aria-current="page" href="/home">Accueil</a>
           </li>
           {% if ( app.user ) and ( is_granted('ROLE_ADMIN') ) %} 
             <!-- Vérifie que l'admin est bien connécté afin de procéder au CRUD -->
