@@ -25,7 +25,7 @@ body {
     border: #f7e4c7 solid 1px;
 }
 
-.btnCustom {
+.btnCustom,.btnCustom2,.btnCustom3 {
     background-color: #774c0d; 
     color: white; 
     font-weight: bold; 
@@ -33,12 +33,9 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btnCustom2 {
-    background-color: #774c0d; 
-    color: white; 
-    font-weight: bold; 
-    text-decoration: none; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.btnCustom3:hover{
+    color: #774c0d;
+    background-color: #774c0d;
 }
 
 .btnCustom:hover, .btnCustom2:hover  {

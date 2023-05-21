@@ -27,7 +27,7 @@
 								{{ schedule.closingEvening|date('H:i') }}</p>
 							{% if is_granted('ROLE_ADMIN') %}
 								<div class="d-flex justify-content-center">
-									<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning btn-sm mt-3">Modifier les horaires</a>
+									<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btnCustom3 text-white btn-sm mt-3">Modifier les horaires</a>
 								</div>
 							{% endif %}
 						{% endfor %}
