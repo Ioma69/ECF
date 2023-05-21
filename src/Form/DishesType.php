@@ -35,13 +35,23 @@ class DishesType extends AbstractType {
         ])
 
         ->add("title", TextType::class, 
-         ["label" => "Titre", 
+         ["label" => "Nom du plat", 
          "required" => true, 
+         'constraints' 
+         => [ New NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
+              New Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez Le nom du plat sans tirets ni caractères spéciaux"]),
+              new Length(["min" => 3, "max" => 80, "minMessage" => "Le nom du plat doit etre compris entre 3 et 80 caracteres", "maxMessage" => "Le nom du plat ne doit pas faire plus de 80 caractères"])
+         ]
          ])
 
          ->add("description", TextareaType::class, 
          ["label" => "Descrition", 
          "required" => true, 
+         'constraints' 
+         => [ New NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
+              New Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez la description sans tirets ni caractères spéciaux"]),
+              new Length(["min" => 3, "max" => 250, "minMessage" => "La description doit etre compris entre 3 et 250 caracteres", "maxMessage" => "La description ne doit pas faire plus de 250 caractères"])
+         ]
          ])
          
 
@@ -71,17 +81,3 @@ class DishesType extends AbstractType {
 
 
 
-/*'constraints' 
-         /*=> [ New NotBlank(['message' => "Veuillez renseigner votre nom"]),
-              New Regex(['pattern' => '/^[A-Z]{2,}/', 'message' => "Entrez votre nom en majuscule"]),
-              new Length(["min" => 3, "max" => 50, "minMessage" => "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
-         ]
-         
-         /*=> [New NotBlank(['message' => "Veuillez renseigner votre prénom"]),
-         New Regex(['pattern' => '/^[A-Z][a-z]{2,}/', 'message' => "Entrez votre prénom en commencant par une majuscule"]),
-         new Length(["min" => 3, "max" => 50, "minMessage" => "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
-         ]
-         
-          /*Ajout de contraites de validation grace au composant validator*/ 
-        /* => [new Length(["min" => 2, "max" => 80, "minMessage" => "Le nom d'utilisateur doit etre compris entre 2 et 80 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 80 caractères"]),
-            new NotBlank(['message' => "Le contenu ne doit pas etre vide et/ou doit contenir plus d'un caractere"])] */

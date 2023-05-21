@@ -12,7 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class MenuType extends AbstractType {
     
@@ -25,6 +27,11 @@ class MenuType extends AbstractType {
         ->add('menuTitle', TextType::class, [
             'label' => 'Nom du Menu',
             'required' => true,
+            'constraints' 
+         => [ New NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
+              New Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez Le nom du menu sans tirets ni caractères spéciaux"]),
+              new Length(["min" => 3, "max" => 80, "minMessage" => "La description doit etre compris entre 3 et 80 caracteres", "maxMessage" => "La description ne doit pas faire plus de 80 caractères"])
+         ]
 
         ])
 
@@ -40,7 +47,12 @@ class MenuType extends AbstractType {
 
          ->add("description", TextareaType::class, 
          ["label" => "Description", 
-         "required" => true, 
+         "required" => true,
+         'constraints' 
+         => [ New NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
+              New Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez la description sans tirets ni caractères spéciaux"]),
+              new Length(["min" => 3, "max" => 255, "minMessage" => "La description doit etre compris entre 3 et 255 caracteres", "maxMessage" => "La description ne doit pas faire plus de 255 caractères"])
+         ] 
          ])
          
         

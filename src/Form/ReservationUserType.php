@@ -28,7 +28,7 @@ class ReservationUserType extends AbstractType {
 
         ->add('flatware', ChoiceType::class, [
             'choices' => [
-                '1 couverts' => 1,
+                '1 couvert' => 1,
                 '2 couverts' => 2,
                 '3 couverts' => 3,
                 '4 couverts' => 4,

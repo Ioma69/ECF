@@ -49,7 +49,7 @@ class UserType extends AbstractType {
          "required" => true, 
          'constraints' 
          => [New NotBlank(['message' => "Veuillez renseigner votre prénom"]),
-         New Regex(['pattern' => '/^[A-Z][a-z]{2,}/', 'message' => "Entrez votre prénom en commencant par une majuscule"]),
+         New Regex(['pattern' => '/^[A-Z][a-z]{2,}/', 'message' => "Entrez votre prénom en commençant par une majuscule"]),
          new Length(["min" => 3, "max" => 50, "minMessage" => "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
          ]
          ])
