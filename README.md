@@ -1,4 +1,4 @@
-# ECF Quai Antique 2023 STUDI
+# ECF Quai Antique 2023 STUDI Sariel RAQUIN
 
 ## Lien vers le trello : [Trello](https://trello.com/b/pGkhreB8/ecf-quai-antique-sariel-raquin)
 
