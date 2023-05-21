@@ -20,7 +20,6 @@ body {
 }
 
 
-
 .btn {
     color: white;
     border: #f7e4c7 solid 1px;
@@ -42,8 +41,8 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btnCustom:hover {
-    background-color: #212529; 
+.btnCustom:hover, .btnCustom2:hover  {
+    color: #212529; 
 }
 
 .cardColor, .card-footer, .customForm {

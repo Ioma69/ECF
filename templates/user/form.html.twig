@@ -1,62 +1,61 @@
 {% extends "base.html.twig" %}
 
 
-
 {% block body %}
-    <div class="container mt-5 rounded">
-    <div class="card shadow p-3 mb-5 mt-3 customForm">
-        <h2 class="text-center mb-4 titleForm">Créer un compte</h2>
-        {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
-            <div class="col-md-12">
-                <div class="mb-3 form-group">
-                    {{ form_label(form.firstname) }}
-                    {{ form_widget(form.firstname, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-                    {{ form_errors(form.firstname) }}
-                </div>
-                <div class="mb-3 form-group">
-                    {{ form_label(form.name) }}
-                    {{ form_widget(form.name, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-                    {{ form_errors(form.name) }}
-                </div>
-                <div class="mb-3 form-group">
-                    {{ form_label(form.phone) }}
-                    {{ form_widget(form.phone, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-                    {{ form_errors(form.phone) }}
-                </div>
-                <div class="mb-3 form-group">
-                    {{ form_label(form.email) }}
-                    {{ form_widget(form.email, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-                    {{ form_errors(form.email) }}
-                </div>
-                <div class="mb-3 form-group">
-                    {{ form_label(form.password) }}
-                    <div class="input-group mb-3">
-                        {{ form_widget(form.password, {'attr': {'class': 'form-control customForm border border-light' }}) }}
-                        <span role="button" class="input-group-text btnCustom" onclick="togglePassword()">
-                            <i class="bi bi-eye" id="eye"></i>
-                            <i class="bi bi-eye-slash d-none" id="eye-slash"></i>
-                        </span>
-                    </div>
-                    {{ form_errors(form.password) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.confirm) }}
-                    <div class="input-group mb-3">
-                        {{ form_widget(form.confirm, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-                        <span role="button" class="input-group-text btnCustom" onclick="togglePassword2()">
-                            <i class="bi bi-eye" id="eye2"></i>
-                            <i class="bi bi-eye-slash d-none" id="eye-slash2"></i>
-                        </span>
-                    </div>
-                    {{ form_errors(form.confirm) }}
-                </div>
-            </div>
-            <div class="col-12">
-                {{ form_rest(form) }}
-                <button class="btn btnCustom me-2" type="submit">Créer votre compte</button>
-                <a href="/login" class="btn btnCustom">Se connecter</a>
-            </div>
-        {{ form_end(form) }}
-        </div>
-    </div>
+	<div class="container mt-5 rounded">
+		<div class="card shadow p-3 mb-5 mt-3 customForm">
+			<h2 class="text-center mb-4 titleForm">Créer un compte</h2>
+			{{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+			<div class="col-md-12">
+				<div class="mb-3 form-group">
+					{{ form_label(form.firstname) }}
+					{{ form_widget(form.firstname, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(form.firstname) }}
+				</div>
+				<div class="mb-3 form-group">
+					{{ form_label(form.name) }}
+					{{ form_widget(form.name, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(form.name) }}
+				</div>
+				<div class="mb-3 form-group">
+					{{ form_label(form.phone) }}
+					{{ form_widget(form.phone, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(form.phone) }}
+				</div>
+				<div class="mb-3 form-group">
+					{{ form_label(form.email) }}
+					{{ form_widget(form.email, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(form.email) }}
+				</div>
+				<div class="mb-3 form-group">
+					{{ form_label(form.password) }}
+					<div class="input-group mb-3">
+						{{ form_widget(form.password, {'attr': {'class': 'form-control customForm border border-light' }}) }}
+						<span role="button" class="input-group-text btnCustom" onclick="togglePassword()">
+							<i class="bi bi-eye" id="eye"></i>
+							<i class="bi bi-eye-slash d-none" id="eye-slash"></i>
+						</span>
+					</div>
+					{{ form_errors(form.password) }}
+				</div>
+				<div class="mb-3">
+					{{ form_label(form.confirm) }}
+					<div class="input-group mb-3">
+						{{ form_widget(form.confirm, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+						<span role="button" class="input-group-text btnCustom" onclick="togglePassword2()">
+							<i class="bi bi-eye" id="eye2"></i>
+							<i class="bi bi-eye-slash d-none" id="eye-slash2"></i>
+						</span>
+					</div>
+					{{ form_errors(form.confirm) }}
+				</div>
+			</div>
+			<div class="col-12">
+				{{ form_rest(form) }}
+				<button class="btn btnCustom me-2" type="submit">Créer votre compte</button>
+				<a href="/login" class="btn btnCustom">Se connecter</a>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
 {% endblock %}

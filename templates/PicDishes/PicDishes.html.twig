@@ -1,16 +1,16 @@
 {% extends "base.html.twig" %}
 
-{% block body %} 
+{% block body %}
 
-<div class="container mt-5 mb-5 shadow p-4 responsiveForm">
-    <h1 class="text-center mb-5">Poster une photo de recette</h1>
-    {{ form_start(picdishes_form, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
-        {{ form_row(picdishes_form.image, {'attr': {'class': 'form-control mb-2 customForm border border-light'}}) }}
-        {{ form_row(picdishes_form.title, {'attr': {'class': 'form-control mb-2 customForm border border-light'}}) }}
-        <div class="col-12">
-            <input class="btn btnCustom" type="submit" value="Poster une photo de recette">
-        </div>
-    {{ form_end(picdishes_form) }}
-</div>
+	<div class="container mt-5 mb-5 shadow p-4 responsiveForm">
+		<h1 class="text-center mb-5">Poster une photo de recette</h1>
+		{{ form_start(picdishes_form, {'attr': {'class': 'row g-3 justify-content-center'}}) }}
+		{{ form_row(picdishes_form.image, {'attr': {'class': 'form-control mb-2 customForm border border-light'}}) }}
+		{{ form_row(picdishes_form.title, {'attr': {'class': 'form-control mb-2 customForm border border-light'}}) }}
+		<div class="col-12">
+			<input class="btn btnCustom" type="submit" value="Poster une photo de recette">
+		</div>
+		{{ form_end(picdishes_form) }}
+	</div>
 
 {% endblock %}

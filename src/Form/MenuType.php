@@ -40,7 +40,7 @@ class MenuType extends AbstractType {
             'class' => Dishes::class,
             'multiple' => true, // Permet de sélectionner plusieurs plats
             'expanded' => true, // Affiche les plats sous forme de cases à cocher
-            'mapped' => false, //
+            'mapped' => false, 
         ])
 
         

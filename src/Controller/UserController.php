@@ -15,13 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     #[Route('/user/new', name: 'user_new')]
-    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine,\Twig\Environment $twig): Response
+    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine, \Twig\Environment $twig): Response
     {
-        if ($this->isGranted('ROLE_USER')){
+        if ($this->isGranted('ROLE_USER')) {
             return $this->redirectToRoute("home");
-        
-    }
-        
+
+        }
+
         $user = new User($userPasswordHasher);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);

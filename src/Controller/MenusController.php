@@ -15,24 +15,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class MenusController extends AbstractController
 {
 
-    #[Route('/formula', name:"formula")]
-    public function index3(ManagerRegistry $doctrine,\Twig\Environment $twig): Response 
+    #[Route('/formula', name: "formula")]
+    public function index3(ManagerRegistry $doctrine, \Twig\Environment $twig): Response
     {
-        $repository = $doctrine->getRepository(Menu::class);         
-        $menus = $repository->findAll(); 
-        $repository = $doctrine->getRepository(Dishes::class);         
-        $menuDishes = $repository->findAll(); 
-        $repository = $doctrine->getRepository(Schedule::class);           
-        $schedules = $repository->findAll(); 
+        $repository = $doctrine->getRepository(Menu::class);
+        $menus = $repository->findAll();
+        $repository = $doctrine->getRepository(Dishes::class);
+        $menuDishes = $repository->findAll();
+        $repository = $doctrine->getRepository(Schedule::class);
+        $schedules = $repository->findAll();
 
         $menuDishes = [];
         foreach ($menus as $menu) {
-        $menuDishes[$menu->getId()] = $menu->getMeal();
-}
-        return $this->render('Formulas/Formula.html.twig', [                 
+            $menuDishes[$menu->getId()] = $menu->getMeal();
+        }
+        return $this->render('Formulas/Formula.html.twig', [
             "menus" => $menus,
             "menuDishes" => $menuDishes,
-            $twig->addGlobal("schedules",$schedules),
+            $twig->addGlobal("schedules", $schedules),
         ]);
     }
 
@@ -47,62 +47,62 @@ class MenusController extends AbstractController
             $menus = new Menu();
             $menuForm = $this->createForm(MenuType::class, $menus);
             $menuForm->handleRequest($request);
-    
-            if ($menuForm->isSubmitted() && $menuForm->isValid()) { 
+
+            if ($menuForm->isSubmitted() && $menuForm->isValid()) {
                 $selectedDishes = $menuForm->get('title')->getData(); // Récupérer les plats sélectionnés
-                
+
                 $menus->setAdminMenu($this->getUser());
-                
+
                 foreach ($selectedDishes as $selectedDish) {
                     $menus->addMeal($selectedDish);
                 }
-                
+
                 $em = $doctrine->getManager();
                 $em->persist($menus);
                 $em->flush();
-                
+
                 return $this->redirectToRoute("formula");
             }
-    
+
             return $this->render('Formulas/FormFormula.html.twig', [
                 "menus" => $menuForm->createView()
             ]);
         }
-    
+
         return $this->redirectToRoute("formula");
     }
-    
 
 
-    #[Route('/formula/delete/{id<\d+>}', name:"delete-formula")]
-    public function deleteFormula(Menu $menus, ManagerRegistry $doctrine): Response    
+
+    #[Route('/formula/delete/{id<\d+>}', name: "delete-formula")]
+    public function deleteFormula(Menu $menus, ManagerRegistry $doctrine): Response
     {
-        if ($this->isGranted('ROLE_ADMIN')){
-        $em = $doctrine->getManager();
-        $em->remove($menus);
-        $em->flush(); 
-        return $this->redirectToRoute("formula");
-    }
-    return $this->redirectToRoute("home");
-}
-
-    #[Route('/formula/edit/{id<\d+>}', name:"edit-formula")]
-    public function updateFormula(Request $request, Menu $menus, ManagerRegistry $doctrine): Response    
-    {
-        if ($this->isGranted('ROLE_ADMIN')){
-        $menuForm = $this->createForm(MenuType::class, $menus);
-        $menuForm->handleRequest($request);
-        if ($menuForm->isSubmitted() && $menuForm->isValid() ) {
-            $em = $doctrine->getManager();                 
-            $em->persist($menus);       
-            $em->flush(); 
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $em = $doctrine->getManager();
+            $em->remove($menus);
+            $em->flush();
             return $this->redirectToRoute("formula");
         }
-
-        return $this->render('Formulas/FormFormula.html.twig', [
-            "menus" => $menuForm->createView()
-        ]);
+        return $this->redirectToRoute("home");
     }
+
+    #[Route('/formula/edit/{id<\d+>}', name: "edit-formula")]
+    public function updateFormula(Request $request, Menu $menus, ManagerRegistry $doctrine): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $menuForm = $this->createForm(MenuType::class, $menus);
+            $menuForm->handleRequest($request);
+            if ($menuForm->isSubmitted() && $menuForm->isValid()) {
+                $em = $doctrine->getManager();
+                $em->persist($menus);
+                $em->flush();
+                return $this->redirectToRoute("formula");
+            }
+
+            return $this->render('Formulas/FormFormula.html.twig', [
+                "menus" => $menuForm->createView()
+            ]);
+        }
         return $this->redirectToRoute("home");
     }
 

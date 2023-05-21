@@ -24,24 +24,29 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class VisitorType extends AbstractType {
-    
- 
+class VisitorType extends AbstractType
+{
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void                    /* Création d'un type de formulaire */                                                
+
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void /* Création d'un type de formulaire */
     {
         $builder
 
-        ->add("name", TextType::class, 
-        ["label" => "Nom", 
-        "required" => true, 
-        'constraints' 
-        => [ New NotBlank(['message' => "Veuillez renseigner votre nom"]),
-             New Regex(['pattern' => '/^[A-Z]{2,}/', 'message' => "Entrez votre nom en majuscule"]),
-             new Length(["min" => 3, "max" => 50, "minMessage" => "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
-        ]
-        ])
-        
+            ->add(
+                "name", TextType::class,
+                [
+                    "label" => "Nom",
+                    "required" => true,
+                    'constraints'
+                    => [
+                        new NotBlank(['message' => "Veuillez renseigner votre nom"]),
+                        new Regex(['pattern' => '/^[A-Z]{2,}/', 'message' => "Entrez votre nom en majuscule"]),
+                        new Length(["min" => 3, "max" => 50, "minMessage" => "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
+                    ]
+                ]
+            )
+
             ->add("email", TextType::class, [
                 "label" => "email",
                 "required" => true,
@@ -51,22 +56,26 @@ class VisitorType extends AbstractType {
                 ]
             ])
 
-            ->add("phone", TextType::class, 
-            ["label" => "Numéro de téléphone", 
-            "required" => true, 
-            'constraints' 
-            => [New NotBlank(['message' => "Veuillez renseigner votre numéro de téléphone"]),
-            new Length(["min" => 10, "max" => 10, "exactMessage" => "Le numéro de téléphone doit contenir 10 caractères '0XXXXXXXXX'"]),
-            New Regex(['pattern' => '/0[1-9]\d{8}/', 'message' => "Entrez un numéro de téléphone avec ce format '0XXXXXXXXX' sans tirets ni espaces"])
-             ]
-                ]);
-}
+            ->add(
+                "phone", TextType::class,
+                [
+                    "label" => "Numéro de téléphone",
+                    "required" => true,
+                    'constraints'
+                    => [
+                        new NotBlank(['message' => "Veuillez renseigner votre numéro de téléphone"]),
+                        new Length(["min" => 10, "max" => 10, "exactMessage" => "Le numéro de téléphone doit contenir 10 caractères '0XXXXXXXXX'"]),
+                        new Regex(['pattern' => '/0[1-9]\d{8}/', 'message' => "Entrez un numéro de téléphone avec ce format '0XXXXXXXXX' sans tirets ni espaces"])
+                    ]
+                ]
+            );
+    }
 
 
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        
+
         $resolver->setDefaults([
             'data_class' => Visitor::class,
             'csrf_protection' => true,

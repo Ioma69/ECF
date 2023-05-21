@@ -13,45 +13,46 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class ScheduleType extends AbstractType {
-    
- 
+class ScheduleType extends AbstractType
+{
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void                    /* Création d'un type de formulaire */                                                
+
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void /* Création d'un type de formulaire */
     {
         $builder
 
-        ->add('openingNoon', TimeType::class, [
-            'label' => "Horaire d'ouverture le midi",
-            'required' => true,
+            ->add('openingNoon', TimeType::class, [
+                'label' => "Horaire d'ouverture le midi",
+                'required' => true,
 
-        ])
+            ])
 
-        ->add('closingNoon', TimeType::class, [
-            'label' => "Horaire de fermeture le midi",
-            'required' => true,
+            ->add('closingNoon', TimeType::class, [
+                'label' => "Horaire de fermeture le midi",
+                'required' => true,
 
-        ])
+            ])
 
-        ->add('openingEvening', TimeType::class, [
-            'label' => "Horaire d'ouverture le soir",
-            'required' => true,
+            ->add('openingEvening', TimeType::class, [
+                'label' => "Horaire d'ouverture le soir",
+                'required' => true,
 
-        ])
+            ])
 
-        ->add('closingEvening', TimeType::class, [
-            'label' => "Horaire de fermeture le soir",
-            'required' => true,
+            ->add('closingEvening', TimeType::class, [
+                'label' => "Horaire de fermeture le soir",
+                'required' => true,
 
-        ]);
+            ]);
 
-}
+    }
 
 
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        
+
         $resolver->setDefaults([
             'data_class' => Schedule::class,
             'csrf_protection' => true,
@@ -60,11 +61,3 @@ class ScheduleType extends AbstractType {
         ]);
     }
 }
-
-
-
-
-
-
-
-    

@@ -2,48 +2,51 @@
 
 {% block body %}
 
-    <div class="container mt-5">
-    <div class="card shadow p-3 mb-5 mt-3 rounded customForm">
-      <div class="card-header">
-        <h1 class="text-center mb-5 titleForm">Réserver une table</h1>
-      </div>
-      <div class="card-body">
-        {{ form_start(reservationsVisitor, {'attr': {'class': 'form customForm'}}) }}
-        <div class="form-group mt-3">
-          {{ form_label(reservationsVisitor.flatware, 'Nombre de couverts', {'label_attr': {'class': 'form-label'}}) }}
-          {{ form_widget(reservationsVisitor.flatware, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-        </div>
-        <div class="form-group mt-3">
-          {{ form_label(reservationsVisitor.reservationDate, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
-             {{ form_widget(reservationsVisitor.reservationDate, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-		  {{ form_errors(reservationsVisitor.reservationDate) }}
-        </div>
-        <div class="form-group mt-3">
-		  {{ form_label(reservationsVisitor.reservationHour, 'Heure de réservation', {'label_attr': {'class': 'form-label me-3'}}) }}
-		  {{ form_widget(reservationsVisitor.reservationHour, {'attr': {'class': 'form-control customForm d-flex flex-wrap justify-content-around border border-light'}}) }}
-		</div>
-        <div class="form-group mt-3">
-          {{ form_label(reservationsVisitor.allergy, 'Allergies éventuelles', {'label_attr': {'class': 'form-label'}}) }}
-          {{ form_widget(reservationsVisitor.allergy, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-        </div>
-        <input type="hidden" name="visitor_id" value="{{ app.request.get('visitor_id') }}">      {#  récupérer la valeur de visitorId depuis l'URL de la requête et la passer en tant que valeur du champ caché visitor_id.  #}
-        <button type="submit" class="btn btnCustom mt-4" id="submitReservation" {% if isFormSubmitted %}style="display: none;"{% endif %}>
-        Réserver
-      </button>
-        {{ form_end(reservationsVisitor) }}
+	<div class="container mt-5">
+		<div class="card shadow p-3 mb-5 mt-3 rounded customForm">
+			<div class="card-header">
+				<h1 class="text-center mb-5 titleForm">Réserver une table</h1>
+			</div>
+			<div class="card-body">
+				{{ form_start(reservationsVisitor, {'attr': {'class': 'form customForm'}}) }}
+				<div class="form-group mt-3">
+					{{ form_label(reservationsVisitor.flatware, 'Nombre de couverts', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(reservationsVisitor.flatware, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+				</div>
+				<div class="form-group mt-3">
+					{{ form_label(reservationsVisitor.reservationDate, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(reservationsVisitor.reservationDate, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(reservationsVisitor.reservationDate) }}
+				</div>
+				<div class="form-group mt-3">
+					{{ form_label(reservationsVisitor.reservationHour, 'Heure de réservation', {'label_attr': {'class': 'form-label me-3'}}) }}
+					{{ form_widget(reservationsVisitor.reservationHour, {'attr': {'class': 'form-control customForm d-flex flex-wrap justify-content-around border border-light'}}) }}
+				</div>
+				<div class="form-group mt-3">
+					{{ form_label(reservationsVisitor.allergy, 'Allergies éventuelles', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(reservationsVisitor.allergy, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+				</div>
+				<input
+				type="hidden" name="visitor_id" value="{{ app.request.get('visitor_id') }}">
+				{#  récupérer la valeur de visitorId depuis l'URL de la requête et la passer en tant que valeur du champ caché visitor_id.  #}
+				<button type="submit" class="btn btnCustom mt-4" id="submitReservation" {% if isFormSubmitted %} style="display: none;" {% endif %}>
+					Réserver
+				</button>
+				{{ form_end(reservationsVisitor) }}
 
-        {% for message in app.flashes('valid2') %}
-          <div class="alert alert-success mt-3" role="alert">
-            {{ message }}
-          </div>
-        {% endfor %}
-        {% for message in app.flashes('error') %}
-          <div class="alert alert-danger mt-3" role="alert">
-            {{ message }}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+				{% for message in app.flashes('valid2') %}
+					<div class="alert alert-success mt-3" role="alert">
+						{{ message }}
+					</div>
+				{% endfor %}
+				{% for message in app.flashes('error') %}
+					<div class="alert alert-danger mt-3" role="alert">
+						{{ message }}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
+

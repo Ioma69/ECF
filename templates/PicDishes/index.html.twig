@@ -1,167 +1,160 @@
 {% extends 'base.html.twig' %}
 
 
-
-
 {% block body %}
 
 
-
- <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    {% for picdishe in picdishes %}
-    <div class="carousel-item {% if loop.first %}active{% endif %}">
-      <div class="text-white m-3 d-flex justify-content-center align-items-center">
-        <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
-        <div class="card-img-overlay">
-          {% if ( is_granted('ROLE_ADMIN') ) %}
-          <div class="d-flex justify-content-center mt-4">
-            <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm me-1 adminButton"><i class="fas fa-trash"></i>Supprimer</a>
-            <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm adminButton"><i class="fas fa-edit"></i>Modifier</a>
-          </div>
-          {% endif %}
-          <h5 class="card-title card-js mt-4 text-center">{{ picdishe.title }}</h5>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  <a class="carousel-control-prev " href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon black" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-    <span class="carousel-control-next-icon black" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </a>
-</div>
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const carouselItems = document.querySelectorAll('.carousel-item');
-    const cardTitles = document.querySelectorAll('.card-title');
-
-    carouselItems.forEach(function (item) {
-      item.addEventListener('mouseenter', function () {
-        const title = item.querySelector('.card-title');
-        title.style.display = 'block';
-      });
-
-      item.addEventListener('mouseleave', function () {
-        const title = item.querySelector('.card-title');
-        title.style.display = 'none';
-      });
-    });
-  });
-</script>
+	<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			{% for picdishe in picdishes %}
+				<div class="carousel-item {% if loop.first %}active{% endif %}">
+					<div class="text-white m-3 d-flex justify-content-center align-items-center">
+						<img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
+						<div class="card-img-overlay">
+							{% if ( is_granted('ROLE_ADMIN') ) %}
+								<div class="d-flex justify-content-center mt-4">
+									<a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm me-1 adminButton">
+										<i class="fas fa-trash"></i>Supprimer</a>
+									<a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm adminButton">
+										<i class="fas fa-edit"></i>Modifier</a>
+								</div>
+							{% endif %}
+							<h5 class="card-title card-js mt-4 text-center">{{ picdishe.title }}</h5>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<a class="carousel-control-prev " href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon black" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+			<span class="carousel-control-next-icon black" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</a>
+	</div>
 
 
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const carouselItems = document.querySelectorAll('.carousel-item');
+const cardTitles = document.querySelectorAll('.card-title');
+
+carouselItems.forEach(function (item) {
+item.addEventListener('mouseenter', function () {
+const title = item.querySelector('.card-title');
+title.style.display = 'block';
+});
+
+item.addEventListener('mouseleave', function () {
+const title = item.querySelector('.card-title');
+title.style.display = 'none';
+});
+});
+});
+	</script>
 
 
-<div class="d-flex justify-content-center mt-5">
-  {% if ( is_granted('ROLE_USER') ) %}
-    <a href="{{ path('userReservation') }}" class="btn btn-lg btnCustom2" role="button">Réserver une table</a>
-  {% else %}
-    <a href="{{ path('addInfo') }}" class="btn btn-lg btnCustom2" role="button">Réserver une table</a>
-  {% endif %}
-</div>
+	<div class="d-flex justify-content-center mt-5">
+		{% if ( is_granted('ROLE_USER') ) %}
+			<a href="{{ path('userReservation') }}" class="btn btn-lg btnCustom2" role="button">Réserver une table</a>
+		{% else %}
+			<a href="{{ path('addInfo') }}" class="btn btn-lg btnCustom2" role="button">Réserver une table</a>
+		{% endif %}
+	</div>
 
-<section class="container mt-5">
-  <div class="row">
-    <div class="col-md-12 mt-5">
-      <hr>
-      <h2 class="text-center mt-5">À propos du restaurant</h2>
-      <div class="card cardColor shadow p-3 mt-5 rounded">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card-body">
-              <p class="text-justify">
-                Le restaurant Quai Antique a été créé il y a plusieurs années dans le but de proposer une expérience culinaire unique et authentique. Notre chef renommé, Thierry Michant, met tout son talent et sa passion dans chaque plat pour offrir à nos clients des saveurs exceptionnelles.<br><br>
-                Venez découvrir notre menu varié composé de plats délicieux préparés avec des ingrédients frais et de qualité. Nous sommes fiers de vous offrir un service attentionné dans un cadre chaleureux et convivial.<br><br>
-                Que vous veniez en famille, entre amis ou pour un repas d'affaires, notre équipe se fera un plaisir de vous accueillir et de vous faire passer un moment inoubliable.<br><br>
-                Réservez dès maintenant et venez vivre une expérience gastronomique hors du commun au restaurant Quai Antique !
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <img src="{{ asset('pictures/restaurant.jpg') }}" class="mx-auto d-block shadow-lg rounded" style="height: 450px; width: 100%;" alt="Description de l'image">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+	<section class="container mt-5">
+		<div class="row">
+			<div class="col-md-12 mt-5">
+				<hr>
+				<h2 class="text-center mt-5">À propos du restaurant</h2>
+				<div class="card cardColor shadow p-3 mt-5 rounded">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card-body">
+								<p class="text-justify">
+									Le restaurant Quai Antique a été créé il y a plusieurs années dans le but de proposer une expérience culinaire unique et authentique. Notre chef renommé, Thierry Michant, met tout son talent et sa passion dans chaque plat pour offrir à nos clients des saveurs exceptionnelles.<br><br>
+									Venez découvrir notre menu varié composé de plats délicieux préparés avec des ingrédients frais et de qualité. Nous sommes fiers de vous offrir un service attentionné dans un cadre chaleureux et convivial.<br><br>
+									Que vous veniez en famille, entre amis ou pour un repas d'affaires, notre équipe se fera un plaisir de vous accueillir et de vous faire passer un moment inoubliable.<br><br>
+									Réservez dès maintenant et venez vivre une expérience gastronomique hors du commun au restaurant Quai Antique !
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<img src="{{ asset('pictures/restaurant.jpg') }}" class="mx-auto d-block shadow-lg rounded" style="height: 450px; width: 100%;" alt="Description de l'image">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="mt-5 mb-5">
-  <div class="container mt-3 mb-4">
-    <h2 class="text-center mb-5 mt-5">Témoignages de nos clients</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div>
-          <div>
-            <p class="text-center">Le meilleur restaurant de la ville ! Les plats sont délicieux et le service est absolument excellent.</p>
-            <div class="d-flex justify-content-center">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-          <div>
-            <img src="{{ asset('pictures/profil2.png') }}" alt="Client 1" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
-            <h4 class="d-flex justify-content-center">Cecile Durand</h4>
-            <p class="d-flex justify-content-center">Client satisfait</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div>
-          <div>
-            <p class="text-center">Une expérience culinaire incroyable ! Chaque plat était un véritable régal pour les papilles.</p>
-            <div class="d-flex justify-content-center">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-          <div>
-            <img src="{{ asset('pictures/profil1.png') }}" alt="Client 2" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
-            <h4 class="d-flex justify-content-center">Estelle Dupond</h4>
-            <p class="d-flex justify-content-center">Client satisfait</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div>
-          <div>
-            <p class="text-center">Un restaurant avec une ambiance chaleureuse et des plats savoureux. Je le recommande vivement.</p>
-            <div class="d-flex justify-content-center">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-          <div>
-            <img src="{{ asset('pictures/profil3.png') }}" alt="Client 3" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
-            <h4 class="d-flex justify-content-center">Sarah Lapierre</h4>
-            <p class="d-flex justify-content-center">Client satisfait</p>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
+	<section class="mt-5 mb-5">
+		<div class="container mt-3 mb-4">
+			<h2 class="text-center mb-5 mt-5">Témoignages de nos clients</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<div>
+						<div>
+							<p class="text-center">Le meilleur restaurant de la ville ! Les plats sont délicieux et le service est absolument excellent.</p>
+							<div class="d-flex justify-content-center">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+							</div>
+						</div>
+						<div>
+							<img src="{{ asset('pictures/profil2.png') }}" alt="Client 1" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
+							<h4 class="d-flex justify-content-center">Cecile Durand</h4>
+							<p class="d-flex justify-content-center">Client satisfait</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div>
+						<div>
+							<p class="text-center">Une expérience culinaire incroyable ! Chaque plat était un véritable régal pour les papilles.</p>
+							<div class="d-flex justify-content-center">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+							</div>
+						</div>
+						<div>
+							<img src="{{ asset('pictures/profil1.png') }}" alt="Client 2" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
+							<h4 class="d-flex justify-content-center">Estelle Dupond</h4>
+							<p class="d-flex justify-content-center">Client satisfait</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div>
+						<div>
+							<p class="text-center">Un restaurant avec une ambiance chaleureuse et des plats savoureux. Je le recommande vivement.</p>
+							<div class="d-flex justify-content-center">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+							</div>
+						</div>
+						<div>
+							<img src="{{ asset('pictures/profil3.png') }}" alt="Client 3" class="h-25 w-25 mx-auto d-block mt-3 mb-2">
+							<h4 class="d-flex justify-content-center">Sarah Lapierre</h4>
+							<p class="d-flex justify-content-center">Client satisfait</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-{{ include('footer.html.twig') }}
+		{{ include('footer.html.twig') }}
 
-{% endblock %}
-
-
-
-
+	{% endblock %}
 

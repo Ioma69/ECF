@@ -1,32 +1,36 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-  <div class="container mt-3 mb-5">
-    <div class="card vh-100 mt-5 mb-4 borderColor">
-      <div class="card-body custom-scrollbar shadow" style="overflow-y: auto;">
-        <h2 class="text-center mt-3 mb-5 text-decoration-underline">Menu du Quai Antique</h2>
-        {% for menu in menus %}
-          <div class="row mb-5">
-            <div class="col-md-12">
-              <h4 class="card-title text-center">{{ menu.menuTitle }}</h4>
-              <p class="card-text text-center">{{ menu.description }}</p>
-              <p class="card-text text-center">{{ menu.price }} €</p>
-              <hr class="custom-hr">
-              {% for dishe in menuDishes[menu.id] %}
-                <h6 class="card-title text-center">{{ dishe.title }}</h6>
-              {% endfor %}
-               {% if ( is_granted('ROLE_ADMIN') ) %}
-              <div class="d-flex justify-content-center">
-                <a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton"> <i class="fas fa-trash"></i>Supprimer</a>
-                <a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton"> <i class="fas fa-edit"></i>Modifier</a>
-              </div>
-               {% endif %}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+	<div class="container mt-3 mb-5">
+		<div class="card vh-100 mt-5 mb-4 borderColor">
+			<div class="card-body custom-scrollbar shadow" style="overflow-y: auto;">
+				<h2 class="text-center mt-3 mb-5 text-decoration-underline">Menu du Quai Antique</h2>
+				{% for menu in menus %}
+					<div class="row mb-5">
+						<div class="col-md-12">
+							<h4 class="card-title text-center">{{ menu.menuTitle }}</h4>
+							<p class="card-text text-center">{{ menu.description }}</p>
+							<p class="card-text text-center">{{ menu.price }}
+								€</p>
+							<hr class="custom-hr">
+							{% for dishe in menuDishes[menu.id] %}
+								<h6 class="card-title text-center">{{ dishe.title }}</h6>
+							{% endfor %}
+							{% if ( is_granted('ROLE_ADMIN') ) %}
+								<div class="d-flex justify-content-center">
+									<a href="{{ path('delete-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton">
+										<i class="fas fa-trash"></i>Supprimer</a>
+									<a href="{{ path('edit-formula', {'id': menu.id}) }}" class="btn btn-sm ms-1 adminButton">
+										<i class="fas fa-edit"></i>Modifier</a>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 
-  {{ include('footer.html.twig') }}
+	{{ include('footer.html.twig') }}
 {% endblock %}
+

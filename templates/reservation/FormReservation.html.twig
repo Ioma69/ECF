@@ -2,34 +2,35 @@
 
 {% block body %}
 
-  <div class="container mt-5">
-    <div class="card shadow p-3 mb-5 mt-3 rounded customForm">
-      <div>
-        <h2 class="text-center mb-5 titleForm">Réserver une table</h2>
-      </div>
-      <div class="card-body">
-        {{ form_start(reservations, {'attr': {'class': 'form customForm', 'id': 'formReservation'}}) }}
-        <div class="form-group">
-          {{ form_label(reservations.flatware, 'Nombre de couverts', {'label_attr': {'class': 'form-label'}}) }}
-          {{ form_widget(reservations.flatware, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-        </div>
-        <div class="form-group">
-          {{ form_label(reservations.reservationDate, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
-          {{ form_widget(reservations.reservationDate, {'attr': {'class': 'form-control customForm border border-light', 'id': 'reservation_user_reservationDate'}}) }}
-          {{ form_errors(reservations.reservationDate) }}
-        </div>
-        <div class="form-group">
-          {{ form_label(reservations.reservationHour, 'Heure de réservation', {'label_attr': {'class': 'form-label me-3'}}) }}
-          {{ form_widget(reservations.reservationHour, {'attr': {'class': 'form-control customForm d-flex flex-wrap justify-content-around border border-light', 'id': 'reservationHour'}}) }}
-        </div>
-        <div class="form-group">
-          {{ form_label(reservations.allergy, 'Allergies éventuelles', {'label_attr': {'class': 'form-label'}}) }}
-          {{ form_widget(reservations.allergy, {'attr': {'class': 'form-control customForm border border-light'}}) }}
-        </div>
-        <button type="submit" class="btn btn btnCustom mt-2" id="submitReservation">Réserver</button>
-        {{ form_end(reservations) }}
-      </div>
-    </div>
-  </div>
+	<div class="container mt-5">
+		<div class="card shadow p-3 mb-5 mt-3 rounded customForm">
+			<div>
+				<h2 class="text-center mb-5 titleForm">Réserver une table</h2>
+			</div>
+			<div class="card-body">
+				{{ form_start(reservations, {'attr': {'class': 'form customForm', 'id': 'formReservation'}}) }}
+				<div class="form-group">
+					{{ form_label(reservations.flatware, 'Nombre de couverts', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(reservations.flatware, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(reservations.reservationDate, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(reservations.reservationDate, {'attr': {'class': 'form-control customForm border border-light', 'id': 'reservation_user_reservationDate'}}) }}
+					{{ form_errors(reservations.reservationDate) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(reservations.reservationHour, 'Heure de réservation', {'label_attr': {'class': 'form-label me-3'}}) }}
+					{{ form_widget(reservations.reservationHour, {'attr': {'class': 'form-control customForm d-flex flex-wrap justify-content-around border border-light', 'id': 'reservationHour'}}) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(reservations.allergy, 'Allergies éventuelles', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(reservations.allergy, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+				</div>
+				<button type="submit" class="btn btn btnCustom mt-2" id="submitReservation">Réserver</button>
+				{{ form_end(reservations) }}
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
+

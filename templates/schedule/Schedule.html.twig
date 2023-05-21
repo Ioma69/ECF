@@ -1,10 +1,17 @@
 {% for schedule in schedules %}
 
 
-   <div class="bloc footer-schedule">
-          <h3 class="mt-5 mb-5 d-flex justify-content-center">Horaires</h3>
-          <ul class="nav justify-content-center pb-3 mb-3">
-            <li>✔️ Ouvert du Mardi au Dimanche de {{ schedule.openingNoon|date('H:i') }} à {{ schedule.closingNoon|date('H:i') }} puis de {{ schedule.openingEvening|date('H:i') }} à {{ schedule.closingEvening|date('H:i') }}</li>
-          </ul>
-        </div>
-        {% endfor %}
+	<div class="bloc footer-schedule">
+		<h3 class="mt-5 mb-5 d-flex justify-content-center">Horaires</h3>
+		<ul class="nav justify-content-center pb-3 mb-3">
+			<li>✔️ Ouvert du Mardi au Dimanche de
+				{{ schedule.openingNoon|date('H:i') }}
+				à
+				{{ schedule.closingNoon|date('H:i') }}
+				puis de
+				{{ schedule.openingEvening|date('H:i') }}
+				à
+				{{ schedule.closingEvening|date('H:i') }}</li>
+		</ul>
+	</div>
+{% endfor %}

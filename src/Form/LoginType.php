@@ -31,7 +31,7 @@ class LoginType extends AbstractType
                 "constraints" => [
                     new NotBlank(["message" => "Le mot de passe ne peut pas être vide !"])
                 ]
-                ]);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -40,7 +40,7 @@ class LoginType extends AbstractType
             "data_class" => Admin::class,
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'admin_item',
+            'csrf_token_id' => 'admin_item',
         ]);
     }
 }
