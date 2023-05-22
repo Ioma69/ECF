@@ -4,24 +4,31 @@
 {% block body %}
 
 
-	<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
-		<div class="carousel-inner">
-			{% for picdishe in picdishes %}
-				<div class="carousel-item {% if loop.first %}active{% endif %}">
-					<div class="text-white m-3 d-flex justify-content-center align-items-center">
+<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+	<div class="carousel-inner">
+		{% for picdishe in picdishes %}
+			<div class="carousel-item {% if loop.first %}active{% endif %}">
+				<div class="text-white m-3 d-flex justify-content-center align-items-center">
+					{% if picdishe.image %}
 						<img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
-						<div class="card-img-overlay">
-							{% if ( is_granted('ROLE_ADMIN') ) %}
-								<div class="d-flex justify-content-center mt-4">
-									<a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm me-1 adminButton">
-										<i class="fas fa-trash"></i>Supprimer</a>
-									<a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm adminButton">
-										<i class="fas fa-edit"></i>Modifier</a>
-								</div>
-							{% endif %}
-							<h5 class="card-title card-js mt-4 text-center">{{ picdishe.title }}</h5>
-						</div>
+					{% else %}
+						<img src="{{ asset('pictures/magretdecanard.jpg') }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
+					{% endif %}
+					<div class="card-img-overlay">
+						{% if ( is_granted('ROLE_ADMIN') ) %}
+							<div class="d-flex justify-content-center mt-4">
+								<a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm me-1 adminButton">
+									<i class="fas fa-trash"></i>
+									Supprimer</a>
+								<a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm adminButton">
+									<i class="fas fa-edit"></i>
+									Modifier</a>
+							</div>
+						{% endif %}
+						<h5 class="card-title card-js mt-4 text-center">{{ picdishe.title }}</h5>
 					</div>
+				</div>
+
 				</div>
 			{% endfor %}
 		</div>
@@ -38,21 +45,21 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-const carouselItems = document.querySelectorAll('.carousel-item');
-const cardTitles = document.querySelectorAll('.card-title');
+		const carouselItems = document.querySelectorAll('.carousel-item');
+		const cardTitles = document.querySelectorAll('.card-title');
 
-carouselItems.forEach(function (item) {
-item.addEventListener('mouseenter', function () {
-const title = item.querySelector('.card-title');
-title.style.display = 'block';
-});
+		carouselItems.forEach(function (item) {
+		item.addEventListener('mouseenter', function () {
+		const title = item.querySelector('.card-title');
+		title.style.display = 'block';
+		});
 
-item.addEventListener('mouseleave', function () {
-const title = item.querySelector('.card-title');
-title.style.display = 'none';
-});
-});
-});
+		item.addEventListener('mouseleave', function () {
+		const title = item.querySelector('.card-title');
+		title.style.display = 'none';
+		});
+		});
+		});
 	</script>
 
 
