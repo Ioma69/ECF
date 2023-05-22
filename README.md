@@ -2,6 +2,8 @@
 
 ## Lien vers le trello : [Trello](https://trello.com/b/pGkhreB8/ecf-quai-antique-sariel-raquin)
 
+## Lien vers le site internet en ligne https://calm-meadow-99927.herokuapp.com/
+### Pour info : Le carrousel à l’accueil ne comporte pas d’image car Heroku les efface en très peu de temps quand je les charge via le panneau d’administration, mais vous pouvez tester la fonctionnalité ( en étant préalablement connecté en tant qu'admin ) en allant dans Admin -> Gérer la galerie photo.
 
 1. Clôner le dépôt : git clone <URL_DU_DÉPÔT>
 2. Dans le répertoire, tapez **composer install**, pour installer les dépendances nécessaires au projet.
