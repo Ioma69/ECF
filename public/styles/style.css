@@ -1,3 +1,4 @@
+
 body {
     min-height: 100vh;
     background-color: #f7e4c7;
@@ -113,16 +114,6 @@ body {
 }
 
 
-  .titleForm {
-    color: #774c0d;
-  }
-
-  .customLink:hover,
-  .customLink:focus,
-  .customLink:active {
-  
- color: aqua;
-}
 
 
 @media screen and (min-width: 320px) and (max-width : 750px) {

@@ -50,8 +50,7 @@ class DishesController extends AbstractController
                 $em->persist($categories);
                 $em->flush();
                 return $this->redirectToRoute("menu");
-            }
-            ;
+            };
 
             return $this->render('dishes/FormMenu.html.twig', [
                 "dishes" => $dishesForm->createView()
