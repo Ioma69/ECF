@@ -2,36 +2,37 @@
 
 {% block body %}
 
-
-	<div class="container mt-5">
-		<div class="card shadow p-3 mb-5 mt-3 customForm">
-			<h2 class="text-center mb-5 titleForm">Connectez-vous</h2>
-			<form method="post" class="row g-3 justify-content-center">
-				<div class="col-md-6">
-					<label for="email" class="form-label">Email</label>
-					<input type="email" name="_username" id="email" value="{{ last_username }}" class="form-control border border-light" required>
-				</div>
-				<div class="col-md-6">
-					<label for="password" class="form-label">Mot de passe</label>
-					<div class="input-group">
-						<input type="password" name="_password" id="user_password" class="form-control border border-light" required>
-						<button type="button" class="btn btnCustom" onclick="togglePassword()">
-							<i class="bi bi-eye" id="eye"></i>
-							<i class="bi bi-eye-slash d-none" id="eye-slash"></i>
-						</button>
+	<section>
+		<div class="container mt-5">
+			<div class="card shadow p-3 mb-5 mt-3 customForm">
+				<h2 class="text-center mb-5 titleForm">Connectez-vous</h2>
+				<form method="post" class="row g-3 justify-content-center">
+					<div class="col-md-6">
+						<label for="email" class="form-label">Email</label>
+						<input type="email" name="_username" id="email" value="{{ last_username }}" class="form-control border border-light" required>
 					</div>
-				</div>
-				<div class="col-md-12">
-					<input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
-					<button type="submit" class="btn btnCustom mt-3">Connexion</button>
-					<a href="/user/new/" class="btn btnCustom mt-3 ms-1">Vous n'avez pas de compte ? Inscrivez-vous</a>
-				</div>
-			</form>
+					<div class="col-md-6">
+						<label for="password" class="form-label">Mot de passe</label>
+						<div class="input-group">
+							<input type="password" name="_password" id="user_password" class="form-control border border-light" required>
+							<button type="button" class="btn btnCustom" onclick="togglePassword()">
+								<i class="bi bi-eye" id="eye"></i>
+								<i class="bi bi-eye-slash d-none" id="eye-slash"></i>
+							</button>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<input type="hidden" name="_token" value="{{ csrf_token('authenticate') }}">
+						<button type="submit" class="btn btnCustom mt-3">Connexion</button>
+						<a href="/user/new/" class="btn btnCustom mt-3 ms-1">Vous n'avez pas de compte ? Inscrivez-vous</a>
+					</div>
+				</form>
+			</div>
 		</div>
-	</div>
-	{% if error %}
-		<div class=" mt-5 justify-content-center">
-			<div class="d-flex justify-content-center alert alert-danger">l'e-mail ou le mot de passe est incorrect</div>
-		</div>
-	{% endif %}
+		{% if error %}
+			<div class=" mt-5 justify-content-center">
+				<div class="d-flex justify-content-center alert alert-danger">l'e-mail ou le mot de passe est incorrect</div>
+			</div>
+		{% endif %}
+	</section>
 {% endblock %}
