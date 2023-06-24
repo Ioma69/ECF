@@ -30,7 +30,7 @@ class Controller extends AbstractController
     }
 
     #[Route('/Picdishes/upload')]
-    public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response // Injection de l'objet ManagerRegistry + slugger interface
+    public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger,): Response // Injection de l'objet ManagerRegistry + slugger interface
     {
         if ($this->isGranted('ROLE_ADMIN')) {
             $picdishes = new PicDishes();
@@ -49,8 +49,8 @@ class Controller extends AbstractController
                             // deplace l'image dans un dossier uploads
                             $newFilename
                         );
-                    } catch (FileException $e) {
-                        dump($e);
+                    } catch (FileException) {
+                        $this->addFlash('error', 'erreur dans le traitement de la photo, veuillez réessayer');
                     }
                     $picdishes->setImage($newFilename);
                 }

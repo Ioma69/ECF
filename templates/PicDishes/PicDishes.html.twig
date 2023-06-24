@@ -10,6 +10,11 @@
 		<div class="col-12">
 			<input class="btn btnCustom" type="submit" value="Poster une photo de recette">
 		</div>
+		{% for message in app.flashes('error') %}
+				<div class="alert alert-success mt-3" role="alert">
+					{{ message }}
+				</div>
+		{% endfor %}
 		{{ form_end(picdishes_form) }}
 	</div>
 

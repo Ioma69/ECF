@@ -36,24 +36,25 @@
 	</div>
 
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-const carouselItems = document.querySelectorAll('.carousel-item');
-const cardTitles = document.querySelectorAll('.card-title');
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const carouselItems = document.querySelectorAll('.carousel-item');
+		const cardTitles = document.querySelectorAll('.card-title');
+		carouselItems.forEach(function (item) {
+			item.addEventListener('mouseenter', function () {
+				const title = item.querySelector('.card-title');
+				title.style.display = 'block';
+			});
+			item.addEventListener('mouseleave', function () {
+				const title = item.querySelector('.card-title');
+				title.style.display = 'none';
+			});
+		});
+	});
+</script>
 
-carouselItems.forEach(function (item) {
-item.addEventListener('mouseenter', function () {
-const title = item.querySelector('.card-title');
-title.style.display = 'block';
-});
 
-item.addEventListener('mouseleave', function () {
-const title = item.querySelector('.card-title');
-title.style.display = 'none';
-});
-});
-});
-	</script>
+
 
 
 	<div class="d-flex justify-content-center mt-5">

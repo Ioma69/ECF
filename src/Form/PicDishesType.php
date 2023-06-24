@@ -26,8 +26,11 @@ class PicDishesType extends AbstractType
                     "required" => true,
                     "constraints" /*Ajout de contraites de validation grace au composant validator*/
                     => [
-                        new Length(["min" => 2, "max" => 80, "minMessage" => "Le titre doit etre compris entre 2 et 80 caracteres", "maxMessage" => "Le titre ne doit pas faire plus de 80 caractères"]),
-                        new Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez le nom du plat sans tiret ni caractères spéciaux"]),
+                        new Length(["min" => 2, "max" => 80, 
+                        "minMessage" => "Le titre doit etre compris entre 2 et 80 caracteres", 
+                        "maxMessage" => "Le titre ne doit pas faire plus de 80 caractères"]),
+                        new Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 
+                        'message' => "Entrez le nom du plat sans tiret ni caractères spéciaux"]),
                         new NotBlank(['message' => "Le contenu ne doit pas etre vide"])
                     ]
                 ]
