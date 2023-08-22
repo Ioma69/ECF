@@ -102,7 +102,10 @@ class UserType extends AbstractType
                     'constraints'
                     => [
                         new NotBlank(['message' => "Le mot de passe ne doit pas etre vide"]),
-                        new Regex(['pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$/', 'message' => "Le mot de passe doit contenir au moins 8 caractères dont un numéro, une majuscule et un caractère spécial (!,@,#,$,%,^,&,*)"])
+                        new Regex(['pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$/',
+                         'message' => 
+                         "Le mot de passe doit contenir au moins 8 caractères dont un numéro, 
+                         une majuscule et un caractère spécial (!,@,#,$,%,^,&,*)"])
                     ]
                 ]
             );

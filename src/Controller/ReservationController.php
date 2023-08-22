@@ -104,20 +104,21 @@ class ReservationController extends AbstractController
                 $availableFlatware = $maxFlatware - $totalFlatware;
 
                 if ($availableFlatware < $reservations->getFlatware()) {
-                    $this->addFlash('error', 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.');
+                    $this->addFlash('error',
+                    'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.');
                 } else {
                     if ($reservationsForm->isValid()) {
                         $isFormSubmitted = true;
                         $em = $doctrine->getManager();
                         $em->persist($reservations);
                         $em->flush();
-                        $this->addFlash('valid2', 'Réservation effectuée avec succès, vous allez recevoir un mail de confirmation.');
+                        $this->addFlash('valid2', 
+                        'Réservation effectuée avec succès, vous allez recevoir un mail de confirmation.');
                         header('Refresh: 4; URL=' . $this->generateUrl('home'));
                         ob_flush();
                         flush();
 
                     }
-
                 }
             }
 

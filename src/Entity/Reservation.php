@@ -29,12 +29,12 @@ class Reservation
 
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "reservationUser")]
-    #[ORM\JoinColumn(nullable:true)]
+    #[ORM\JoinColumn(name:"user_id", nullable:true)]
     private $user;
 
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\Visitor", inversedBy: "reservationVisitor", cascade: ["remove"])]
-    #[ORM\JoinColumn(name:"visitor_id", nullable:true, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(name:"visitor_id", nullable:true)]
     private $visitor;
 
     public function getId(): ?int

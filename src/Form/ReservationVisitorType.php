@@ -57,7 +57,7 @@ class ReservationVisitorType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'attr' => ['min' => (new DateTime())->format('Y-m-d')],
-                'years' => range(2023, 2023),
+                'years' => range(2023, 2024),
                 'months' => range(06, 12),
                 'required' => true,
                 'constraints' => [

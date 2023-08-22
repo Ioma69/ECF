@@ -41,8 +41,13 @@ class VisitorType extends AbstractType
                     'constraints'
                     => [
                         new NotBlank(['message' => "Veuillez renseigner votre nom"]),
-                        new Regex(['pattern' => '/^[A-Z]{2,}/', 'message' => "Entrez votre nom en majuscule"]),
-                        new Length(["min" => 3, "max" => 50, "minMessage" => "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", "maxMessage" => "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
+                        new Regex(['pattern' => '/^[A-Z]{2,}/',
+                         'message' => "Entrez votre nom en majuscule"]),
+                        new Length(["min" => 3, "max" => 50,
+                         "minMessage" => 
+                         "Le nom d'utilisateur doit etre compris entre 3 et 50 caracteres", 
+                         "maxMessage" => 
+                         "Le nom d'utilisateur ne doit pas faire plus de 50 caractères"])
                     ]
                 ]
             )
@@ -51,7 +56,9 @@ class VisitorType extends AbstractType
                 "label" => "email",
                 "required" => true,
                 "constraints" => [
-                    new Length(["min" => 2, "max" => 180, "minMessage" => "L'email ne doit pas faire moins de 2 caractères", "maxMessage" => "L'email ne doit pas faire plus de 180 caractères"]),
+                    new Length(["min" => 2, "max" => 180, 
+                    "minMessage" => "L'email ne doit pas faire moins de 2 caractères", 
+                    "maxMessage" => "L'email ne doit pas faire plus de 180 caractères"]),
                     new NotBlank(["message" => "L'email ne doit pas être vide !"])
                 ]
             ])
@@ -63,9 +70,14 @@ class VisitorType extends AbstractType
                     "required" => true,
                     'constraints'
                     => [
-                        new NotBlank(['message' => "Veuillez renseigner votre numéro de téléphone"]),
-                        new Length(["min" => 10, "max" => 10, "exactMessage" => "Le numéro de téléphone doit contenir 10 caractères '0XXXXXXXXX'"]),
-                        new Regex(['pattern' => '/0[1-9]\d{8}/', 'message' => "Entrez un numéro de téléphone avec ce format '0XXXXXXXXX' sans tirets ni espaces"])
+                        new NotBlank(['message'
+                         => "Veuillez renseigner votre numéro de téléphone"]),
+                        new Length(["min" => 10, "max" => 10, 
+                        "exactMessage" 
+                        => "Le numéro de téléphone doit contenir 10 caractères '0XXXXXXXXX'"]),
+                        new Regex(['pattern' => '/0[1-9]\d{8}/', 
+                        'message' 
+                        => "Entrez un numéro de téléphone avec ce format '0XXXXXXXXX' sans tirets ni espaces"])
                     ]
                 ]
             );

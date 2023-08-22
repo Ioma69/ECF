@@ -5185,7 +5185,7 @@
         },
         {
             "name": "symfony/security-csrf",
-            "version": "v6.3.0-BETA1",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-csrf.git",
@@ -5233,7 +5233,7 @@
             "description": "Symfony Security Component - CSRF Library",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/security-csrf/tree/v6.3.0-BETA1"
+                "source": "https://github.com/symfony/security-csrf/tree/v6.3.0"
             },
             "funding": [
                 {
