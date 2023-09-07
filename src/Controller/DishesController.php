@@ -24,8 +24,8 @@ class DishesController extends AbstractController
         $dishes = $repository->findAll(); // SELECT * FROM 'Dishes';  // Stocke toutes les photos dans la variable $picdishes
         $repository = $doctrine->getRepository(Schedule::class);
         $schedules = $repository->findAll();
+
         return $this->render('dishes/menu.html.twig', [
-            // Envoie le tableau des photos au template Twig
             "dishes" => $dishes,
             $twig->addGlobal("schedules", $schedules),
         ]);
@@ -41,6 +41,7 @@ class DishesController extends AbstractController
             $categories = new Categories();
             $dishesForm = $this->createForm(DishesType::class, $dishes);
             $dishesForm->handleRequest($request);
+
             if ($dishesForm->isSubmitted() && $dishesForm->isValid()) {
                 $categories->setName($dishesForm->get('categories')->getData());
                 $dishes->setAdmin($this->getUser());
@@ -61,7 +62,28 @@ class DishesController extends AbstractController
     }
 
 
+    #[Route('/dishes/edit/{id<\d+>}', name: "edit-dishes")]
+    public function updateDishes(Request $request, Dishes $dishes, Categories $categories, ManagerRegistry $doctrine): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $dishesForm = $this->createForm(DishesType::class, $dishes);
+            $dishesForm->handleRequest($request);
+            if ($dishesForm->isSubmitted() && $dishesForm->isValid()) {
+                $categories->setName($dishesForm->get('categories')->getData());
+                $dishes->setCategory($categories);
+                $em = $doctrine->getManager();
+                $em->persist($dishes);
+                $em->persist($categories);
+                $em->flush();
+                return $this->redirectToRoute("menu");
+            }
 
+            return $this->render('dishes/FormMenu.html.twig', [
+                "dishes" => $dishesForm->createView()
+            ]);
+        }
+        return $this->redirectToRoute("home");
+    }
 
 
     #[Route('/dishes/delete/{id<\d+>}', name: "delete-dishes")]
@@ -75,27 +97,5 @@ class DishesController extends AbstractController
         }
         return $this->redirectToRoute("home");
     }
-
-
-    #[Route('/dishes/edit/{id<\d+>}', name: "edit-dishes")]
-    public function updateDishes(Request $request, Dishes $dishes, ManagerRegistry $doctrine): Response
-    {
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $dishesForm = $this->createForm(DishesType::class, $dishes);
-            $dishesForm->handleRequest($request);
-            if ($dishesForm->isSubmitted() && $dishesForm->isValid()) {
-                $em = $doctrine->getManager();
-                $em->persist($dishes);
-                $em->flush();
-                return $this->redirectToRoute("menu");
-            }
-
-            return $this->render('dishes/FormMenu.html.twig', [
-                "dishes" => $dishesForm->createView()
-            ]);
-        }
-        return $this->redirectToRoute("home");
-    }
-
 
 }

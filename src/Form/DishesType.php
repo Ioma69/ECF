@@ -29,9 +29,9 @@ class DishesType extends AbstractType
                 'label' => 'Nom de la catégorie',
                 'mapped' => false,
                 'choices' => [
-                    'Entrée' => 'entrée',
-                    'Plat' => 'plat',
-                    'Dessert' => 'dessert',
+                    'Entrée' => 'Entrée',
+                    'Plat' => 'Plat',
+                    'Dessert' => 'Dessert',
                 ],
             ])
 
@@ -43,7 +43,7 @@ class DishesType extends AbstractType
                     'constraints'
                     => [
                         new NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
-                        new Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez le nom du plat sans tirets ni caractères spéciaux"]),
+                        new Regex(['pattern' => "/^([a-zA-ZÀ-ÿ\s'.,!?]|\p{L})*$/", 'message' => "Entrez le nom du plat sans tirets ni caractères spéciaux"]),
                         new Length(["min" => 3, "max" => 80, "minMessage" => "Le nom du plat doit etre compris entre 3 et 80 caracteres", "maxMessage" => "Le nom du plat ne doit pas faire plus de 80 caractères"])
                     ]
                 ]
@@ -57,7 +57,7 @@ class DishesType extends AbstractType
                     'constraints'
                     => [
                         new NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
-                        new Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez la description sans tirets ni caractères spéciaux"]),
+                        new Regex(['pattern' => "/^([a-zA-ZÀ-ÿ\s'.,!?]|\p{L})*$/", 'message' => "Entrez la description sans tirets ni caractères spéciaux"]),
                         new Length(["min" => 3, "max" => 250, "minMessage" => "La description doit etre compris entre 3 et 250 caracteres", "maxMessage" => "La description ne doit pas faire plus de 250 caractères"])
                     ]
                 ]

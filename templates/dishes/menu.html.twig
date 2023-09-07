@@ -18,6 +18,8 @@
 										Prix :
 										{{ dishe.price }}
 										€</p>
+									<hr class="my-2">
+									<p class="card-text text-center pt-3">{{ dishe.category.name }}</p>
 								</div>
 								{% if ( is_granted('ROLE_ADMIN') ) %}
 									<div class="card-footer d-flex justify-content-center">

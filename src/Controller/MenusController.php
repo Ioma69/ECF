@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
 use App\Entity\Dishes;
 use App\Entity\Menu;
 use App\Entity\Schedule;
@@ -24,7 +25,7 @@ class MenusController extends AbstractController
         $menuDishes = $repository->findAll();
         $repository = $doctrine->getRepository(Schedule::class);
         $schedules = $repository->findAll();
-
+        
         $menuDishes = [];
         foreach ($menus as $menu) {
             $menuDishes[$menu->getId()] = $menu->getMeal();
