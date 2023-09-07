@@ -29,7 +29,7 @@ class MenuType extends AbstractType {
             'required' => true,
             'constraints' 
          => [ New NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
-              New Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez Le nom du menu sans tirets ni caractères spéciaux"]),
+              New Regex(['pattern' => "/^([a-zA-ZÀ-ÿ\s'.,!?]|\p{L})*$/", 'message' => "Entrez Le nom du menu sans tirets ni caractères spéciaux"]),
               new Length(["min" => 3, "max" => 80, "minMessage" => "La description doit etre compris entre 3 et 80 caracteres", "maxMessage" => "La description ne doit pas faire plus de 80 caractères"])
          ]
 
@@ -50,7 +50,7 @@ class MenuType extends AbstractType {
          "required" => true,
          'constraints' 
          => [ New NotBlank(['message' => "Veuillez renseigner le nom du plat"]),
-              New Regex(['pattern' => "/^[A-Za-zÀ-ÿ' ,!\?0-9]+(?:\?[A-Za-zÀ-ÿ' ,!\?0-9]*)?$/", 'message' => "Entrez la description sans tirets ni caractères spéciaux"]),
+              New Regex(['pattern' => "/^([a-zA-ZÀ-ÿ\s'.,!?]|\p{L})*$/", 'message' => "Entrez la description sans tirets ni caractères spéciaux"]),
               new Length(["min" => 3, "max" => 255, "minMessage" => "La description doit etre compris entre 3 et 255 caracteres", "maxMessage" => "La description ne doit pas faire plus de 255 caractères"])
          ] 
          ])
