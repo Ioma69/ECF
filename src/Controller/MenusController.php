@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\All;
 
 class MenusController extends AbstractController
 {
@@ -74,6 +75,40 @@ class MenusController extends AbstractController
     }
 
 
+    #[Route('/formula/edit/{id<\d+>}', name: "edit-formula")]
+    public function updateFormula(Request $request, Menu $menus, ManagerRegistry $doctrine): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $menuForm = $this->createForm(MenuType::class, $menus);
+            $menuForm->handleRequest($request);
+            if ($menuForm->isSubmitted() && $menuForm->isValid()) {
+                $em = $doctrine->getManager();
+    
+                 // Supprimer les anciens plats du menu
+            foreach ($menus->getMeal() as $meal) {
+                if ($meal instanceof Dishes) {
+                    $menus->removeMeal($meal);
+                }
+            }
+    
+                // Ajouter les nouveaux plats sélectionnés
+                $selectedDishes = $menuForm->get('title')->getData();
+                foreach ($selectedDishes as $selectedDish) {
+                    $menus->addMeal($selectedDish);
+                }
+    
+                $em->persist($menus);
+                $em->flush();
+                return $this->redirectToRoute("formula");
+            }
+    
+            return $this->render('Formulas/FormFormula.html.twig', [
+                "menus" => $menuForm->createView()
+            ]);
+        }
+        return $this->redirectToRoute("home");
+    }
+    
 
     #[Route('/formula/delete/{id<\d+>}', name: "delete-formula")]
     public function deleteFormula(Menu $menus, ManagerRegistry $doctrine): Response
@@ -87,24 +122,5 @@ class MenusController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route('/formula/edit/{id<\d+>}', name: "edit-formula")]
-    public function updateFormula(Request $request, Menu $menus, ManagerRegistry $doctrine): Response
-    {
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $menuForm = $this->createForm(MenuType::class, $menus);
-            $menuForm->handleRequest($request);
-            if ($menuForm->isSubmitted() && $menuForm->isValid()) {
-                $em = $doctrine->getManager();
-                $em->persist($menus);
-                $em->flush();
-                return $this->redirectToRoute("formula");
-            }
-
-            return $this->render('Formulas/FormFormula.html.twig', [
-                "menus" => $menuForm->createView()
-            ]);
-        }
-        return $this->redirectToRoute("home");
-    }
 
 }
