@@ -58,7 +58,7 @@ class Controller extends AbstractController
                 $picdishes->setAdmin($this->getUser()); //  recupere l'utilisateur connecté
                 $em = $doctrine->getManager(); // Recuperation d'une instance d'entity manager
                 $em->persist($picdishes); // Ajout de l'objet $picdishes à l'EM        
-                $em->flush(); // Synchronisation de l'object ajouté à l'Em avec le BDD
+                $em->flush(); // Synchronisation de l'object ajouté à l'Em avec la BDD
                 return $this->redirectToRoute("home");
             }
 

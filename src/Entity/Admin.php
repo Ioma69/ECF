@@ -60,7 +60,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher) {
         $this->passwordHasher = $passwordHasher;
-        $this->picdishes = new ArrayCollection();
     }
 
     public function getId(): ?int

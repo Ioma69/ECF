@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 
-{% block body %}
+{% block main %}
 
-
+<main>
 	<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
 		<div class="carousel-inner">
 			{% for picdishe in picdishes %}
@@ -156,6 +156,6 @@
 		</section>
 
 		{{ include('footer.html.twig') }}
-
-	{% endblock %}
+	</main>
+{% endblock %}
 
