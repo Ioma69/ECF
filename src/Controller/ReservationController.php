@@ -83,7 +83,6 @@ class ReservationController extends AbstractController
             $visitorId = $request->query->getInt('visitorId');
             $visitor = $doctrine->getRepository(Visitor::class)->find($visitorId);
             $reservationsForm->handleRequest($request);
-            $isFormSubmitted = false;
 
             if ($reservationsForm->isSubmitted()) {
                 $reservations->setVisitor($visitor);
@@ -104,34 +103,25 @@ class ReservationController extends AbstractController
                 $availableFlatware = $maxFlatware - $totalFlatware;
 
                 if ($availableFlatware < $reservations->getFlatware()) {
-                    $this->addFlash('error',
-                    'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.');
-                } else {
-                    if ($reservationsForm->isValid()) {
-                        $isFormSubmitted = true;
-                        $em = $doctrine->getManager();
-                        $em->persist($reservations);
-                        $em->flush();
-                        $this->addFlash('valid2', 
-                        'Réservation effectuée avec succès, vous allez recevoir un mail de confirmation.');
-                        header('Refresh: 4; URL=' . $this->generateUrl('home'));
-                        ob_flush();
-                        flush();
 
-                    }
+                    return new JsonResponse(['message' => 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.'], 400);
                 }
-            }
-
+                
+                $em = $doctrine->getManager();
+                $em->persist($reservations);
+                $em->flush();
+                return new JsonResponse(['message' => 'Réservation effectuée avec succès']);
+            };
 
             return $this->render('reservation/FormReservationVisitor.html.twig', [
                 "reservationsVisitor" => $reservationsForm->createView(),
-                'visitorId' => $visitorId,
-                'isFormSubmitted' => $isFormSubmitted
             ]);
-        } else {
-            return $this->redirectToRoute('home');
-
         }
+        return $this->redirectToRoute("home");
     }
+ }
+                
+            
 
-}
+
+        
