@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
+use Symfony\Component\Validator\Constraints\Regex;
 
 class LoginType extends AbstractType
 {
@@ -30,7 +30,11 @@ class LoginType extends AbstractType
                 "label" => "Mot de passe",
                 "required" => true,
                 "constraints" => [
-                    new NotBlank(["message" => "Le mot de passe ne peut pas être vide !"])
+                    new NotBlank(["message" => "Le mot de passe ne peut pas être vide !"]),
+                    new Regex(['pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$/',
+                    'message' => 
+                    "Le mot de passe doit contenir au moins 8 caractères dont un numéro, 
+                    une majuscule et un caractère spécial (!,@,#,$,%,^,&,*)"])
                 ]
             ]);
     }
