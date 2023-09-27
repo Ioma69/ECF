@@ -10,6 +10,7 @@
 						<div class="col-sm-10 col-md-7 col-lg-4 mb-4">
 							<div class="card border-1 borderColor h-100 d-flex flex-column align-items-stretch">
 								<div class="card-body font-weight-bold">
+									<p class="card-text text-center mb-4 fw-bold">{{ dishe.category.name }}</p>
 									<h5 class="card-title">{{ dishe.title }}</h5>
 									<hr class="my-2">
 									<p class="card-text">{{ dishe.description }}</p>
@@ -18,8 +19,6 @@
 										Prix :
 										{{ dishe.price }}
 										€</p>
-									<hr class="my-2">
-									<p class="card-text text-center pt-3">{{ dishe.category.name }}</p>
 								</div>
 								{% if ( is_granted('ROLE_ADMIN') ) %}
 									<div class="card-footer d-flex justify-content-center">
