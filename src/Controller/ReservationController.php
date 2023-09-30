@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\Schedule;
+use App\Entity\User;
 use App\Entity\Visitor;
 use App\Form\ReservationUserType;
 use App\Form\ReservationVisitorType;
@@ -16,12 +18,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     #[Route('/reservationUser', name: 'reservation')]
-    public function index4(ManagerRegistry $doctrine): Response
+    public function index4(ManagerRegistry $doctrine, \Twig\Environment $twig): Response
     {
         $repository = $doctrine->getRepository(Reservation::class);
         $reservations = $repository->findAll();
+        $repository = $doctrine->getRepository(Visitor::class);
+        $visitors = $repository->findAll();
+        $repository = $doctrine->getRepository(User::class);
+        $users = $repository->findAll();
+        $repository = $doctrine->getRepository(Schedule::class);
+        $schedules = $repository->findAll();
         return $this->render('reservation/Reservation.html.twig', [
             'reservations' => $reservations,
+            $twig->addGlobal("visitors", $visitors),
+            $twig->addGlobal("users", $users),
+            $twig->addGlobal("schedules", $schedules),
         ]);
     }
 
@@ -119,6 +130,41 @@ class ReservationController extends AbstractController
         }
         return $this->redirectToRoute("home");
     }
+
+    #[Route('/reservation/delete/{id<\d+>}', name: "delete-reservations")]
+    public function deleteDishes(Reservation $reservation, ManagerRegistry $doctrine): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $em = $doctrine->getManager();
+            $em->remove($reservation);
+            $em->flush();
+            return $this->redirectToRoute("reservation");
+        }
+        return $this->redirectToRoute("home");
+    }
+
+    #[Route('/reservation/edit/{id<\d+>}', name: "edit-reservationsVisitor")]
+    public function updateDishes(Request $request, Reservation $reservationsVisitor, ManagerRegistry $doctrine): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $reservationsForm = $this->createForm(ReservationVisitorType::class, $reservationsVisitor);
+            $reservationsForm->handleRequest($request);
+            if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) {
+                /*$categories->setName($dishesForm->get('categories')->getData());*/
+                /*$dishes->setCategory($categories);*/
+                $em = $doctrine->getManager();
+                $em->persist($reservationsVisitor);
+                $em->flush();
+                return $this->redirectToRoute("reservation");
+            }
+
+            return $this->render('reservation/FormReservationVisitor.html.twig', [
+                "reservationsVisitor" => $reservationsForm->createView(),
+            ]);
+        }
+        return $this->redirectToRoute("home");
+    }
+
  }
                 
             
