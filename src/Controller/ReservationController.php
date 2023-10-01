@@ -144,19 +144,44 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/reservation/edit/{id<\d+>}', name: "edit-reservationsVisitor")]
-    public function updateDishes(Request $request, Reservation $reservationsVisitor, ManagerRegistry $doctrine): Response
+    public function updateReservationVisitor(Request $request, ManagerRegistry $doctrine,$id): Response
     {
         if ($this->isGranted('ROLE_ADMIN')) {
-            $reservationsForm = $this->createForm(ReservationVisitorType::class, $reservationsVisitor);
+            $em = $doctrine->getManager();
+            $reservations = $em->getRepository(Reservation::class)->find($id);
+            $reservationsForm = $this->createForm(ReservationVisitorType::class, $reservations);
             $reservationsForm->handleRequest($request);
-            if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) {
-                /*$categories->setName($dishesForm->get('categories')->getData());*/
-                /*$dishes->setCategory($categories);*/
+
+            if ($reservationsForm->isSubmitted()) {
+               
+
+                // Vérification du nombre de couverts pour l'horaire choisi
+                $repository = $doctrine->getRepository(Reservation::class);
+                $existingReservations = $repository->findBy([
+                    'reservationDate' => $reservations->getReservationDate(),
+                    'reservationHour' => $reservations->getReservationHour()
+                ]);
+
+               
+                $totalFlatware = 0;
+                foreach ($existingReservations as $existingReservation) {
+                    // Exclure la réservation actuelle de la somme des couverts
+                    if ($existingReservation->getId() !== $reservations->getId()) {
+                        $totalFlatware += $existingReservation->getFlatware();
+                    }
+                }
+                $maxFlatware = 10;
+                $availableFlatware = $maxFlatware - $totalFlatware;
+                if ($availableFlatware < $reservations->getFlatware()) {
+
+                    return new JsonResponse(['message' => 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.'], 400);
+                }
+                
                 $em = $doctrine->getManager();
-                $em->persist($reservationsVisitor);
+                $em->persist($reservations);
                 $em->flush();
-                return $this->redirectToRoute("reservation");
-            }
+                return new JsonResponse(['message' => 'Réservation effectuée avec succès']);
+            };
 
             return $this->render('reservation/FormReservationVisitor.html.twig', [
                 "reservationsVisitor" => $reservationsForm->createView(),
@@ -165,9 +190,54 @@ class ReservationController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
- }
+
+
+
+
+    #[Route('/reservation/edit/{id<\d+>}', name: "edit-reservationsUser")]
+    public function updateReservationUser(Request $request, ManagerRegistry $doctrine,$id): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $em = $doctrine->getManager();
+            $reservations = $em->getRepository(Reservation::class)->find($id);
+            $reservationsForm = $this->createForm(ReservationUserType::class, $reservations);
+            $reservationsForm->handleRequest($request);
+
+            if ($reservationsForm->isSubmitted()) {
+               
+
+                // Vérification du nombre de couverts pour l'horaire choisi
+                $repository = $doctrine->getRepository(Reservation::class);
+                $existingReservations = $repository->findBy([
+                    'reservationDate' => $reservations->getReservationDate(),
+                    'reservationHour' => $reservations->getReservationHour()
+                ]);
+
+               
+                $totalFlatware = 0;
+                foreach ($existingReservations as $existingReservation) {
+                    // Exclure la réservation actuelle de la somme des couverts
+                    if ($existingReservation->getId() !== $reservations->getId()) {
+                        $totalFlatware += $existingReservation->getFlatware();
+                    }
+                }
+                $maxFlatware = 10;
+                $availableFlatware = $maxFlatware - $totalFlatware;
+                if ($availableFlatware < $reservations->getFlatware()) {
+
+                    return new JsonResponse(['message' => 'Le nombre de couverts pour cette heure est complet. Veuillez choisir un autre horaire.'], 400);
+                }
                 
-            
+                $em = $doctrine->getManager();
+                $em->persist($reservations);
+                $em->flush();
+                return new JsonResponse(['message' => 'Réservation effectuée avec succès']);
+            };
 
-
-        
+            return $this->render('reservation/FormReservationVisitor.html.twig', [
+                "reservationsUser" => $reservationsForm->createView(),
+            ]);
+        }
+        return $this->redirectToRoute("home");
+    }
+}    
