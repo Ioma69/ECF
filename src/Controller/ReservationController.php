@@ -206,7 +206,7 @@ class ReservationController extends AbstractController
             if ($reservationsForm->isSubmitted()) {
                
 
-                // Vérification du nombre de couverts pour l'horaire choisi
+                // Vérifie du nombre de couverts pour l'horaire choisi
                 $repository = $doctrine->getRepository(Reservation::class);
                 $existingReservations = $repository->findBy([
                     'reservationDate' => $reservations->getReservationDate(),
@@ -216,7 +216,7 @@ class ReservationController extends AbstractController
                
                 $totalFlatware = 0;
                 foreach ($existingReservations as $existingReservation) {
-                    // Exclure la réservation actuelle de la somme des couverts
+                    // Exclue la réservation actuelle de la somme des couverts
                     if ($existingReservation->getId() !== $reservations->getId()) {
                         $totalFlatware += $existingReservation->getFlatware();
                     }
