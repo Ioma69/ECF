@@ -38,7 +38,7 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/userReservation', name: 'userReservation')]
-    public function reservationUser(Request $request, ManagerRegistry $doctrine, Security $security): Response
+    public function reservationUser(Request $request, ManagerRegistry $doctrine): Response
     {
         if ($this->isGranted('ROLE_USER')) {
             $user = $this->getUser();
