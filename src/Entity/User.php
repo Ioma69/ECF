@@ -45,10 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $phone;
 
     #[ORM\Column]
-    private ?string $flatware = null;
+    private ?int $flatware = null;
 
     #[ORM\Column]
-    private ?string $allergy = null;
+    private ?array $allergy = null;
 
     #[ORM\OneToMany(targetEntity: "App\Entity\Reservation", mappedBy: "user")]
 
@@ -248,7 +248,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the value of allergy
      */
-    public function getAllergy(): ?string
+    public function getAllergy(): ?array
     {
         return $this->allergy;
     }
@@ -256,7 +256,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Set the value of allergy
      */
-    public function setAllergy(?string $allergy): self
+    public function setAllergy(?array $allergy): self
     {
         $this->allergy = $allergy;
 
@@ -266,7 +266,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the value of flatware
      */
-    public function getFlatware(): ?string
+    public function getFlatware(): ?int
     {
         return $this->flatware;
     }
@@ -274,7 +274,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Set the value of flatware
      */
-    public function setFlatware(?string $flatware): self
+    public function setFlatware(?int $flatware): self
     {
         $this->flatware = $flatware;
 
