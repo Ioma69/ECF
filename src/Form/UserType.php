@@ -108,7 +108,36 @@ class UserType extends AbstractType
                          une majuscule et un caractère spécial (!,@,#,$,%,^,&,*)"])
                     ]
                 ]
-            );
+            )
+
+            ->add('flatware', ChoiceType::class, [
+                'choices' => [
+                    '1 couvert' => 1,
+                    '2 couverts' => 2,
+                    '3 couverts' => 3,
+                    '4 couverts' => 4,
+                    '5 couverts' => 5,
+                    '6 couverts' => 6,
+                    '7 couverts' => 7,
+                    '8 couverts' => 8,
+                    '9 couverts' => 9,
+                    '10 couverts' => 10
+                ]
+            ])
+
+            ->add('allergy', ChoiceType::class, [
+                'label' => "Type d'allergie",
+                'choices' => [
+                    'Gluten' => 'Gluten',
+                    'Lactose' => 'Lactose',
+                    'Arachide' => 'Arachide',
+                    'Fruits de mer' => 'Fruits de mer',
+                    'Oeuf' => 'Oeuf',
+                ],
+                'multiple' => true,
+                'expanded' => true,
+            ]);
+
 
 
     }

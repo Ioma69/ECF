@@ -28,6 +28,16 @@
 					{{ form_errors(form.email) }}
 				</div>
 				<div class="mb-3 form-group">
+					{{ form_label(form.flatware) }}
+					{{ form_widget(form.flatware, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(form.flatware) }}
+				</div>
+				<div class="mb-3 form-group">
+					{{ form_label(form.allergy) }}
+					{{ form_widget(form.allergy, {'attr': {'class': 'form-control customForm border border-light'}}) }}
+					{{ form_errors(form.allergy) }}
+				</div>
+				<div class="mb-3 form-group">
 					{{ form_label(form.password) }}
 					<div class="input-group mb-3">
 						{{ form_widget(form.password, {'attr': {'class': 'form-control customForm border border-light' }}) }}
