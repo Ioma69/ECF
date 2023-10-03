@@ -10,6 +10,7 @@ use App\Form\ReservationUserType;
 use App\Form\ReservationVisitorType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,11 +38,20 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/userReservation', name: 'userReservation')]
-    public function reservationUser(Request $request, ManagerRegistry $doctrine): Response
+    public function reservationUser(Request $request, ManagerRegistry $doctrine, Security $security): Response
     {
         if ($this->isGranted('ROLE_USER')) {
+            $user = $this->getUser();
+            if ($user instanceof User) {
+            $flatware = $user->getFlatware();
+            $allergy = $user->getAllergy();
+        }
             $reservations = new Reservation();
-            $reservationsForm = $this->createForm(ReservationUserType::class, $reservations);
+            $reservationsForm = $this->createForm(ReservationUserType::class, $reservations, [
+                'flatware' => $flatware,
+                'allergy' => $allergy,
+            ]);
+            
             $reservationsForm->handleRequest($request);
 
             if ($reservationsForm->isSubmitted() && $reservationsForm->isValid()) {

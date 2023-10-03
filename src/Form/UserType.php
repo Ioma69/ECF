@@ -123,7 +123,8 @@ class UserType extends AbstractType
                     '8 couverts' => 8,
                     '9 couverts' => 9,
                     '10 couverts' => 10
-                ]
+                ],
+             
             ])
 
             ->add('allergy', ChoiceType::class, [

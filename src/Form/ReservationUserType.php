@@ -39,7 +39,8 @@ class ReservationUserType extends AbstractType
                     '8 couverts' => 8,
                     '9 couverts' => 9,
                     '10 couverts' => 10
-                ]
+                ],
+                'data' => $options['flatware'],
             ])
 
 
@@ -103,6 +104,7 @@ class ReservationUserType extends AbstractType
                 ],
                 'multiple' => true,
                 'expanded' => true,
+                'data' => $options['allergy'],
             ]);
     }
 
@@ -116,6 +118,8 @@ class ReservationUserType extends AbstractType
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
             'csrf_token_id' => 'reservationUser_item',
+            'flatware' => null, // Ajoutez cette ligne pour définir l'option flatware
+            'allergy' => null, // Ajoutez cette ligne pour définir l'option allergy
         ]);
     }
 }
