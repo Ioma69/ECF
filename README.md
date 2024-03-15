@@ -1,8 +1,9 @@
 # ECF Quai Antique 2023 STUDI Sariel RAQUIN
+Site internet créé pour le compte d'un restaurant fictif dans le cadre d'une évaluation de fin de formation, possibilité de créer un compte, se connecter, réserver une table, gérer un panneau d'administration (CRUD photo de plats, carte, menus, réservations etc).  
 
 ## Lien vers le trello : [Trello](https://trello.com/b/pGkhreB8/ecf-quai-antique-sariel-raquin)
 
-## Lien vers le site internet en ligne https://calm-meadow-99927.herokuapp.com/
+## Lien vers le site internet en ligne [https://calm-meadow-99927.herokuapp.com/](https://lequaiantique69-658b65572502.herokuapp.com/)
 ### Pour info : Le carrousel à l’accueil ne comporte pas d’image car Heroku les efface en très peu de temps quand je les charge via le panneau d’administration, mais vous pouvez tester la fonctionnalité ( en étant préalablement connecté en tant qu'admin ) en allant dans Admin -> Gérer la galerie photo.
 
 1. Clôner le dépôt : git clone <URL_DU_DÉPÔT>
