@@ -70,7 +70,7 @@ class Controller extends AbstractController
         return $this->redirectToRoute("login");
     }
 
-
+    
     #[Route('/Picdishes/edit/{id<\d+>}', name: "edit-picdishe")]
     public function update(Request $request, Picdishes $picdishes, ManagerRegistry $doctrine, SluggerInterface $slugger): Response // Injection de l'objet ManagerRegistry
     {

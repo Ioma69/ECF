@@ -19,7 +19,8 @@ class PicDishes {
 
     #[ORM\Column(type: "text")]
     private ?string $image = null;
-    
+
+
     #[ORM\ManyToOne(targetEntity: "App\Entity\Admin", inversedBy: "picdishes")]
     #[ORM\JoinColumn(name:"admin_id", referencedColumnName:"id")]
    
@@ -89,5 +90,4 @@ class PicDishes {
     }
 
   
-   
 }

@@ -4,40 +4,56 @@
 {% block main %}
 
 <main>
-	<div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
-		<div class="carousel-inner">
-			{% for picdishe in picdishes %}
-				<div class="carousel-item {% if loop.first %}active{% endif %}">
-					<div class="text-white m-3 d-flex justify-content-center align-items-center">
-						<img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
-						<div class="card-img-overlay">
-							{% if ( is_granted('ROLE_ADMIN') ) %}
-								<div class="d-flex justify-content-center mt-4">
-									<a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm me-1 adminButton">
-										<i class="fas fa-trash"></i>Supprimer</a>
-									<a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm adminButton">
-										<i class="fas fa-edit"></i>Modifier</a>
-								</div>
-							{% endif %}
-							<h5 class="card-title card-js mt-4 text-center">{{ picdishe.title }}</h5>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-		<a class="carousel-control-prev " href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon black" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-			<span class="carousel-control-next-icon black" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</a>
-	</div>
+    <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Photo toujours présente -->
+            <div class="carousel-item active first-slide">
+                <div class="text-white m-3 d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('pictures/magretdecanard.jpg') }}" class="card-img-top shadow-sm img-fluid" alt="Magretdecanard">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title card-js mt-4 text-center">Magret de canard</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boucle pour afficher les photos uploadées -->
+            {% for picdishe in picdishes %}
+                <div class="carousel-item">
+                    <div class="text-white m-3 d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('uploads/' ~ picdishe.image) }}" class="card-img-top shadow-sm img-fluid" alt="{{ picdishe.title }}">
+                        <div class="card-img-overlay">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="d-flex justify-content-center mt-4">
+                                    <a href="{{ path('delete-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm me-1 adminButton">
+                                        <i class="fas fa-trash"></i>Supprimer</a>
+                                    <a href="{{ path('edit-picdishe', {'id': picdishe.id}) }}" class="btn btn-sm adminButton">
+                                        <i class="fas fa-edit"></i>Modifier</a>
+                                </div>
+                            {% endif %}
+                            <h5 class="card-title card-js mt-4 text-center">{{ picdishe.title }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon black" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon black" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </a>
+    </div>
+
+
 
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
+		    $(document).ready(function(){
+        	$('#carouselExampleIndicators').carousel();
+   			 });
 		const carouselItems = document.querySelectorAll('.carousel-item');
 		const cardTitles = document.querySelectorAll('.card-title');
 		carouselItems.forEach(function (item) {
