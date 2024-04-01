@@ -4,7 +4,7 @@
 {% block main %}
 
 <main>
-    <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide pt-5 marginNavbar" data-bs-ride="carousel">
         <div class="carousel-inner">
             <!-- Photo toujours présente -->
             <div class="carousel-item active first-slide">
@@ -15,6 +15,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Boucle pour afficher les photos uploadées -->
             {% for picdishe in picdishes %}
@@ -48,26 +49,32 @@
 
 
 
-
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		    $(document).ready(function(){
-        	$('#carouselExampleIndicators').carousel();
-   			 });
-		const carouselItems = document.querySelectorAll('.carousel-item');
-		const cardTitles = document.querySelectorAll('.card-title');
-		carouselItems.forEach(function (item) {
-			item.addEventListener('mouseenter', function () {
-				const title = item.querySelector('.card-title');
-				title.style.display = 'block';
-			});
-			item.addEventListener('mouseleave', function () {
-				const title = item.querySelector('.card-title');
-				title.style.display = 'none';
-			});
-		});
-	});
+    document.addEventListener('DOMContentLoaded', function () {
+        const carousel = document.querySelector('#carouselExampleIndicators');
+        const carouselItems = carousel.querySelectorAll('.carousel-item');
+
+        // Initialisation du carousel
+        const myCarousel = new bootstrap.Carousel(carousel, {
+            interval: 5000, // Temps d'attente entre chaque diapositive (en millisecondes)
+            pause: 'hover' // Pause du carousel au survol
+        });
+
+        // Ajout des écouteurs d'événements pour afficher/masquer les titres au survol
+        carouselItems.forEach(function (item) {
+            item.addEventListener('mouseenter', function () {
+                const title = item.querySelector('.card-title');
+                title.style.display = 'block';
+            });
+            item.addEventListener('mouseleave', function () {
+                const title = item.querySelector('.card-title');
+                title.style.display = 'none';
+            });
+        });
+    });
 </script>
+
+
 
 
 
@@ -107,7 +114,7 @@
 		</div>
 	</section>
 
-	<section class="mt-5 mb-5">
+	<section class="mt-5 mb-5 pt-4 pb-4">
 		<div class="container mt-3 mb-4">
 			<h2 class="text-center mb-5 mt-5">Témoignages de nos clients</h2>
 			<div class="row">

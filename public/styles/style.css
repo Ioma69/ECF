@@ -26,9 +26,14 @@ body {
     border: #f7e4c7 solid 1px;
 }
 
+.btn:hover {
+  color: white;
+  background-color: rgb(119, 76, 13); 
+}
+
 .btnCustom,.btnCustom2,.btnCustom3 {
     background-color: #774c0d; 
-    color: white; 
+    color: rgb(255, 255, 255); 
     font-weight: bold; 
     text-decoration: none; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -40,7 +45,8 @@ body {
 }
 
 .btnCustom:hover, .btnCustom2:hover  {
-    color: #212529; 
+    color: #ffffff; 
+    background-color: #000000;
 }
 
 .cardColor, .card-footer, .customForm {
@@ -110,11 +116,29 @@ body {
 
 
   .adminButton {
-    background-color: rgb(119, 76, 13)
+    background-color: rgb(119, 76, 13);
 }
 
+  .hoverLink:hover {
+    background-color: rgb(119, 76, 13);
+  }
 
+  .hoverLink2:hover {
+    text-decoration: underline;
+  }
 
+  .hoverLink3:hover {
+    background-color: rgb(119, 76, 13);
+    color: white;
+  }
+
+  .navbar {
+    opacity: 90%;
+  }
+
+  .marginNavbar {
+    margin-top: 150px;
+  }
 
 @media screen and (min-width: 320px) and (max-width : 750px) {
     .card-img-top {
